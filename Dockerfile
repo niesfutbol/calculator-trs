@@ -1,4 +1,4 @@
-FROM r-base:4.0.3
+FROM r-base:4.1.0
 WORKDIR /workdir
 COPY . /workdir
 RUN apt-get update && apt-get install --yes \
