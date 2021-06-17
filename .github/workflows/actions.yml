@@ -1,4 +1,4 @@
-name: Tests
+name: tests
 on:
   pull_request:
     branches:
@@ -10,7 +10,7 @@ on:
       - master
 jobs:
   actions:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
     - name: Copia repositorio
       uses: actions/checkout@v2
