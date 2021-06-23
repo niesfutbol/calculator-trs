@@ -1,6 +1,6 @@
-home,away,match_id,home_id,home_total_shots,home_shots_on_goal,away_id,away_total_shots,away_shots_on_goal
-2.0,1.0,169101.0,2290.0,20.0,7.0,2292.0,14.0,4.0
-2.0,0.0,169102.0,2295.0,18.0,6.0,2298.0,12.0,5.0
-3.0,1.0,169103.0,2279.0,10.0,3.0,2288.0,9.0,2.0
-3.0,0.0,169104.0,2278.0,13.0,6.0,2314.0,17.0,3.0
-0.0,1.0,169105.0,2281.0,9.0,2.0,2287.0,9.0,2.0
+home,away,match_id,home_id,home_total_shots,home_shots_on_goal,home_shots_insidebox,away_id,away_total_shots,away_shots_on_goal,away_shots_insidebox,home_shots_outsidebox,away_shots_outsidebox
+2,1,169101,2290,20,7,12,2292,14,4,4,8,10
+2,0,169102,2295,18,6,10,2298,12,5,6,8,6
+3,1,169103,2279,10,3,7,2288,9,2,3,3,6
+3,0,169104,2278,13,6,9,2314,17,3,8,4,9
+0,1,169105,2281,9,2,7,2287,9,2,1,2,8
