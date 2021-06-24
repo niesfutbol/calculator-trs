@@ -9,7 +9,11 @@ define lint
 	  -e "lint_dir('tests/testthat', linters = with_defaults(line_length_linter(100)))"
 endef
 
-.PHONY: all check clean coverage linter tests
+.PHONY: all check clean coverage linter results tests
+
+results: src/calculate_xGoal.R
+	mkdir --parents $(@D)
+	Rscript -e "source('src/calculate_xGoal.R')"
 
 check:
 	R -e "library(styler)" \
