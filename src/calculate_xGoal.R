@@ -1,5 +1,5 @@
 library(tidyverse)
-league <- read_csv("tests/data/statistics_262_2019.csv")
+league <- read_csv("tests/data/statistics_9_2021.csv")
 league <- league %>%
   mutate("home_shots_outsidebox" = home_total_shots - home_shots_insidebox) %>%
   mutate("away_shots_outsidebox" = away_total_shots - away_shots_insidebox)
