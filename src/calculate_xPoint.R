@@ -1,4 +1,5 @@
 library(tidyverse)
+library(comprehenr)
 calculate_xgoal <- function(shots_outsidebox, shots_insidebox){
   xGol_inside <- 0.09720
   xGol_outside <- 0.06995
@@ -26,8 +27,10 @@ league <- league %>%
   mutate("away_xGol" = calculate_xgoal(away_shots_outsidebox, away_shots_insidebox)) %>%
   mutate("home_alpha" = dpois(home, home_xGol)) %>%
   mutate("away_alpha" = dpois(away, away_xGol))
-home_xPoints <- to_vec(for(x in 1:40) calculate_xpoints(league[x,]$home_xGol, league[x,]$away_xGol))
-away_xPoints <- to_vec(for(x in 1:40) calculate_xpoints(league[x,]$away_xGol, league[x,]$home_xGol))
+
+number_of_matches <- nrow(league)
+home_xPoints <- to_vec(for(x in 1:number_of_matches) calculate_xpoints(league[x,]$home_xGol, league[x,]$away_xGol))
+away_xPoints <- to_vec(for(x in 1:number_of_matches) calculate_xpoints(league[x,]$away_xGol, league[x,]$home_xGol))
 league <- cbind(league, tibble(home_xPoints, away_xPoints))
 
 suspicious_game <- league %>%
