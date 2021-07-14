@@ -19,10 +19,20 @@ calculate_xpoints <- function(home_xGol, away_xGol){
   return(xpoints)
 }
 
-league <- read_csv("tests/data/statistics_262_2020.csv")
+add_home_shots_outsidebox <- function(datos){
+  salida <- datos %>% mutate("home_shots_outsidebox" = home_total_shots - home_shots_insidebox)
+  return(salida)
+}
+
+add_away_shots_outsidebox <- function(datos){
+  salida <- datos %>% mutate("away_shots_outsidebox" = away_total_shots - away_shots_insidebox)
+  return(salida)
+}
+
+league <- read_csv("tests/data/statistics_4_2020.csv")
 league <- league %>%
-  mutate("home_shots_outsidebox" = home_total_shots - home_shots_insidebox) %>%
-  mutate("away_shots_outsidebox" = away_total_shots - away_shots_insidebox) %>%
+  add_home_shots_outsidebox() %>%
+  add_away_shots_outsidebox() %>%
   mutate("home_xGol" = calculate_xgoal(home_shots_outsidebox, home_shots_insidebox)) %>%
   mutate("away_xGol" = calculate_xgoal(away_shots_outsidebox, away_shots_insidebox)) %>%
   mutate("home_alpha" = dpois(home, home_xGol)) %>%
