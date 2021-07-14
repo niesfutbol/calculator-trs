@@ -1,7 +1,7 @@
 library(tidyverse)
 calculate_xgoal <- function(shots_outsidebox, shots_insidebox){
-  xGol_inside <- 0.100892
-  xGol_outside <- 0.042890747
+  xGol_inside <- 0.09720
+  xGol_outside <- 0.06995
   xgoal <- shots_outsidebox * xGol_outside + shots_insidebox * xGol_inside
   return(xgoal)
 }
