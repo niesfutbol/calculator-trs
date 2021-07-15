@@ -9,9 +9,9 @@
 - `xGoal_outside` = 0.043 **
 
 ### Eurocopa 2020
-- `xGoal_inside` = 0.097 ***
-- `xGoal_outside` = 0.070 ***
+- `xGoal_inside` = 0.096 ***
+- `xGoal_outside` = 0.073 ***
 
 ### Copa América 2021
-- `xGoal_inside` = 0.070 ***
-- `xGoal_outside` = 0.117 ***
+- `xGoal_inside` = 0.074 ***
+- `xGoal_outside` = 0.108 ***
