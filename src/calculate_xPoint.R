@@ -30,6 +30,7 @@ add_away_shots_outsidebox <- function(datos){
 }
 
 league <- read_csv("tests/data/statistics_4_2020.csv")
+league[is.na(league)] <- 0
 league <- league %>%
   add_home_shots_outsidebox() %>%
   add_away_shots_outsidebox() %>%
