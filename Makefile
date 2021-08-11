@@ -38,5 +38,5 @@ linter:
 	$(lint)
 	$(lint) | grep -e "\^" && exit 1 || exit 0
 
-tests: install
+tests:
 	R -e "testthat::test_dir('tests/testthat/', report = 'summary', stop_on_failure = TRUE)"
