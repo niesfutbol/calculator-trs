@@ -1,0 +1,22 @@
+name: tests
+on:
+  pull_request:
+    branches:
+      - develop
+      - master
+  push:
+    branches:
+      - develop
+      - master
+jobs:
+  actions:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Copia repositorio
+      uses: actions/checkout@v2
+    - name: Construye imagen
+      run: docker build --tag trs .
+    - name: Verifica el formato
+      run: docker run trs make check
+    - name: Corre pruebas y evalua cobertura
+      run: docker run trs make coverage

@@ -1,0 +1,25 @@
+library(tidyverse)
+league <- read_csv("tests/data/statistics_9_2021.csv")
+league <- league %>%
+  mutate("home_shots_outsidebox" = home_total_shots - home_shots_insidebox) %>%
+  mutate("away_shots_outsidebox" = away_total_shots - away_shots_insidebox)
+league_home <- league %>%
+  select("home", "home_shots_outsidebox", "home_shots_insidebox") %>%
+  mutate(is_home = TRUE)
+league_away <- league %>%
+  select("away", "away_shots_outsidebox", "away_shots_insidebox") %>%
+  mutate(is_home = FALSE)
+colnames(league_away) <- c("gol", "outsidebox", "insidebox", "is_home")
+colnames(league_home) <- c("gol", "outsidebox", "insidebox", "is_home")
+cleaned_league <- bind_rows(league_home, league_away)
+fit_xGoal <- function(league){
+  modelo <- glm(
+    gol ~ 0 + outsidebox + insidebox,
+    data = league,
+    poisson(link = "sqrt")
+    )
+}
+modelo <- fit_xGoal(cleaned_league)
+resumen_modelo <- summary(modelo)
+xGol_inside <- resumen_modelo$coefficients[2,1]
+xGol_outside <- resumen_modelo$coefficients[1,1]
