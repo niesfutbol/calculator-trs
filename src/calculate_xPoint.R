@@ -20,16 +20,6 @@ calculate_xpoints <- function(home_xGol, away_xGol){
   return(xpoints)
 }
 
-add_home_shots_outsidebox <- function(datos){
-  salida <- datos %>% mutate("home_shots_outsidebox" = home_total_shots - home_shots_insidebox)
-  return(salida)
-}
-
-add_away_shots_outsidebox <- function(datos){
-  salida <- datos %>% mutate("away_shots_outsidebox" = away_total_shots - away_shots_insidebox)
-  return(salida)
-}
-
 league <- read_csv("tests/data/statistics_262_2021.csv")
 league[is.na(league)] <- 0
 league <- league %>%
