@@ -41,16 +41,20 @@ describe("The function calculate_diff_goals", {
     obtained_length <- length(obtained_diff_goal)
     expect_equal(expected_length, obtained_length)
   })
-  it("Mean difference aprox. 2", {
-    expected_mean_difference <- 2
-    obtained_diff_goal <- to_vec(for (i in 1:2000) mean(calculate_diff_goals(2, 0)))
+  assert_mean_difference_goals <- function(home_xgoal, away_xgoal){
+    expected_mean_difference <- home_xgoal - away_xgoal
+    obtained_diff_goal <- to_vec(for (i in 1:2000) mean(calculate_diff_goals(home_xgoal, away_xgoal)))
     obtained_mean_difference <- mean(obtained_diff_goal)
     expect_equal(expected_mean_difference, obtained_mean_difference, tolerance = 1e-3)
+  }
+  it("Mean difference aprox. 2", {
+    home_xgoal <- 2
+    away_xgoal <- 0
+    assert_mean_difference_goals(home_xgoal, away_xgoal)
   })
   it("Mean difference aprox. 3", {
-    expected_mean_difference <- 3
-    obtained_diff_goal <- to_vec(for (i in 1:2000) mean(calculate_diff_goals(5, 2)))
-    obtained_mean_difference <- mean(obtained_diff_goal)
-    expect_equal(expected_mean_difference, obtained_mean_difference, tolerance = 1e-3)
+    home_xgoal <- 5
+    away_xgoal <- 2
+    assert_mean_difference_goals(home_xgoal, away_xgoal)
   })
 })
