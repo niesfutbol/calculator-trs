@@ -11,6 +11,10 @@ endef
 
 .PHONY: all check clean coverage linter results tests
 
+results/xTable_262_2021.csv:
+	mkdir --parents $(@D)
+	Rscript -e "source('src/calculate_xPoint.R')"
+
 results: src/calculate_xGoal.R
 	mkdir --parents $(@D)
 	Rscript -e "source('src/calculate_xGoal.R')"
