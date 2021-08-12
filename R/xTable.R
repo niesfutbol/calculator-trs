@@ -1,3 +1,3 @@
-return_one <- function(){
+return_one <- function() {
   return(1)
 }
