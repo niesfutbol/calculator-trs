@@ -1,5 +1,6 @@
 library(tidyverse)
 library(comprehenr)
+source("R/xTable.R")
 calculate_xgoal <- function(shots_outsidebox, shots_insidebox){
   xGol_inside <- 0.101
   xGol_outside <- 0.043
