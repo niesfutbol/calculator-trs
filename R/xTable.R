@@ -18,3 +18,9 @@ add_away_shots_outsidebox <- function(datos) {
   salida <- datos %>% mutate("away_shots_outsidebox" = away_total_shots - away_shots_insidebox)
   return(salida)
 }
+
+calculate_diff_goals <- function(home_xGol, away_xGol){
+  n_sample <- 2000
+  diff_goals <- rpois(n_sample, home_xGol) - rpois(n_sample, away_xGol)
+  return(diff_goals)
+}

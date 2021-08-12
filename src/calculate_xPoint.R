@@ -8,12 +8,6 @@ calculate_xgoal <- function(shots_outsidebox, shots_insidebox){
   return(xgoal)
 }
 
-calculate_diff_goals <- function(home_xGol, away_xGol){
-  n_sample <- 2000
-  diff_goals <- rpois(n_sample, home_xGol) - rpois(n_sample, away_xGol)
-  return(diff_goals)
-}
-
 calculate_xpoints <- function(home_xGol, away_xGol){
   diff_goals <- calculate_diff_goals(home_xGol, away_xGol)
   xpoints <- sum(diff_goals > 0)*3/2000 + sum(diff_goals == 0)/2000
