@@ -1,7 +1,4 @@
 library(tidyverse)
-return_one <- function() {
-  return(1)
-}
 
 calculate_points <- function(home_xGol, away_xGol) {
   diff_goals <- home_xGol - away_xGol
