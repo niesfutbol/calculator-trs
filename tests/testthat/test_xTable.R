@@ -1,4 +1,5 @@
 source("../../R/xTable.R")
+library(comprehenr)
 
 describe("The function calculate_points", {
   it("return one point with draw", {
@@ -39,5 +40,17 @@ describe("The function calculate_diff_goals", {
     obtained_diff_goal <- calculate_diff_goals(2, 0)
     obtained_length <- length(obtained_diff_goal)
     expect_equal(expected_length, obtained_length)
+  })
+  it("Mean difference aprox. 2", {
+    expected_mean_difference <- 2
+    obtained_diff_goal <- to_vec(for (i in 1:2000) mean(calculate_diff_goals(2, 0)))
+    obtained_mean_difference <- mean(obtained_diff_goal)
+    expect_equal(expected_mean_difference, obtained_mean_difference, tolerance = 1e-3)
+  })
+  it("Mean difference aprox. 3", {
+    expected_mean_difference <- 3
+    obtained_diff_goal <- to_vec(for (i in 1:2000) mean(calculate_diff_goals(5, 2)))
+    obtained_mean_difference <- mean(obtained_diff_goal)
+    expect_equal(expected_mean_difference, obtained_mean_difference, tolerance = 1e-3)
   })
 })
