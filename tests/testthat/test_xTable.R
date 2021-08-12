@@ -25,3 +25,18 @@ describe("The function calculate_points", {
     expect_equal(expected_points, obtained_points)
   })
 })
+
+describe("The function add_home/away_shots_outsidebox", {
+  test_data = tibble(home_total_shots=c(2,3), home_shots_insidebox=c(1,1))
+  it("add_home_shots_outsidebox", {
+    expected <- tibble(home_total_shots=c(2,3), home_shots_insidebox=c(1,1), home_shots_outsidebox=c(1,2))
+    obtained <- add_home_shots_outsidebox(test_data)
+    expect_equal(expected, obtained)
+  })
+  test_data = tibble(away_total_shots=c(2,3), away_shots_insidebox=c(1,1))
+  it("add_away_shots_outsidebox", {
+    expected <- tibble(away_total_shots=c(2,3), away_shots_insidebox=c(1,1), away_shots_outsidebox=c(1,2))
+    obtained <- add_away_shots_outsidebox(test_data)
+    expect_equal(expected, obtained)
+  })
+})
