@@ -40,3 +40,12 @@ describe("The function add_home/away_shots_outsidebox", {
     expect_equal(expected, obtained)
   })
 })
+
+describe("The function calculate_diff_goals", {
+  it("Length equal to 2000", {
+    expected_length <- 2000
+    obtained_diff_goal <- calculate_diff_goals(2, 0)
+    obtained_length <- length(obtained_diff_goal)
+    expect_equal(expected_length, obtained_length)
+  })
+})
