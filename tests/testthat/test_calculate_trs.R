@@ -1,5 +1,4 @@
 setwd("/workdir")
-library(geci.rjags)
 
 in_file <- "tests/data/statistics_262_2019.csv"
 input_file <- read.csv(in_file)
