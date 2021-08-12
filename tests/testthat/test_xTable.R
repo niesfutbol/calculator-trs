@@ -7,3 +7,21 @@ describe("Dummy tests", {
     expect_equal(expected, obtained)
   })
 })
+
+describe("The function calculate_points", {
+  it("return one point with draw", {
+    expected_points <- 1
+    obtained_points <- calculate_points(1, 1)
+    expect_equal(expected_points, obtained_points)
+  })
+  it("return three points with local win", {
+    expected_points <- 3
+    obtained_points <- calculate_points(1, 0)
+    expect_equal(expected_points, obtained_points)
+  })
+  it("return zero points with visit win", {
+    expected_points <- 0
+    obtained_points <- calculate_points(0, 1)
+    expect_equal(expected_points, obtained_points)
+  })
+})
