@@ -13,8 +13,9 @@ calculate_xpoints <- function(home_xGol, away_xGol){
   xpoints <- sum(diff_goals > 0)*3/2000 + sum(diff_goals == 0)/2000
   return(xpoints)
 }
-
-league <- read_csv("tests/data/statistics_262_2021.csv")
+league_season <- "140_2020"
+statistics_path <- glue("tests/data/statistics_{league_season}.csv")
+league <- read_csv(statistics_path)
 league[is.na(league)] <- 0
 league <- league %>%
   add_home_shots_outsidebox() %>%
@@ -63,4 +64,4 @@ puntos <- league %>%
 
 xTable <- resumen %>% inner_join(puntos)
 xTable$xPuntos <- round(xTable$xPuntos,2)
-xTable %>% write_csv("results/xTable_262_2021.csv")
+xTable %>% write_csv(glue("results/xTable_{league_season}.csv"))
