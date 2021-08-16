@@ -1,10 +1,9 @@
 library(tidyverse)
 library(comprehenr)
 source("R/xTable.R")
-calculate_xgoal <- function(shots_outsidebox, shots_insidebox){
-  xGol_inside <- 0.101
-  xGol_outside <- 0.043
-  xgoal <- shots_outsidebox * xGol_outside + shots_insidebox * xGol_inside
+xGol <- list(inside = 0.125454, outside = 0.044485)
+calculate_xgoal <- function(xGoal, shots_outsidebox, shots_insidebox){
+  xgoal <- shots_outsidebox * xGol$outside + shots_insidebox * xGol$inside
   return(xgoal)
 }
 
@@ -20,8 +19,8 @@ league[is.na(league)] <- 0
 league <- league %>%
   add_home_shots_outsidebox() %>%
   add_away_shots_outsidebox() %>%
-  mutate("home_xGol" = calculate_xgoal(home_shots_outsidebox, home_shots_insidebox)) %>%
-  mutate("away_xGol" = calculate_xgoal(away_shots_outsidebox, away_shots_insidebox)) %>%
+  mutate("home_xGol" = calculate_xgoal(xGol, home_shots_outsidebox, home_shots_insidebox)) %>%
+  mutate("away_xGol" = calculate_xgoal(xGol, away_shots_outsidebox, away_shots_insidebox)) %>%
   mutate("home_alpha" = dpois(home, home_xGol)) %>%
   mutate("away_alpha" = dpois(away, away_xGol))
 
