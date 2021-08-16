@@ -58,3 +58,15 @@ describe("The function calculate_diff_goals", {
     assert_mean_difference_goals(home_xgoal, away_xgoal)
   })
 })
+
+describe("The function calculate_xgoal", {
+  it("The function calculate_xgoal is in R", {
+    calculate_points()
+  })
+})
+
+describe("The function calculate_xpoints", {
+  it("The function calculate_xpoints is in R", {
+    calculate_points()
+  })
+})
