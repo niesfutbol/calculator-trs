@@ -27,7 +27,12 @@ xGoal_all_league <- list(
   "140_2020" = list(inside = 0.125454, outside = 0.044485)
 )
 
-xgoal_from_league_season <- function(league_season){
+xgoal_from_league_season <- function(league_season) {
   xGoal <- xGoal_all_league[[league_season]]
   return(xGoal)
+}
+
+calculate_xgoal <- function(xGol, shots_outsidebox, shots_insidebox) {
+  xgoal <- shots_outsidebox * xGol$outside + shots_insidebox * xGol$inside
+  return(xgoal)
 }
