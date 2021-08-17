@@ -21,3 +21,13 @@ calculate_diff_goals <- function(home_xGol, away_xGol) {
   diff_goals <- rpois(n_sample, home_xGol) - rpois(n_sample, away_xGol)
   return(diff_goals)
 }
+
+xGoal_all_league <- list(
+  "262_2021" = list(inside = 0.101, outside = 0.043),
+  "140_2020" = list(inside = 0.125454, outside = 0.044485)
+)
+
+xgoal_from_league_season <- function(league_season){
+  xGoal <- xGoal_all_league[[league_season]]
+  return(xGoal)
+}
