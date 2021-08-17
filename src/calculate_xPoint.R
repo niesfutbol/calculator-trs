@@ -1,10 +1,6 @@
 library(tidyverse)
 library(comprehenr)
 source("R/xTable.R")
-calculate_xgoal <- function(xGoal, shots_outsidebox, shots_insidebox){
-  xgoal <- shots_outsidebox * xGol$outside + shots_insidebox * xGol$inside
-  return(xgoal)
-}
 
 calculate_xpoints <- function(home_xGol, away_xGol){
   diff_goals <- calculate_diff_goals(home_xGol, away_xGol)

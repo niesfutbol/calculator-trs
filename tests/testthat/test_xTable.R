@@ -61,12 +61,34 @@ describe("The function calculate_diff_goals", {
 
 describe("The function calculate_xgoal", {
   it("The function calculate_xgoal is in R", {
-    calculate_points()
+    x_goal <- list(inside = 1, outside = 1)
+    expected_goal <- calculate_xgoal(xGol = x_goal, shots_outsidebox = 1, shots_insidebox = 1)
+    obtained_goal <- 2
+    expect_equal(expected_goal, obtained_goal)
+  })
+  it("The function calculate_xgoal is in R", {
+    x_goal <- list(inside = 2, outside = 3)
+    expected_goal <- calculate_xgoal(xGol = x_goal, shots_outsidebox = 0, shots_insidebox = 2)
+    obtained_goal <- 4
+    expect_equal(expected_goal, obtained_goal)
   })
 })
 
 describe("The function calculate_xpoints", {
   it("The function calculate_xpoints is in R", {
     calculate_points()
+  })
+})
+
+describe("The function xgoal_from_league_season", {
+  it("xGoal for La Liga 2021", {
+    expected_goal <- xgoal_from_league_season("140_2020")
+    obtained_goal <- list(inside = 0.125454, outside = 0.044485)
+    expect_equal(expected_goal, obtained_goal)
+  })
+  it("xGoal for MX 2020", {
+    expected_goal <- xgoal_from_league_season("262_2021")
+    obtained_goal <- list(inside = 0.101, outside = 0.043)
+    expect_equal(expected_goal, obtained_goal)
   })
 })
