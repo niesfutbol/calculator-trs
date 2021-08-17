@@ -15,3 +15,11 @@
 ### Copa América 2021
 - `xGoal_inside` = 0.074 ***
 - `xGoal_outside` = 0.108 ***
+
+### La Liga 2020
+- `xGoal_inside` = 0.125454 ***
+- `xGoal_outside` = 0.044485 ***
+
+### Premier League 2020
+- `xGoal_inside` = 0.107191 ***
+- `xGoal_outside` = 0.052831 ***
