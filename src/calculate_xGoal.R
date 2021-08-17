@@ -1,8 +1,10 @@
 library(tidyverse)
-league <- read_csv("tests/data/statistics_9_2021.csv")
+source("R/xTable.R")
+
+league <- read_csv("tests/data/statistics_39_2020.csv")
 league <- league %>%
-  mutate("home_shots_outsidebox" = home_total_shots - home_shots_insidebox) %>%
-  mutate("away_shots_outsidebox" = away_total_shots - away_shots_insidebox)
+  add_home_shots_outsidebox() %>%
+  add_away_shots_outsidebox()
 league_home <- league %>%
   select("home", "home_shots_outsidebox", "home_shots_insidebox") %>%
   mutate(is_home = TRUE)

@@ -41,16 +41,72 @@ describe("The function calculate_diff_goals", {
     obtained_length <- length(obtained_diff_goal)
     expect_equal(expected_length, obtained_length)
   })
-  it("Mean difference aprox. 2", {
-    expected_mean_difference <- 2
-    obtained_diff_goal <- to_vec(for (i in 1:2000) mean(calculate_diff_goals(2, 0)))
+  assert_mean_difference_goals <- function(home_xgoal, away_xgoal) {
+    expected_mean_difference <- home_xgoal - away_xgoal
+    obtained_diff_goal <- to_vec(for (i in 1:2000) mean(calculate_diff_goals(home_xgoal, away_xgoal)))
     obtained_mean_difference <- mean(obtained_diff_goal)
     expect_equal(expected_mean_difference, obtained_mean_difference, tolerance = 1e-3)
+  }
+  it("Mean difference aprox. 2", {
+    home_xgoal <- 2
+    away_xgoal <- 0
+    assert_mean_difference_goals(home_xgoal, away_xgoal)
   })
   it("Mean difference aprox. 3", {
-    expected_mean_difference <- 3
-    obtained_diff_goal <- to_vec(for (i in 1:2000) mean(calculate_diff_goals(5, 2)))
-    obtained_mean_difference <- mean(obtained_diff_goal)
-    expect_equal(expected_mean_difference, obtained_mean_difference, tolerance = 1e-3)
+    home_xgoal <- 5
+    away_xgoal <- 2
+    assert_mean_difference_goals(home_xgoal, away_xgoal)
+  })
+})
+
+describe("The function calculate_xgoal", {
+  it("The function calculate_xgoal is in R", {
+    x_goal <- list(inside = 1, outside = 1)
+    expected_goal <- calculate_xgoal(xGol = x_goal, shots_outsidebox = 1, shots_insidebox = 1)
+    obtained_goal <- 2
+    expect_equal(expected_goal, obtained_goal)
+  })
+  it("The function calculate_xgoal is in R", {
+    x_goal <- list(inside = 2, outside = 3)
+    expected_goal <- calculate_xgoal(xGol = x_goal, shots_outsidebox = 0, shots_insidebox = 2)
+    obtained_goal <- 4
+    expect_equal(expected_goal, obtained_goal)
+  })
+})
+
+describe("The function calculate_xpoints", {
+  it("The local win", {
+    limit_sup <- 3
+    limit_inf <- 2
+    simulations_points <- to_vec(for (i in 1:2000) calculate_xpoints(2, 1))
+    obtained_points <- mean(simulations_points)
+    expect_true(limit_inf < obtained_points)
+    expect_true(limit_sup > obtained_points)
+  })
+  it("Draw", {
+    limit_sup <- 2
+    limit_inf <- 1
+    simulations_points <- to_vec(for (i in 1:2000) calculate_xpoints(3, 3))
+    obtained_points <- mean(simulations_points)
+    expect_true(limit_inf < obtained_points)
+    expect_true(limit_sup > obtained_points)
+  })
+})
+
+describe("The function xgoal_from_league_season", {
+  it("xGoal for La Liga 2021", {
+    expected_goal <- xgoal_from_league_season("140_2020")
+    obtained_goal <- list(inside = 0.125454, outside = 0.044485)
+    expect_equal(expected_goal, obtained_goal)
+  })
+  it("xGoal for MX 2020", {
+    expected_goal <- xgoal_from_league_season("262_2021")
+    obtained_goal <- list(inside = 0.101, outside = 0.043)
+    expect_equal(expected_goal, obtained_goal)
+  })
+  it("xGoal for Premier League 2020", {
+    expected_goal <- xgoal_from_league_season("39_2020")
+    obtained_goal <- list(inside = 0.107191, outside = 0.052831)
+    expect_equal(expected_goal, obtained_goal)
   })
 })
