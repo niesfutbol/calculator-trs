@@ -41,7 +41,7 @@ describe("The function calculate_diff_goals", {
     obtained_length <- length(obtained_diff_goal)
     expect_equal(expected_length, obtained_length)
   })
-  assert_mean_difference_goals <- function(home_xgoal, away_xgoal){
+  assert_mean_difference_goals <- function(home_xgoal, away_xgoal) {
     expected_mean_difference <- home_xgoal - away_xgoal
     obtained_diff_goal <- to_vec(for (i in 1:2000) mean(calculate_diff_goals(home_xgoal, away_xgoal)))
     obtained_mean_difference <- mean(obtained_diff_goal)
