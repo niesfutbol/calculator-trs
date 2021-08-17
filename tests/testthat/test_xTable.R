@@ -75,8 +75,21 @@ describe("The function calculate_xgoal", {
 })
 
 describe("The function calculate_xpoints", {
-  it("The function calculate_xpoints is in R", {
-    calculate_points()
+  it("The local win", {
+    limit_sup <- 3
+    limit_inf <- 2
+    simulations_points <- to_vec(for (i in 1:2000) calculate_xpoints(2, 1))
+    obtained_points <- mean(simulations_points)
+    expect_true(limit_inf < obtained_points)
+    expect_true(limit_sup > obtained_points)
+  })
+  it("Draw", {
+    limit_sup <- 2
+    limit_inf <- 1
+    simulations_points <- to_vec(for (i in 1:2000) calculate_xpoints(3, 3))
+    obtained_points <- mean(simulations_points)
+    expect_true(limit_inf < obtained_points)
+    expect_true(limit_sup > obtained_points)
   })
 })
 

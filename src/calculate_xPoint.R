@@ -2,11 +2,6 @@ library(tidyverse)
 library(comprehenr)
 source("R/xTable.R")
 
-calculate_xpoints <- function(home_xGol, away_xGol){
-  diff_goals <- calculate_diff_goals(home_xGol, away_xGol)
-  xpoints <- sum(diff_goals > 0)*3/2000 + sum(diff_goals == 0)/2000
-  return(xpoints)
-}
 league_season <- "262_2021"
 statistics_path <- glue("tests/data/statistics_{league_season}.csv")
 xGol <- xgoal_from_league_season(league_season)
