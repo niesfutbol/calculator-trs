@@ -1,4 +1,5 @@
 library(tidyverse)
+library(optparse)
 
 calculate_points <- function(home_xGol, away_xGol) {
   diff_goals <- home_xGol - away_xGol
@@ -43,4 +44,22 @@ calculate_xpoints <- function(home_xGol, away_xGol) {
   diff_goals <- calculate_diff_goals(home_xGol, away_xGol)
   xpoints <- sum(diff_goals > 0) * 3 / 2000 + sum(diff_goals == 0) / 2000
   return(xpoints)
+}
+
+
+cli_calculate_xpoints <- function() {
+  listaOpciones <- list(
+    make_option(
+      c("-l", "--league-season"),
+      default = "262_2021",
+      help = "League and season like 78_2020: \n
+        Bundesliga's id is 78 \n
+        Premier's id is 39 \n",
+      metavar = "character",
+      type = "character"
+    )
+  )
+  opt_parser <- OptionParser(option_list = listaOpciones)
+  opciones <- parse_args(opt_parser)
+  return(opciones)
 }

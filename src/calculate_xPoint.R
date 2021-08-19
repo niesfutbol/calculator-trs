@@ -1,9 +1,14 @@
+#!/usr/bin/env Rscript
+#
+# 
+
 library(tidyverse)
 library(comprehenr)
 source("R/xTable.R")
 
-league_season <- "262_2021"
-statistics_path <- glue("tests/data/statistics_{league_season}.csv")
+opciones <- cli_calculate_xpoints();
+league_season <- opciones[["league-season"]]
+statistics_path <- glue::glue("tests/data/statistics_{league_season}.csv")
 xGol <- xgoal_from_league_season(league_season)
 league <- read_csv(statistics_path)
 league[is.na(league)] <- 0
@@ -54,4 +59,4 @@ puntos <- league %>%
 
 xTable <- resumen %>% inner_join(puntos)
 xTable$xPuntos <- round(xTable$xPuntos,2)
-xTable %>% write_csv(glue("results/xTable_{league_season}.csv"))
+xTable %>% write_csv(glue::glue("results/xTable_{league_season}.csv"))
