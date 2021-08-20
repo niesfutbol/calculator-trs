@@ -106,7 +106,7 @@ add_xpoints_and_points <- function(league) {
   number_of_matches <- nrow(league)
   home_xPoints <- home_xPoints_all_matches(league)
   away_xPoints <- away_xPoints_all_matches(league)
-  home_Points <- home_xPoints_all_matches(league)
-  away_Points <- away_xPoints_all_matches(league)
+  home_Points <- home_Points_all_matches(league)
+  away_Points <- away_Points_all_matches(league)
   league <- cbind(league, tibble(home_xPoints, away_xPoints, home_Points, away_Points))
 }
