@@ -74,6 +74,43 @@ xgoal_team_place <- function(league) {
     mutate(xGol = as.numeric(xGol))
 }
 
+xpoint_team_place <- function(league) {
+  league %>%
+    select(home_xPoints, away_xPoints, home_id, away_id) %>%
+    unite(col = "home", c(home_xPoints, home_id), sep = "--") %>%
+    unite(col = "away", c(away_xPoints, away_id), sep = "--") %>%
+    gather(key = "local", value = "xPoint-d") %>%
+    separate(col = "xPoint-d", into = c("xPoints", "team_id"), sep = "--") %>%
+    mutate(xPoints = as.numeric(xPoints))
+}
+
+point_team_place <- function(league) {
+  league %>%
+    select(home_Points, away_Points, home_id, away_id) %>%
+    unite(col = "home", c(home_Points, home_id), sep = "--") %>%
+    unite(col = "away", c(away_Points, away_id), sep = "--") %>%
+    gather(key = "local", value = "Point-d") %>%
+    separate(col = "Point-d", into = c("Points", "team_id"), sep = "--") %>%
+    mutate(Points = as.numeric(Points))
+}
+
+summarize_points_played_match <- function(league) {
+  league %>%
+    group_by(team_id) %>%
+    summarize(
+      puntos = sum(Points),
+      jj = n()
+    )
+}
+
+summarize_xpoints_played_match <- function(league) {
+  league %>%
+    group_by(team_id) %>%
+    summarize(
+      xpuntos = sum(xPoints),
+      jj = n()
+    )
+}
 home_xPoints_all_matches <- function(league) {
   home_xPoints <- to_vec(
     for (match in 1:number_of_matches) {

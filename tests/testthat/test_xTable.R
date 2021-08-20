@@ -135,3 +135,73 @@ describe("The function xgoal_team_place", {
     expect_equal(expected_table_xgoal, obtained_table_xgoal)
   })
 })
+
+describe("The function xpoint_team_place", {
+  league <- tibble(
+    home_xPoints = c(2, 3),
+    home_id = c(1, 2),
+    away_xPoints = c(5, 6),
+    away_id = c(3, 4)
+  )
+  it("xGoal for Bundesliga 2020", {
+    expected_table_xgoal <- tibble(
+      local = c("home", "home", "away", "away"),
+      xPoints = c(2, 3, 5, 6),
+      team_id = as.character(c(1, 2, 3, 4))
+    )
+    obtained_table_xgoal <- xpoint_team_place(league)
+    expect_equal(expected_table_xgoal, obtained_table_xgoal)
+  })
+})
+
+describe("The function point_team_place", {
+  league <- tibble(
+    home_Points = c(2, 3),
+    home_id = c(1, 2),
+    away_Points = c(5, 6),
+    away_id = c(3, 4)
+  )
+  it("xGoal for Bundesliga 2020", {
+    expected_table_xgoal <- tibble(
+      local = c("home", "home", "away", "away"),
+      Points = c(2, 3, 5, 6),
+      team_id = as.character(c(1, 2, 3, 4))
+    )
+    obtained_table_xgoal <- point_team_place(league)
+    expect_equal(expected_table_xgoal, obtained_table_xgoal)
+  })
+})
+
+describe("The function summarize_points_played_match", {
+  it(" correct answer", {
+    table_Points <- tibble(
+      local = c("home", "home", "away", "away"),
+      Points = c(1, 3, 1, 0),
+      team_id = as.character(c(1, 2, 1, 2))
+    )
+    expected_summary <- tibble(
+      team_id = as.character(c(1, 2)),
+      puntos = c(2, 3),
+      jj = c(2,2)
+    )
+    obtained_summary <- summarize_points_played_match(table_Points)
+    expect_equal(expected_summary, obtained_summary)
+  })
+})
+
+describe("The function summarize_points_played_match", {
+  it(" correct answer", {
+    table_Points <- tibble(
+      local = c("home", "home", "away", "away"),
+      xPoints = c(1, 3, 1, 0),
+      team_id = as.character(c(1, 2, 1, 2))
+    )
+    expected_summary <- tibble(
+      team_id = as.character(c(1, 2)),
+      xpuntos = c(2, 3),
+      jj = c(2,2)
+    )
+    obtained_summary <- summarize_xpoints_played_match(table_Points)
+    expect_equal(expected_summary, obtained_summary)
+  })
+})
