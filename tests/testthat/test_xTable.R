@@ -117,12 +117,19 @@ describe("The function xgoal_from_league_season", {
 })
 
 describe("The function xgoal_team_place", {
-  league <- tibble(home_xGol = c(2, 3), home_id = c(1, 2), away_xGol = c(5, 6), away_id = c(3, 4))
+  league <- tibble(
+    match_id = c(22, 33),
+    home_xGol = c(2, 3),
+    home_id = c(1, 2),
+    away_xGol = c(5, 6),
+    away_id = c(3, 4)
+  )
   it("xGoal for Bundesliga 2020", {
     expected_table_xgoal <- tibble(
+      match_id = c(22, 33, 22, 33),
       local = c("home", "home", "away", "away"),
       xGol = c(2, 3, 5, 6),
-      id = as.character(c(1, 2, 3, 4))
+      team_id = as.character(c(1, 2, 3, 4))
     )
     obtained_table_xgoal <- xgoal_team_place(league)
     expect_equal(expected_table_xgoal, obtained_table_xgoal)

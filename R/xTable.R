@@ -66,11 +66,11 @@ cli_calculate_xpoints <- function() {
 
 xgoal_team_place <- function(league) {
   league %>%
-    select(home_xGol, away_xGol, home_id, away_id) %>%
+    select(home_xGol, away_xGol, home_id, away_id, match_id) %>%
     unite(col = "home", c(home_xGol, home_id), sep = "--") %>%
     unite(col = "away", c(away_xGol, away_id), sep = "--") %>%
-    gather(key = "local", value = "xGol-d") %>%
-    separate(col = "xGol-d", into = c("xGol", "id"), sep = "--") %>%
+    gather(key = "local", value = "xGol-d", -match_id) %>%
+    separate(col = "xGol-d", into = c("xGol", "team_id"), sep = "--") %>%
     mutate(xGol = as.numeric(xGol))
 }
 
