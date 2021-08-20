@@ -76,29 +76,33 @@ xgoal_team_place <- function(league) {
 
 home_xPoints_all_matches <- function(league) {
   home_xPoints <- to_vec(
-    for (match in 1:number_of_matches)
-    calculate_xpoints(league[match, ]$home_xGol, league[match, ]$away_xGol)
+    for (match in 1:number_of_matches) {
+      calculate_xpoints(league[match, ]$home_xGol, league[match, ]$away_xGol)
+    }
   )
 }
 
 away_xPoints_all_matches <- function(league) {
   away_xPoints <- to_vec(
-    for (match in 1:number_of_matches)
-    calculate_xpoints(league[match,]$away_xGol, league[match,]$home_xGol)
+    for (match in 1:number_of_matches) {
+      calculate_xpoints(league[match, ]$away_xGol, league[match, ]$home_xGol)
+    }
   )
 }
 
 home_Points_all_matches <- function(league) {
   home_Points <- to_vec(
-    for (match in 1:number_of_matches)
-    calculate_points(league[match, ]$home, league[match, ]$away)
+    for (match in 1:number_of_matches) {
+      calculate_points(league[match, ]$home, league[match, ]$away)
+    }
   )
 }
 
 away_Points_all_matches <- function(league) {
   away_Points <- to_vec(
-    for (match in 1:number_of_matches)
-    calculate_points(league[match,]$away, league[match,]$home)
+    for (match in 1:number_of_matches) {
+      calculate_points(league[match, ]$away, league[match, ]$home)
+    }
   )
 }
 
