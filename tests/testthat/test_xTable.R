@@ -100,8 +100,8 @@ describe("The function xgoal_from_league_season", {
     expect_equal(expected_goal, obtained_goal)
   })
   it("xGoal for MX 2020", {
-    expected_goal <- xgoal_from_league_season("262_2021")
-    obtained_goal <- list(inside = 0.101, outside = 0.043)
+    expected_goal <- list(inside = 0.101, outside = 0.043)
+    obtained_goal <- xgoal_from_league_season("262_2021")
     expect_equal(expected_goal, obtained_goal)
   })
   it("xGoal for Premier League 2020", {
@@ -113,5 +113,18 @@ describe("The function xgoal_from_league_season", {
     expected_goal <- xgoal_from_league_season("78_2020")
     obtained_goal <- list(inside = 0.116232, outside = 0.044561)
     expect_equal(expected_goal, obtained_goal)
+  })
+})
+
+describe("The function xgoal_team_place", {
+  league <- tibble(home_xGol = c(2, 3), home_id = c(1, 2), away_xGol = c(5, 6), away_id = c(3, 4))
+  it("xGoal for Bundesliga 2020", {
+    expected_table_xgoal <- tibble(
+      local = c("home", "home", "away", "away"),
+      xGol = c(2, 3, 5, 6),
+      id = as.character(c(1, 2, 3, 4))
+    )
+    obtained_table_xgoal <- xgoal_team_place(league)
+    expect_equal(expected_table_xgoal, obtained_table_xgoal)
   })
 })

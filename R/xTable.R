@@ -63,3 +63,50 @@ cli_calculate_xpoints <- function() {
   opciones <- parse_args(opt_parser)
   return(opciones)
 }
+
+xgoal_team_place <- function(league) {
+  league %>%
+    select(home_xGol, away_xGol, home_id, away_id) %>%
+    unite(col = "home", c(home_xGol, home_id), sep = "--") %>%
+    unite(col = "away", c(away_xGol, away_id), sep = "--") %>%
+    gather(key = "local", value = "xGol-d") %>%
+    separate(col = "xGol-d", into = c("xGol", "id"), sep = "--") %>%
+    mutate(xGol = as.numeric(xGol))
+}
+
+home_xPoints_all_matches <- function(league) {
+  home_xPoints <- to_vec(
+    for (match in 1:number_of_matches)
+    calculate_xpoints(league[match, ]$home_xGol, league[match, ]$away_xGol)
+  )
+}
+
+away_xPoints_all_matches <- function(league) {
+  away_xPoints <- to_vec(
+    for (match in 1:number_of_matches)
+    calculate_xpoints(league[match,]$away_xGol, league[match,]$home_xGol)
+  )
+}
+
+home_Points_all_matches <- function(league) {
+  home_Points <- to_vec(
+    for (match in 1:number_of_matches)
+    calculate_points(league[match, ]$home, league[match, ]$away)
+  )
+}
+
+away_Points_all_matches <- function(league) {
+  away_Points <- to_vec(
+    for (match in 1:number_of_matches)
+    calculate_points(league[match,]$away, league[match,]$home)
+  )
+}
+
+add_xpoints_and_points <- function(league) {
+  number_of_matches <- nrow(league)
+  home_xPoints <- home_xPoints_all_matches(league)
+  away_xPoints <- away_xPoints_all_matches(league)
+  home_Points <- home_xPoints_all_matches(league)
+  away_Points <- away_xPoints_all_matches(league)
+  league <- cbind(league, tibble(home_xPoints, away_xPoints, home_Points, away_Points))
+}
