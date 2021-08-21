@@ -3,6 +3,10 @@ return_one <- function() {
 }
 
 Teams <- R6::R6Class("Teams",
-  public = list(),
+  public = list(
+    read = function(path_league) {
+
+    }
+  ),
   private = list()
 )
