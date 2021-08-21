@@ -9,7 +9,9 @@ describe("Dummy tests", {
 })
 
 describe("The class Teams", {
-  it("The builder exist", {
-    teams <- Teams$new()
+  teams <- Teams$new()
+  it("Read a league file", {
+    path_league <- "../data/league_262_2021.csv"
+    teams$read(path_league)
   })
 })
