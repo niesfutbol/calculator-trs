@@ -20,4 +20,8 @@ describe("The class Teams", {
     obtained_league <- teams$league
     expect_equal(expected_league, obtained_league)
   })
+  it("The method get_id_teams", {
+    obtained_ids <- teams$get_id_teams()
+    expect_true("2288" %in% obtained_ids)
+  })
 })
