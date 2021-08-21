@@ -44,3 +44,9 @@ linter:
 
 tests:
 	R -e "testthat::test_dir('tests/testthat/', report = 'summary', stop_on_failure = TRUE)"
+
+setup:
+	R -e "devtools::document()" && \
+	R CMD build . && \
+	R CMD check xGoal_21.08.20.tar.gz && \
+	R CMD INSTALL xGoal_21.08.20.tar.gz

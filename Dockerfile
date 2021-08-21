@@ -1,7 +1,5 @@
-FROM rocker/tidyverse:4.1.0
-WORKDIR /workdir
+FROM islasgeci/base:0.7.0
 COPY . /workdir
-RUN apt-get update && apt-get install --yes git
-RUN R -e "install.packages(c('covr', 'lintr', 'styler', 'testthat'), repos='http://cran.rstudio.com')"
-RUN R -e "install.packages(c('comprehenr', 'jsonify', 'optparse', 'tidyverse'), repos='http://cran.rstudio.com')"
+RUN Rscript -e "install.packages(c('covr', 'devtools', 'lintr', 'roxygen2', 'styler', 'testthat'), repos='http://cran.rstudio.com')"
+RUN R -e "install.packages(c('comprehenr', 'jsonify', 'optparse', 'plotly', 'tidyverse'), repos='http://cran.rstudio.com')"
 CMD ["make"]
