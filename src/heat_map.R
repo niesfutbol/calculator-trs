@@ -12,3 +12,6 @@ teams$read(statistics_path)
 teams$get_id_teams()
 teams$set_team_from_id("2288")
 team_2288 <- teams$team
+bootstrapped_xgoal <- teams$bootstrapping_xgoal()
+density <- Calculator_Density$new()
+probability_goal <- density$probability_goal(bootstrapped_xgoal)
