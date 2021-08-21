@@ -29,6 +29,8 @@ Teams <- R6::R6Class("Teams",
 )
 
 Calculator_Density <- R6::R6Class("Calculator_Densit",
-  public = list(),
+  public = list(
+    probability_goal = function() {}
+  ),
   private = list()
 )

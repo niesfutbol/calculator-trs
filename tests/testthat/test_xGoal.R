@@ -45,7 +45,8 @@ describe("The class Teams", {
 })
 
 describe("The class Calculator_Density", {
-  it("The builder exist", {
-    density <- Calculator_Density$new()
+  density <- Calculator_Density$new()
+  it("The method probability_goal", {
+    density <- density$probability_goal()
   })
 })
