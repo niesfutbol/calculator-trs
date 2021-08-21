@@ -12,6 +12,9 @@ Teams <- R6::R6Class("Teams",
     get_id_teams = function() {
       ids <- unique(self$league$team_id)
       return(ids)
+    },
+    set_team_from_id = function(id) {
+
     }
   ),
   private = list()
