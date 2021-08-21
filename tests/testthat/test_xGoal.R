@@ -1,4 +1,5 @@
 source("../../R/xGoal.R")
+source("../../R/xTable.R")
 library("tidyverse")
 
 describe("Dummy tests", {

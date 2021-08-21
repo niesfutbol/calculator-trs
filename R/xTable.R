@@ -53,8 +53,8 @@ cli_calculate_xpoints <- function() {
       c("-l", "--league-season"),
       default = "262_2021",
       help = "League and season like 78_2020: \n
-        Bundesliga's id is 78 \n
-        Premier's id is 39 \n",
+        Bundesliga id is 78 \n
+        Premier id is 39 \n",
       metavar = "character",
       type = "character"
     )
@@ -64,9 +64,10 @@ cli_calculate_xpoints <- function() {
   return(opciones)
 }
 
+#' @export
 xgoal_team_place <- function(league) {
   league %>%
-    select(home_xGol, away_xGol, home_id, away_id, match_id) %>%
+    dplyr::select(home_xGol, away_xGol, home_id, away_id, match_id) %>%
     unite(col = "home", c(home_xGol, home_id), sep = "--") %>%
     unite(col = "away", c(away_xGol, away_id), sep = "--") %>%
     gather(key = "local", value = "xGol-d", -match_id) %>%
