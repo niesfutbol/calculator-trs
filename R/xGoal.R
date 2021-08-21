@@ -15,6 +15,9 @@ Teams <- R6::R6Class("Teams",
     },
     set_team_from_id = function(id) {
       self$team <- private$league %>% filter(team_id == id)
+    },
+    bootstrapping_xgoal = function() {
+      bootstrapped_xgoal <- c(1,1)
     }
   ),
   private = list(
