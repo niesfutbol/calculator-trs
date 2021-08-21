@@ -32,7 +32,7 @@ Teams <- R6::R6Class("Teams",
 Calculator_Density <- R6::R6Class("Calculator_Densit",
   public = list(
     probability_goal = function(xGol) {
-      density <- to_vec(for (gol in seq(0,10)) sum(xGol == gol)/2000)
+      density <- to_vec(for (gol in seq(0, 10)) sum(xGol == gol) / 2000)
       density <- private$clean_density(density)
       return(density)
     }
