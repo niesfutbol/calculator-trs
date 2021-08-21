@@ -27,6 +27,9 @@ describe("The class Teams", {
     expect_true("2298" %in% obtained_ids)
   })
   it("The method set_team_from_id", {
+    expected_team <- expected_league %>% filter(team_id == "2288")
     teams$set_team_from_id("2288")
+    obtained_team <- teams$team
+    expect_equal(expected_team, obtained_team)
   })
 })
