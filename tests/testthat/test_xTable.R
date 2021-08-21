@@ -100,13 +100,108 @@ describe("The function xgoal_from_league_season", {
     expect_equal(expected_goal, obtained_goal)
   })
   it("xGoal for MX 2020", {
-    expected_goal <- xgoal_from_league_season("262_2021")
-    obtained_goal <- list(inside = 0.101, outside = 0.043)
+    expected_goal <- list(inside = 0.101, outside = 0.043)
+    obtained_goal <- xgoal_from_league_season("262_2021")
     expect_equal(expected_goal, obtained_goal)
   })
   it("xGoal for Premier League 2020", {
     expected_goal <- xgoal_from_league_season("39_2020")
     obtained_goal <- list(inside = 0.107191, outside = 0.052831)
     expect_equal(expected_goal, obtained_goal)
+  })
+  it("xGoal for Bundesliga 2020", {
+    expected_goal <- xgoal_from_league_season("78_2020")
+    obtained_goal <- list(inside = 0.116232, outside = 0.044561)
+    expect_equal(expected_goal, obtained_goal)
+  })
+})
+
+describe("The function xgoal_team_place", {
+  league <- tibble(
+    match_id = c(22, 33),
+    home_xGol = c(2, 3),
+    home_id = c(1, 2),
+    away_xGol = c(5, 6),
+    away_id = c(3, 4)
+  )
+  it("xGoal for Bundesliga 2020", {
+    expected_table_xgoal <- tibble(
+      match_id = c(22, 33, 22, 33),
+      local = c("home", "home", "away", "away"),
+      xGol = c(2, 3, 5, 6),
+      team_id = as.character(c(1, 2, 3, 4))
+    )
+    obtained_table_xgoal <- xgoal_team_place(league)
+    expect_equal(expected_table_xgoal, obtained_table_xgoal)
+  })
+})
+
+describe("The function xpoint_team_place", {
+  league <- tibble(
+    home_xPoints = c(2, 3),
+    home_id = c(1, 2),
+    away_xPoints = c(5, 6),
+    away_id = c(3, 4)
+  )
+  it("xGoal for Bundesliga 2020", {
+    expected_table_xgoal <- tibble(
+      local = c("home", "home", "away", "away"),
+      xPoints = c(2, 3, 5, 6),
+      team_id = as.character(c(1, 2, 3, 4))
+    )
+    obtained_table_xgoal <- xpoint_team_place(league)
+    expect_equal(expected_table_xgoal, obtained_table_xgoal)
+  })
+})
+
+describe("The function point_team_place", {
+  league <- tibble(
+    home_Points = c(2, 3),
+    home_id = c(1, 2),
+    away_Points = c(5, 6),
+    away_id = c(3, 4)
+  )
+  it("xGoal for Bundesliga 2020", {
+    expected_table_xgoal <- tibble(
+      local = c("home", "home", "away", "away"),
+      Points = c(2, 3, 5, 6),
+      team_id = as.character(c(1, 2, 3, 4))
+    )
+    obtained_table_xgoal <- point_team_place(league)
+    expect_equal(expected_table_xgoal, obtained_table_xgoal)
+  })
+})
+
+describe("The function summarize_points_played_match", {
+  it(" correct answer", {
+    table_Points <- tibble(
+      local = c("home", "home", "away", "away"),
+      Points = c(1, 3, 1, 0),
+      team_id = as.character(c(1, 2, 1, 2))
+    )
+    expected_summary <- tibble(
+      team_id = as.character(c(1, 2)),
+      puntos = c(2, 3),
+      jj = c(2, 2)
+    )
+    obtained_summary <- summarize_points_played_match(table_Points)
+    expect_equal(expected_summary, obtained_summary)
+  })
+})
+
+describe("The function summarize_points_played_match", {
+  it(" correct answer", {
+    table_Points <- tibble(
+      local = c("home", "home", "away", "away"),
+      xPoints = c(1, 3, 1, 0),
+      team_id = as.character(c(1, 2, 1, 2))
+    )
+    expected_summary <- tibble(
+      team_id = as.character(c(1, 2)),
+      xpuntos = c(2, 3),
+      jj = c(2, 2)
+    )
+    obtained_summary <- summarize_xpoints_played_match(table_Points)
+    expect_equal(expected_summary, obtained_summary)
   })
 })
