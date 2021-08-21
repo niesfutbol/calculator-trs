@@ -10,7 +10,8 @@ Teams <- R6::R6Class("Teams",
       self$league <- xGoal::xgoal_team_place(raw_league)
     },
     get_id_teams = function() {
-      return(c("2288"))
+      ids <- unique(self$league$team_id)
+      return(ids)
     }
   ),
   private = list()
