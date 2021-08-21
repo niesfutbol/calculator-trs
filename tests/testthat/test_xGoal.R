@@ -47,11 +47,11 @@ describe("The class Teams", {
 describe("The class Calculator_Density", {
   density <- Calculator_Density$new()
   it("The method probability_goal", {
-    expected_density <- c(rep(1 / 5, 5), rep(0, 6))
+    expected_density <- c(rep(1 / 5, 5), 0)
     bootstrapped_xgoal <- rep(seq(0, 4), 400)
     obtained_density <- density$probability_goal(bootstrapped_xgoal)
     expect_equal(expected_density, obtained_density)
-    expected_density <- c(rep(c(1/4, 0), 4), rep(0,3))
+    expected_density <- c(rep(c(1/4, 0), 2), rep(1/4, 2))
     bootstrapped_xgoal <- rep(seq(0, 6, 2), 500)
     obtained_density <- density$probability_goal(bootstrapped_xgoal)
     expect_equal(expected_density, obtained_density)
