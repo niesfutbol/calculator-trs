@@ -4,19 +4,20 @@ return_one <- function() {
 
 Teams <- R6::R6Class("Teams",
   public = list(
-    league = NULL,
     team = NULL,
     read = function(path_league) {
       raw_league <- readr::read_csv(path_league)
-      self$league <- xGoal::xgoal_team_place(raw_league)
+      private$league <- xGoal::xgoal_team_place(raw_league)
     },
     get_id_teams = function() {
-      ids <- unique(self$league$team_id)
+      ids <- unique(private$league$team_id)
       return(ids)
     },
     set_team_from_id = function(id) {
-      self$team <- self$league %>% filter(team_id == id)
+      self$team <- private$league %>% filter(team_id == id)
     }
   ),
-  private = list()
+  private = list(
+    league = NULL
+  )
 )

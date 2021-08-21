@@ -17,8 +17,6 @@ describe("The class Teams", {
   expected_league <- xgoal_team_place(raw_league)
   it("Read a league file", {
     teams$read(path_league)
-    obtained_league <- teams$league
-    expect_equal(expected_league, obtained_league)
   })
   it("The method get_id_teams", {
     obtained_ids <- teams$get_id_teams()
