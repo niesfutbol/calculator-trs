@@ -5,6 +5,7 @@ return_one <- function() {
 Teams <- R6::R6Class("Teams",
   public = list(
     league = NULL,
+    team = NULL,
     read = function(path_league) {
       raw_league <- readr::read_csv(path_league)
       self$league <- xGoal::xgoal_team_place(raw_league)
@@ -14,7 +15,7 @@ Teams <- R6::R6Class("Teams",
       return(ids)
     },
     set_team_from_id = function(id) {
-
+      self$team <- self$league %>% filter(team_id == id)
     }
   ),
   private = list()
