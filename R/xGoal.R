@@ -30,7 +30,10 @@ Teams <- R6::R6Class("Teams",
 
 Calculator_Density <- R6::R6Class("Calculator_Densit",
   public = list(
-    probability_goal = function() {}
+    probability_goal = function(xGol) {
+      probability_goal <- rep(1 / 6, 6)
+      return(probability_goal)
+    }
   ),
   private = list()
 )
