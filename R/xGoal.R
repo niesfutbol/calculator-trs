@@ -33,8 +33,14 @@ Calculator_Density <- R6::R6Class("Calculator_Densit",
   public = list(
     probability_goal = function(xGol) {
       density <- to_vec(for (gol in seq(0,10)) sum(xGol == gol)/2000)
+      density <- private$clean_density(density)
       return(density)
     }
   ),
-  private = list()
+  private = list(
+    clean_density = function(density) {
+      density[6] <- 1 - sum(density[1:5])
+      return(density[1:6])
+    }
+  )
 )
