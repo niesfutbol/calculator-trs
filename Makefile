@@ -27,7 +27,9 @@ check:
 	  | grep FALSE
 
 clean:
-	rm *.tar.gz
+	rm --force NAMESPACE
+	rm --force --recursive xGoal.Rcheck
+	rm --force *.tar.gz
 
 coverage:
 	R -e "cobertura <- covr::file_coverage(c('R/calculate_trs.R'), c('tests/testthat/test_calculate_trs.R'))" \
