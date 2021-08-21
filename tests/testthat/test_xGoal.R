@@ -31,5 +31,9 @@ describe("The class Teams", {
     teams$set_team_from_id("2288")
     obtained_team <- teams$team
     expect_equal(expected_team, obtained_team)
+    expected_team <- expected_league %>% filter(team_id == "2290")
+    teams$set_team_from_id("2290")
+    obtained_team <- teams$team
+    expect_equal(expected_team, obtained_team)
   })
 })
