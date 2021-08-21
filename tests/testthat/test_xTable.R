@@ -182,7 +182,7 @@ describe("The function summarize_points_played_match", {
     expected_summary <- tibble(
       team_id = as.character(c(1, 2)),
       puntos = c(2, 3),
-      jj = c(2,2)
+      jj = c(2, 2)
     )
     obtained_summary <- summarize_points_played_match(table_Points)
     expect_equal(expected_summary, obtained_summary)
@@ -199,7 +199,7 @@ describe("The function summarize_points_played_match", {
     expected_summary <- tibble(
       team_id = as.character(c(1, 2)),
       xpuntos = c(2, 3),
-      jj = c(2,2)
+      jj = c(2, 2)
     )
     obtained_summary <- summarize_xpoints_played_match(table_Points)
     expect_equal(expected_summary, obtained_summary)
