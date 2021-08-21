@@ -111,6 +111,7 @@ summarize_xpoints_played_match <- function(league) {
       jj = n()
     )
 }
+
 home_xPoints_all_matches <- function(league) {
   home_xPoints <- to_vec(
     for (match in 1:number_of_matches) {
