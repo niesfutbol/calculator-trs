@@ -27,3 +27,8 @@ Teams <- R6::R6Class("Teams",
     league = NULL
   )
 )
+
+Calculator_Density <- R6::R6Class("Calculator_Densit",
+  public = list(),
+  private = list()
+)

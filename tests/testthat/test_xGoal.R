@@ -43,3 +43,9 @@ describe("The class Teams", {
     expect_true(length(obtained_bootstrapped_xgoal) == 2000)
   })
 })
+
+describe("The class Calculator_Density", {
+  it("The builder exist", {
+    density <- Calculator_Density$new()
+  })
+})
