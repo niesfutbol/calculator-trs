@@ -37,5 +37,9 @@ describe("The class Teams", {
   it("The method bootstrapping_xgoal", {
     obtained_bootstrapped_xgoal <- teams$bootstrapping_xgoal()
     is_lower_max_xgol <- mean(obtained_bootstrapped_xgoal) < max(teams$team$xGol)
+    expect_true(is_lower_max_xgol)
+    is_greater_min_xgol <- mean(obtained_bootstrapped_xgoal) > min(teams$team$xGol)
+    expect_true(is_greater_min_xgol)
+    expect_true(length(obtained_bootstrapped_xgoal) == 2000)
   })
 })

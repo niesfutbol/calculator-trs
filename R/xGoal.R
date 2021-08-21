@@ -17,7 +17,10 @@ Teams <- R6::R6Class("Teams",
       self$team <- private$league %>% filter(team_id == id)
     },
     bootstrapping_xgoal = function() {
-      bootstrapped_xgoal <- c(1,1)
+      B <- 2000
+      sample_xgol <- sample(self$team$xGol, B, replace = TRUE)
+      bootstrapped_xgoal <- rpois(B, sample_xgol)
+      return(bootstrapped_xgoal)
     }
   ),
   private = list(
