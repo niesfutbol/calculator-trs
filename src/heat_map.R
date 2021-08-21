@@ -10,3 +10,5 @@ league <- read_csv(statistics_path)
 teams <- Teams$new()
 teams$read(statistics_path)
 teams$get_id_teams()
+teams$set_team_from_id("2288")
+team_2288 <- teams$team
