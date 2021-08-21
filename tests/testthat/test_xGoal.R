@@ -7,3 +7,9 @@ describe("Dummy tests", {
     expect_equal(expected, obtained)
   })
 })
+
+describe("The class Teams", {
+  it("The builder exist", {
+    teams <- Teams$new()
+  })
+})
