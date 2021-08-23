@@ -77,5 +77,7 @@ describe("The class Heat_Map", {
   it("The builder make a Teams and a Calculator_Density", {
     is_there_object_Teams <- ("Teams" %in% class(heat_map$teams))
     expect_true(is_there_object_Teams)
+    is_there_object_Calculator_Density <- ("Calculator_Density" %in% class(heat_map$density))
+    expect_true(is_there_object_Calculator_Density)
   })
 })
