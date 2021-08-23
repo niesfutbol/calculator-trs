@@ -55,8 +55,20 @@ Heat_Map <- R6::R6Class("Heat_Map",
       return(heat_map)
     },
     heat_map_goal_match = function(home_id, away_id) {
-      return(1)
+      home_probability_goal <- private$get_probability_goal_from_id(home_id)
+      away_probability_goal <- private$get_probability_goal_from_id(away_id)
+      problable_score <- self$matrix_heat_map(home_probability_goal, away_probability_goal)
+    },
+    read = function(path_league) {
+      self$teams$read(path_league)
     }
   ),
-  private = list()
+  private = list(
+    get_probability_goal_from_id = function(id) {
+      self$teams$set_team_from_id(id)
+      bootstrapped_xgoal <- self$teams$bootstrapping_xgoal()
+      probability_goal <- self$density$probability_goal(bootstrapped_xgoal)
+      return(probability_goal)
+    }
+  )
 )
