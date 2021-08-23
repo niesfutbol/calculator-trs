@@ -59,8 +59,8 @@ describe("The class Calculator_Density", {
 })
 
 describe("The class Heat_Map", {
-  it("The builder exist", {
-    heat_map <- Heat_Map$new()
+  heat_map <- Heat_Map$new()
+  it("The method matrix_heat_map works right", {
     probability_goal <- rep(1 / 6, 6)
     expected_matrix_heat_map <- matrix(rep(probability_goal^2, 6), nrow = 6)
     obtained_matrix_heat_map <- heat_map$matrix_heat_map(probability_goal, probability_goal)
@@ -73,5 +73,9 @@ describe("The class Heat_Map", {
     expected_matrix_heat_map <- matrix(c(rep(probability_goal^2, 2), rep(0, 24)), nrow = 6)
     obtained_matrix_heat_map <- heat_map$matrix_heat_map(probability_goal, probability_goal)
     expect_equal(expected_matrix_heat_map, obtained_matrix_heat_map)
+  })
+  it("The builder make a Teams and a Calculator_Density", {
+    is_there_object_Teams <- ("Teams" %in% names(heat_map$teams))
+    expect_true(is_there_object_Teams)
   })
 })
