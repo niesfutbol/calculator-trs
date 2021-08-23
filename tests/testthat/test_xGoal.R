@@ -64,5 +64,8 @@ describe("The class Heat_Map", {
     expected_matrix_heat_map <- matrix(rep(1 / 36, 36), nrow = 6)
     obtained_matrix_heat_map <- heat_map$matrix_heat_map(probability_goal, probability_goal)
     expect_equal(expected_matrix_heat_map, obtained_matrix_heat_map)
+    expected_matrix_heat_map <- matrix(rep(c(0.04, 0.04, 0.04, 0.04, 0.04, 0.00), 6), nrow = 6)
+    obtained_matrix_heat_map <- heat_map$matrix_heat_map(probability_goal, probability_goal)
+    expect_equal(expected_matrix_heat_map, obtained_matrix_heat_map)
   })
 })
