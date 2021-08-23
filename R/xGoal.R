@@ -46,6 +46,11 @@ Calculator_Density <- R6::R6Class("Calculator_Densit",
 )
 
 Heat_Map <- R6::R6Class("Heat_Map",
-  public = list(),
+  public = list(
+    matrix_heat_map = function(prob_home, prob_away) {
+      heat_map <- matrix(rep(1 / 36, 36), nrow = 6)
+      return(heat_map)
+    }
+  ),
   private = list()
 )
