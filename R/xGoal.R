@@ -44,3 +44,8 @@ Calculator_Density <- R6::R6Class("Calculator_Densit",
     }
   )
 )
+
+Heat_Map <- R6::R6Class("Heat_Map",
+  public = list(),
+  private = list()
+)
