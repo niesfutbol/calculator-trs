@@ -83,5 +83,6 @@ describe("The class Heat_Map", {
   it("The method heat_map_goal_match works with id teams", {
     goal_match <- heat_map$heat_map_goal_match(home_team, away_team)
     expect_equal(1, sum(goal_match))
+    expect_equal(36, length(goal_match))
   })
 })
