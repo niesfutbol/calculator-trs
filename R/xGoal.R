@@ -1,3 +1,85 @@
+library(comprehenr)
+library(ggplot2)
 return_one <- function() {
   return(1)
 }
+
+Teams <- R6::R6Class("Teams",
+  public = list(
+    team = NULL,
+    read = function(path_league) {
+      raw_league <- readr::read_csv(path_league)
+      private$league <- xGoal::xgoal_team_place(raw_league)
+    },
+    get_id_teams = function() {
+      ids <- unique(private$league$team_id)
+      return(ids)
+    },
+    set_team_from_id = function(id) {
+      self$team <- private$league %>% filter(team_id == id)
+    },
+    bootstrapping_xgoal = function() {
+      B <- 2000
+      sample_xgol <- sample(self$team$xGol, B, replace = TRUE)
+      bootstrapped_xgoal <- rpois(B, sample_xgol)
+      return(bootstrapped_xgoal)
+    }
+  ),
+  private = list(
+    league = NULL
+  )
+)
+
+Calculator_Density <- R6::R6Class("Calculator_Density",
+  public = list(
+    probability_goal = function(xGol) {
+      density <- to_vec(for (gol in seq(0, 10)) sum(xGol == gol) / 2000)
+      density <- private$clean_density(density)
+      return(density)
+    }
+  ),
+  private = list(
+    clean_density = function(density) {
+      density[6] <- 1 - sum(density[1:5])
+      return(density[1:6])
+    }
+  )
+)
+
+Heat_Map <- R6::R6Class("Heat_Map",
+  public = list(
+    teams = Teams$new(),
+    density = Calculator_Density$new(),
+    matrix_heat_map = function(prob_home, prob_away) {
+      all_elemts <- to_vec(for (row in prob_home) for (column in prob_away) row * column)
+      heat_map <- matrix(all_elemts, nrow = 6)
+      return(heat_map)
+    },
+    get_probable_score = function(home_id, away_id) {
+      home_probability_goal <- private$get_probability_goal_from_id(home_id)
+      away_probability_goal <- private$get_probability_goal_from_id(away_id)
+      problable_score <- self$matrix_heat_map(home_probability_goal, away_probability_goal)
+    },
+    read = function(path_league) {
+      self$teams$read(path_league)
+    },
+    plot = function(probable_score) {
+      scores <- expand.grid(home = as.character(seq(0, 5)), away = as.character(seq(0, 5)))
+      scores$probabilities <- as.vector(probable_score)
+      ggplot(scores, aes(home, away, fill = probabilities)) +
+        geom_tile() +
+        geom_text(aes(label = round(probabilities, 3)))
+    },
+    save = function(name) {
+      ggsave(name)
+    }
+  ),
+  private = list(
+    get_probability_goal_from_id = function(id) {
+      self$teams$set_team_from_id(id)
+      bootstrapped_xgoal <- self$teams$bootstrapping_xgoal()
+      probability_goal <- self$density$probability_goal(bootstrapped_xgoal)
+      return(probability_goal)
+    }
+  )
+)
