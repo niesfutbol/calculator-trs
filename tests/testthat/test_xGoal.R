@@ -89,4 +89,10 @@ describe("The class Heat_Map", {
     expect_equal(1, sum(goal_match))
     expect_equal(36, length(goal_match))
   })
+  it("The score 1-1 is the more probable", {
+    goal_match <- heat_map$heat_map_goal_match("2288", "2288")
+    expect_true(goal_match[1, 1] < goal_match[2, 2])
+    expect_true(goal_match[3, 3] < goal_match[2, 2])
+    expect_true(all(goal_match[-2, -2] < goal_match[2, 2]))
+  })
 })
