@@ -54,7 +54,7 @@ Heat_Map <- R6::R6Class("Heat_Map",
       heat_map <- matrix(all_elemts, nrow = 6)
       return(heat_map)
     },
-    heat_map_goal_match = function(home_id, away_id) {
+    get_probable_score = function(home_id, away_id) {
       home_probability_goal <- private$get_probability_goal_from_id(home_id)
       away_probability_goal <- private$get_probability_goal_from_id(away_id)
       problable_score <- self$matrix_heat_map(home_probability_goal, away_probability_goal)

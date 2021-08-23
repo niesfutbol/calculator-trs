@@ -84,13 +84,13 @@ describe("The class Heat_Map", {
     path_league <- "../data/league_262_2021.csv"
     heat_map$read(path_league)
   })
-  it("The method heat_map_goal_match works with id teams", {
-    goal_match <- heat_map$heat_map_goal_match("2288", "2288")
+  it("The method get_probable_score works with id teams", {
+    goal_match <- heat_map$get_probable_score("2288", "2288")
     expect_equal(1, sum(goal_match))
     expect_equal(36, length(goal_match))
   })
   it("The score 1-1 is the more probable", {
-    goal_match <- heat_map$heat_map_goal_match("2288", "2288")
+    goal_match <- heat_map$get_probable_score("2288", "2288")
     expect_true(goal_match[1, 1] < goal_match[2, 2])
     expect_true(goal_match[3, 3] < goal_match[2, 2])
     expect_true(all(goal_match[-2, -2] < goal_match[2, 2]))

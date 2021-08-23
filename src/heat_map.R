@@ -17,3 +17,5 @@ density <- Calculator_Density$new()
 probability_goal <- density$probability_goal(bootstrapped_xgoal)
 
 heat_map <- Heat_Map$new()
+heat_map$read(statistics_path)
+probable_score <- heat_map$get_probable_score("2288", "2290")
