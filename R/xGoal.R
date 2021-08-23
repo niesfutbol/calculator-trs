@@ -1,4 +1,5 @@
 library(comprehenr)
+library(ggplot2)
 return_one <- function() {
   return(1)
 }
@@ -61,6 +62,16 @@ Heat_Map <- R6::R6Class("Heat_Map",
     },
     read = function(path_league) {
       self$teams$read(path_league)
+    },
+    plot = function(probable_score) {
+      scores <- expand.grid(home=as.character(seq(0,5)), away=as.character(seq(0,5)))
+      scores$probabilities <- as.vector(probable_score)
+      ggplot(scores, aes(home, away, fill= probabilities)) +
+      geom_tile() +
+      geom_text(aes(label = round(probabilities, 3)))
+    },
+    save = function(name) {
+      ggsave(name)
     }
   ),
   private = list(
