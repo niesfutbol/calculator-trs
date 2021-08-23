@@ -80,4 +80,8 @@ describe("The class Heat_Map", {
     is_there_object_Calculator_Density <- ("Calculator_Density" %in% class(heat_map$density))
     expect_true(is_there_object_Calculator_Density)
   })
+  it("The method heat_map_goal_match works with id teams", {
+    goal_match <- heat_map$heat_map_goal_match(home_team, away_team)
+    expect_equal(1, sum(goal_match))
+  })
 })
