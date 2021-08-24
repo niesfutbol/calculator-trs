@@ -1,5 +1,6 @@
 library(comprehenr)
 library(ggplot2)
+library(ggpubr)
 return_one <- function() {
   return(1)
 }
@@ -56,25 +57,40 @@ Heat_Map <- R6::R6Class("Heat_Map",
       return(heat_map)
     },
     get_probable_score = function(home_id, away_id) {
-      home_probability_goal <- private$get_probability_goal_from_id(home_id)
-      away_probability_goal <- private$get_probability_goal_from_id(away_id)
-      problable_score <- self$matrix_heat_map(home_probability_goal, away_probability_goal)
+      private$home_probability_goal <- private$get_probability_goal_from_id(home_id)
+      private$away_probability_goal <- private$get_probability_goal_from_id(away_id)
+      problable_score <- self$matrix_heat_map(private$home_probability_goal, private$away_probability_goal)
     },
     read = function(path_league) {
       self$teams$read(path_league)
     },
     plot = function(probable_score) {
-      scores <- expand.grid(home = as.character(seq(0, 5)), away = as.character(seq(0, 5)))
+      scores <- expand.grid(away = as.character(seq(0, 5)), home = as.character(seq(0, 5)))
       scores$probabilities <- as.vector(probable_score)
-      ggplot(scores, aes(home, away, fill = probabilities)) +
+      private$heat_map <- ggplot(scores, aes(home, away, fill = probabilities)) +
         geom_tile() +
         geom_text(aes(label = round(probabilities, 3)))
+      home_prob <- tibble(home = as.character(seq(0, 5)), prob = private$home_probability_goal)
+      private$home_barplot <- ggplot(data = home_prob, aes(x = home, y =prob)) +
+        geom_bar(stat="identity")
+      away_prob <- tibble(away = as.character(seq(0, 5)), prob = private$away_probability_goal)
+      private$away_barplot <- ggplot(data = away_prob, aes(x = away, y =prob)) +
+        geom_bar(stat="identity") +
+        rotate()
+      ggarrange(private$home_barplot, NULL, private$heat_map, private$away_barplot,
+          ncol = 2, nrow = 2, align = "hv",
+          widths = c(2, 1), heights = c(1, 2))
     },
     save = function(name) {
       ggsave(name)
     }
   ),
   private = list(
+    heat_map = NULL,
+    home_probability_goal = NULL,
+    away_probability_goal = NULL,
+    home_barplot = NULL,
+    away_barplot = NULL,
     get_probability_goal_from_id = function(id) {
       self$teams$set_team_from_id(id)
       bootstrapped_xgoal <- self$teams$bootstrapping_xgoal()
