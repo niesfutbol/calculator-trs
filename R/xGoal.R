@@ -28,6 +28,10 @@ Teams <- R6::R6Class("Teams",
     },
     set_names = function(path_names) {
       self$names <- read_csv(path_names)
+    },
+    get_name_from_id = function(id) {
+      name <- "Necaxa"
+      return(name)
     }
   ),
   private = list(
