@@ -88,15 +88,16 @@ Heat_Map <- R6::R6Class("Heat_Map",
       private$home_barplot <- ggplot(data = home_prob, aes(x = home, y = prob)) +
         geom_bar(stat = "identity") +
         lims(y = c(0, 1)) +
-        labs(y = "")
+        labs(x = "", y = "") +
+        ggtitle(self$home_team)
       away_prob <- tibble(away = as.character(seq(0, 5)), prob = private$away_probability_goal)
       private$away_barplot <- ggplot(data = away_prob, aes(x = away, y = prob)) +
         geom_bar(stat = "identity") +
         rotate() +
         scale_y_reverse() +
         lims(y = c(1, 0)) +
-        labs(y = "") +
-        ggtitle("Plot of length \n by dose")
+        labs(x = "", y = "") +
+        ggtitle(self$away_team)
       ggarrange(NULL, private$home_barplot, private$away_barplot, private$heat_map,
         ncol = 2, nrow = 2, align = "hv",
         widths = c(1, 2), heights = c(1, 2),
