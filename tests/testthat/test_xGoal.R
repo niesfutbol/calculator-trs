@@ -42,6 +42,9 @@ describe("The class Teams", {
     expect_true(is_greater_min_xgol)
     expect_true(length(obtained_bootstrapped_xgoal) == 2000)
   })
+  it("The method set_names works correctly", {
+    teams$set_names()
+  })
 })
 
 describe("The class Calculator_Density", {
