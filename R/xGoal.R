@@ -102,6 +102,9 @@ Heat_Map <- R6::R6Class("Heat_Map",
     },
     save = function(name) {
       ggsave(name)
+    },
+    set_names = function(path_names) {
+      self$teams$set_names(path_names)
     }
   ),
   private = list(
