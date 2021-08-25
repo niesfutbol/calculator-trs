@@ -113,6 +113,6 @@ probability_win_draw_win <- function(probable_score) {
   probability <- rep(0, 3)
   probability[2] <- sum(diag(probable_score))
   probability[1] <- sum(probable_score[upper.tri(probable_score)])
-  probability[3] <- 1- sum(probability[1:2])
+  probability[3] <- 1 - sum(probability[1:2])
   return(probability)
 }

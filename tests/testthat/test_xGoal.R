@@ -99,22 +99,22 @@ describe("The class Heat_Map", {
 
 describe("The function probability_win_draw_win", {
   it("Matrix 3x3", {
-    probable_score <- matrix(rep(1/9, 9), nrow = 3)
-    expected_probability <- rep(1/3, 3)
+    probable_score <- matrix(rep(1 / 9, 9), nrow = 3)
+    expected_probability <- rep(1 / 3, 3)
     obtained_probability <- probability_win_draw_win(probable_score)
     expect_equal(expected_probability, obtained_probability)
   })
   it("Matrix 3x3 with no draw", {
-    probable_score <- matrix(rep(1/6, 9), nrow = 3)
+    probable_score <- matrix(rep(1 / 6, 9), nrow = 3)
     diag(probable_score) <- 0
-    expected_probability <- c(1/2, 0, 1/2)
+    expected_probability <- c(1 / 2, 0, 1 / 2)
     obtained_probability <- probability_win_draw_win(probable_score)
     expect_equal(expected_probability, obtained_probability)
   })
   it("Matrix 5x5", {
-    probable_score <- matrix(rep(1/15, 25), nrow = 5)
+    probable_score <- matrix(rep(1 / 15, 25), nrow = 5)
     probable_score[lower.tri(probable_score)] <- 0
-    expected_probability <- c(2/3, 1/3, 0)
+    expected_probability <- c(2 / 3, 1 / 3, 0)
     obtained_probability <- probability_win_draw_win(probable_score)
     expect_equal(expected_probability, obtained_probability)
   })
