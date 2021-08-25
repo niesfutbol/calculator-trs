@@ -105,6 +105,12 @@ describe("The class Heat_Map", {
   })
   it("The method get the correct names", {
     goal_match <- heat_map$get_probable_score("2287", "2289")
+    expected_home_team <- "Club America"
+    obtained_home_team <- heat_map$home_team
+    expect_equal(expected_home_team, obtained_home_team)
+    expected_away_team <- "Leon"
+    obtained_away_team <- heat_map$away_team
+    expect_equal(expected_away_team, obtained_away_team)
   })
   it("The score 1-1 is the more probable", {
     goal_match <- heat_map$get_probable_score("2288", "2288")
