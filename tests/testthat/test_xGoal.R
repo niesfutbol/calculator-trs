@@ -43,7 +43,10 @@ describe("The class Teams", {
     expect_true(length(obtained_bootstrapped_xgoal) == 2000)
   })
   it("The method set_names works correctly", {
-    teams$set_names()
+    path_names <- "../data/names_ids_262_2021.csv"
+    teams$set_names(path_names)
+    expected_names <- read_csv(path_names)
+    expect_equal(expected_names, teams$names)
   })
 })
 
