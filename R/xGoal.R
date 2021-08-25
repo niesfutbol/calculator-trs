@@ -30,7 +30,9 @@ Teams <- R6::R6Class("Teams",
       self$names <- read_csv(path_names)
     },
     get_name_from_id = function(id) {
-      name <- "Necaxa"
+      name <- self$names %>%
+        filter(ids == id) %>%
+        .$names
       return(name)
     }
   ),
