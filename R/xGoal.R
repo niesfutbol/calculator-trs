@@ -61,12 +61,15 @@ Heat_Map <- R6::R6Class("Heat_Map",
   public = list(
     teams = Teams$new(),
     density = Calculator_Density$new(),
+    home_team = NULL,
+    away_team = NULL,
     matrix_heat_map = function(prob_home, prob_away) {
       all_elemts <- to_vec(for (row in prob_home) for (column in prob_away) row * column)
       heat_map <- matrix(all_elemts, nrow = 6)
       return(heat_map)
     },
     get_probable_score = function(home_id, away_id) {
+      private$set_home_away_name(home_id, away_id)
       private$home_probability_goal <- private$get_probability_goal_from_id(home_id)
       private$away_probability_goal <- private$get_probability_goal_from_id(away_id)
       problable_score <- self$matrix_heat_map(private$home_probability_goal, private$away_probability_goal)
@@ -118,6 +121,10 @@ Heat_Map <- R6::R6Class("Heat_Map",
       bootstrapped_xgoal <- self$teams$bootstrapping_xgoal()
       probability_goal <- self$density$probability_goal(bootstrapped_xgoal)
       return(probability_goal)
+    },
+    set_home_away_name = function(home_id, away_id) {
+      self$home_team <- self$teams$get_name_from_id(home_id)
+      self$away_team <- self$teams$get_name_from_id(away_id)
     }
   )
 )
