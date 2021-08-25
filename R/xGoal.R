@@ -69,17 +69,25 @@ Heat_Map <- R6::R6Class("Heat_Map",
       scores$probabilities <- as.vector(probable_score)
       private$heat_map <- ggplot(scores, aes(home, away, fill = probabilities)) +
         geom_tile() +
-        geom_text(aes(label = round(probabilities, 3)))
+        geom_text(aes(label = round(probabilities, 3))) +
+        scale_fill_gradient(low = "white", high = "red")
       home_prob <- tibble(home = as.character(seq(0, 5)), prob = private$home_probability_goal)
       private$home_barplot <- ggplot(data = home_prob, aes(x = home, y = prob)) +
-        geom_bar(stat = "identity")
+        geom_bar(stat = "identity") +
+        lims(y = c(0, 1)) +
+        labs(y = "")
       away_prob <- tibble(away = as.character(seq(0, 5)), prob = private$away_probability_goal)
       private$away_barplot <- ggplot(data = away_prob, aes(x = away, y = prob)) +
         geom_bar(stat = "identity") +
-        rotate()
-      ggarrange(private$home_barplot, NULL, private$heat_map, private$away_barplot,
+        rotate() +
+        scale_y_reverse() +
+        lims(y = c(1, 0)) +
+        labs(y = "") +
+        ggtitle("Plot of length \n by dose")
+      ggarrange(NULL, private$home_barplot, private$away_barplot, private$heat_map,
         ncol = 2, nrow = 2, align = "hv",
-        widths = c(2, 1), heights = c(1, 2)
+        widths = c(1, 2), heights = c(1, 2),
+        common.legend = TRUE
       )
     },
     save = function(name) {
