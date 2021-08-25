@@ -24,6 +24,9 @@ Teams <- R6::R6Class("Teams",
       sample_xgol <- sample(self$team$xGol, B, replace = TRUE)
       bootstrapped_xgoal <- rpois(B, sample_xgol)
       return(bootstrapped_xgoal)
+    },
+    set_names = function() {
+
     }
   ),
   private = list(
