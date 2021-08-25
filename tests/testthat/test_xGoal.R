@@ -96,3 +96,12 @@ describe("The class Heat_Map", {
     expect_true(all(goal_match[-2, -2] < goal_match[2, 2]))
   })
 })
+
+describe("The function probability_win_draw_win", {
+  it("Matrix 3x3", {
+    probable_score <- matrix(rep(1/9, 9), nrow = 3)
+    expected_probability <- rep(1/3, 3)
+    obtained_probability <- probability_win_draw_win(probable_score)
+    expect_equal(expected_probability, obtained_probability)
+  })
+})
