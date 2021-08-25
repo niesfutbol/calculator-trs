@@ -102,7 +102,7 @@ describe("The class Heat_Map", {
     heat_map$read(path_league)
   })
   it("The method get_probable_score works with id teams", {
-    goal_match <- heat_map$get_probable_score("2288", "2288")
+    goal_match <- heat_map$get_probable_score("2287", "2289")
     expect_equal(1, sum(goal_match))
     expect_equal(36, length(goal_match))
   })
