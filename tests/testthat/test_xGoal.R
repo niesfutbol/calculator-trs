@@ -52,6 +52,9 @@ describe("The class Teams", {
     expected_name <- "Necaxa"
     obtained_name <- teams$get_name_from_id("2288")
     expect_equal(expected_name, obtained_name)
+    expected_name <- "Leon"
+    obtained_name <- teams$get_name_from_id("2289")
+    expect_equal(expected_name, obtained_name)
   })
 })
 
