@@ -15,6 +15,8 @@ probability_goal <- density$probability_goal(bootstrapped_xgoal)
 
 heat_map <- Heat_Map$new()
 heat_map$read(statistics_path)
+path_names <- "tests/data/names_ids_262_2021.csv"
+heat_map$set_names(path_names)
 probable_score <- heat_map$get_probable_score("2287", "2289")
 heat_map$plot(probable_score)
 heat_map$save("heat_map.png")
