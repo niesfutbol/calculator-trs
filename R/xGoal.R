@@ -108,3 +108,7 @@ Heat_Map <- R6::R6Class("Heat_Map",
     }
   )
 )
+
+probability_win_draw_win <- function(probable_score) {
+  probability <- rep(1/3, 3)
+}
