@@ -8,6 +8,7 @@ return_one <- function() {
 Teams <- R6::R6Class("Teams",
   public = list(
     team = NULL,
+    names = NULL,
     read = function(path_league) {
       raw_league <- readr::read_csv(path_league)
       private$league <- xGoal::xgoal_team_place(raw_league)
@@ -25,8 +26,8 @@ Teams <- R6::R6Class("Teams",
       bootstrapped_xgoal <- rpois(B, sample_xgol)
       return(bootstrapped_xgoal)
     },
-    set_names = function() {
-
+    set_names = function(path_names) {
+      self$names <- read_csv(path_names)
     }
   ),
   private = list(
