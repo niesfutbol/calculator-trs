@@ -144,3 +144,9 @@ describe("The function probability_win_draw_win", {
     expect_equal(expected_probability, obtained_probability)
   })
 })
+
+describe("The class Matches", {
+  it("the builder exist", {
+    matches <- Matches$new()
+  })
+})
