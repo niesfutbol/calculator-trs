@@ -27,7 +27,9 @@ check:
 	  | grep FALSE
 
 clean:
-	rm *.tar.gz
+	rm --force NAMESPACE
+	rm --force --recursive xGoal.Rcheck
+	rm --force *.tar.gz
 
 coverage:
 	R -e "cobertura <- covr::file_coverage(c('R/calculate_trs.R'), c('tests/testthat/test_calculate_trs.R'))" \
@@ -44,3 +46,9 @@ linter:
 
 tests:
 	R -e "testthat::test_dir('tests/testthat/', report = 'summary', stop_on_failure = TRUE)"
+
+setup:
+	R -e "devtools::document()" && \
+	R CMD build . && \
+	R CMD check xGoal_21.08.20.tar.gz && \
+	R CMD INSTALL xGoal_21.08.20.tar.gz

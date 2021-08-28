@@ -1,0 +1,25 @@
+Package: xGoal
+Title: xGoal
+Version: 21.08.20
+Authors@R: c(
+    person(given = "Nepo Rojas",
+           family = "GECI",
+           role = c("aut", "cre"),
+           email = "nepo.rojas@islas.org.mx"
+           ))
+Description: Set of tools inpired in the book xGoal
+Imports:
+    comprehenr,
+    data.table,
+    MASS,
+    R6,
+    tidyverse
+Suggests:
+    devtools,
+    roxygen2,
+    testthat
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
