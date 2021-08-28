@@ -4,7 +4,7 @@ Version: 21.08.20
 Authors@R: c(
     person(given = "Nepo Rojas",
            family = "GECI",
-           role = "ctb",
+           role = c("aut", "cre"),
            email = "nepo.rojas@islas.org.mx"
            ))
 Description: Set of tools inpired in the book xGoal

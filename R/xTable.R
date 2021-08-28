@@ -114,6 +114,7 @@ summarize_xpoints_played_match <- function(league) {
 }
 
 home_xPoints_all_matches <- function(league) {
+  number_of_matches <- nrow(league)
   home_xPoints <- to_vec(
     for (match in 1:number_of_matches) {
       calculate_xpoints(league[match, ]$home_xGol, league[match, ]$away_xGol)
@@ -122,6 +123,7 @@ home_xPoints_all_matches <- function(league) {
 }
 
 away_xPoints_all_matches <- function(league) {
+  number_of_matches <- nrow(league)
   away_xPoints <- to_vec(
     for (match in 1:number_of_matches) {
       calculate_xpoints(league[match, ]$away_xGol, league[match, ]$home_xGol)
@@ -130,6 +132,7 @@ away_xPoints_all_matches <- function(league) {
 }
 
 home_Points_all_matches <- function(league) {
+  number_of_matches <- nrow(league)
   home_Points <- to_vec(
     for (match in 1:number_of_matches) {
       calculate_points(league[match, ]$home, league[match, ]$away)
@@ -138,6 +141,7 @@ home_Points_all_matches <- function(league) {
 }
 
 away_Points_all_matches <- function(league) {
+  number_of_matches <- nrow(league)
   away_Points <- to_vec(
     for (match in 1:number_of_matches) {
       calculate_points(league[match, ]$away, league[match, ]$home)
