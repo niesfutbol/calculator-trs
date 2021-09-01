@@ -32,8 +32,7 @@ clean:
 	rm --force *.tar.gz
 
 coverage:
-	R -e "cobertura <- covr::file_coverage(c('R/calculate_trs.R'), c('tests/testthat/test_calculate_trs.R'))" \
-	  -e "covr::codecov(covertura=cobertura, token='1618c982-0462-40d3-b33c-7b7f1c654e96')"
+	Rscript coverage.R
 
 format:
 	R -e "library(styler)" \

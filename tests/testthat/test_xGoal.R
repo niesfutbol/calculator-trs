@@ -1,6 +1,7 @@
-source("../../R/xGoal.R")
-source("../../R/xTable.R")
 library("tidyverse")
+setwd("/workdir")
+source("R/xGoal.R")
+source("R/xTable.R")
 
 describe("Dummy tests", {
   it("Return one", {
@@ -12,7 +13,7 @@ describe("Dummy tests", {
 
 describe("The class Teams", {
   teams <- Teams$new()
-  path_league <- "../data/league_262_2021.csv"
+  path_league <- "tests/data/league_262_2021.csv"
   raw_league <- read_csv(path_league)
   expected_league <- xgoal_team_place(raw_league)
   it("Read a league file", {
@@ -98,9 +99,9 @@ describe("The class Heat_Map", {
     expect_true(is_there_object_Calculator_Density)
   })
   it("The method read works right", {
-    path_league <- "../data/league_262_2021.csv"
+    path_league <- "tests/data/league_262_2021.csv"
     heat_map$read(path_league)
-    path_names <- "../data/names_ids_262_2021.csv"
+    path_names <- "tests/data/names_ids_262_2021.csv"
     heat_map$set_names(path_names)
   })
   it("The method get the correct names", {
