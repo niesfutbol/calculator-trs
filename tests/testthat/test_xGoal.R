@@ -1,5 +1,5 @@
 library("tidyverse")
-setwd("/workspaces/calculator-trs")
+setwd("/workdir")
 source("R/xGoal.R")
 source("R/xTable.R")
 

@@ -51,3 +51,7 @@ setup:
 	R CMD build . && \
 	R CMD check xGoal_21.08.27.tar.gz && \
 	R CMD INSTALL xGoal_21.08.27.tar.gz
+
+setup_github:
+	sed "s/workspaces\/calculator-trs/workdir/g" tests/testthat/test_xGoal.R > tmpfile; mv tmpfile tests/testthat/test_xGoal.R
+	sed "s/workspaces\/calculator-trs/workdir/g" tests/testthat/test_xTable.R > tmpfile; mv tmpfile tests/testthat/test_xTable.R
