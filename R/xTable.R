@@ -28,6 +28,7 @@ xGoal_all_league <- list(
   "140_2020" = list(inside = 0.125454, outside = 0.044485),
   "78_2020"  = list(inside = 0.116232, outside = 0.044561),
   "39_2020"  = list(inside = 0.107191, outside = 0.052831),
+  "61_2020"  = list(inside = 0.108780, outside = 0.065102),
   "135_2020" = list(inside = 0.112107, outside = 0.051835)
 )
 

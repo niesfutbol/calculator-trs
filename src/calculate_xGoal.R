@@ -1,7 +1,7 @@
 library(tidyverse)
 source("R/xTable.R")
 
-league <- read_csv("tests/data/statistics_135_2020.csv")
+league <- read_csv("tests/data/statistics_61_2020.csv")
 league <- league %>%
   add_home_shots_outsidebox() %>%
   add_away_shots_outsidebox()

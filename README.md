@@ -31,3 +31,7 @@
 ### Serie A 2020
 - `xGoal_inside` = 0.112107 ***
 - `xGoal_outside` = 0.051835 ***
+
+### Ligue 1 2020
+- `xGoal_inside` = 0.108780 ***
+- `xGoal_outside` = 0.065102 ***

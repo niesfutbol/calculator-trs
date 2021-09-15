@@ -120,6 +120,11 @@ describe("The function xgoal_from_league_season", {
     obtained_goal <- list(inside = 0.112107, outside = 0.051835)
     expect_equal(expected_goal, obtained_goal)
   })
+  it("xGoal for Ligue 1 2020", {
+    expected_goal <- xgoal_from_league_season("61_2020")
+    obtained_goal <- list(inside = 0.108780, outside = 0.065102)
+    expect_equal(expected_goal, obtained_goal)
+  })
 })
 
 describe("The function xgoal_team_place", {
