@@ -27,3 +27,7 @@
 ### Bundesliga 2020
 - `xGoal_inside` = 0.116232 ***
 - `xGoal_outside` = 0.044561 ***
+
+### Serie A 2020
+- `xGoal_inside` = 0.112107 ***
+- `xGoal_outside` = 0.051835 ***
