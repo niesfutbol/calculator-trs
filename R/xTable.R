@@ -24,7 +24,7 @@ calculate_diff_goals <- function(home_xGol, away_xGol) {
 }
 
 xGoal_all_league <- list(
-  "262_2021" = list(inside = 0.101, outside = 0.043),
+  "262_2021" = list(inside = 0.096171, outside = 0.045958),
   "140_2020" = list(inside = 0.125454, outside = 0.044485),
   "78_2020"  = list(inside = 0.116232, outside = 0.044561),
   "39_2020"  = list(inside = 0.107191, outside = 0.052831),
