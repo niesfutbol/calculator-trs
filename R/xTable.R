@@ -24,12 +24,12 @@ calculate_diff_goals <- function(home_xGol, away_xGol) {
 }
 
 xGoal_all_league <- list(
-  "262_2021" = list(inside = 0.096171, outside = 0.045958),
+  "262_2021" = list(inside = 0.096171, outside = 0.045958, penalty = 0.785234),
   "140_2020" = list(inside = 0.125454, outside = 0.044485),
-  "78_2020"  = list(inside = 0.116232, outside = 0.044561),
+  "78_2021"  = list(inside = 0.110081, outside = 0.037332, penalty = 0.774774),
   "39_2020"  = list(inside = 0.107191, outside = 0.052831),
   "61_2020"  = list(inside = 0.108780, outside = 0.065102),
-  "135_2020" = list(inside = 0.112107, outside = 0.051835)
+  "135_2021" = list(inside = 0.104484, outside = 0.054466, penalty = 0.846666)
 )
 
 xgoal_from_league_season <- function(league_season) {
@@ -37,8 +37,8 @@ xgoal_from_league_season <- function(league_season) {
   return(xGoal)
 }
 
-calculate_xgoal <- function(xGol, shots_outsidebox, shots_insidebox) {
-  xgoal <- shots_outsidebox * xGol$outside + shots_insidebox * xGol$inside
+calculate_xgoal <- function(xGol, shots_outsidebox, shots_insidebox, total_penalties) {
+  xgoal <- shots_outsidebox * xGol$outside + shots_insidebox * xGol$inside + total_penalties * xGol$penalty
   return(xgoal)
 }
 
