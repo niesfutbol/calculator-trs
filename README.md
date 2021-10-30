@@ -22,8 +22,9 @@
 - `xGoal_outside` = 0.044485 ***
 
 ### Premier League 2020
-- `xGoal_inside` = 0.107191 ***
-- `xGoal_outside` = 0.052831 ***
+- `xGoal_inside` = 0.101172 ***
+- `xGoal_outside` = 0.051113 ***
+- `xPenalty` = 0.816
 
 ### Bundesliga 2020
 - `xGoal_inside` = 0.110081 ***
@@ -39,3 +40,13 @@
 - `xGoal_inside` = 0.108780 ***
 - `xGoal_outside` = 0.065102 ***
 - `xPenalty` = 0.826086
+
+### Eredivisie 2020
+- `xGoal_inside` = 0.097606 ***
+- `xGoal_outside` = 0.059503 ***
+- `xPenalty` = 0.815126
+
+### Primeira Liga 2020
+- `xGoal_inside` = 0.102894 ***
+- `xGoal_outside` = 0.056361 ***
+- `xPenalty` = 0.718182
