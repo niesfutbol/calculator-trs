@@ -1,0 +1,67 @@
+library("tidyverse")
+
+league_season <- "135_2021"
+path_names <- glue::glue("tests/data/names_{league_season}.csv")
+names <- read_csv(path_names)
+path_league <- glue::glue("results/league_{league_season}.csv")
+league <- read_csv(path_league)
+
+how_won <- function(home, away) {
+  if (home > away) {
+    return("home")
+  }
+  if (home < away) {
+    return("away")
+  }
+  return("draw")
+}
+
+
+
+get_strength_atack <- function(league, id) {
+  attack <- c(league %>% filter(home_id == id) %>% .$home_xGol, league %>% filter(away_id == id) %>% .$away_xGol)
+  return(mean(attack))
+}
+
+get_strength_deffense <- function(league, id) {
+  attack <- c(league %>% filter(home_id == id) %>% .$away_xGol, league %>% filter(away_id == id) %>% .$home_xGol)
+  return(mean(attack))
+}
+
+attack <- comprehenr::to_vec(for (id in names[["ids"]]) get_strength_atack(league, id))
+deffense <- comprehenr::to_vec(for (id in names[["ids"]]) get_strength_deffense(league, id))
+strength <- tibble(ids = names[["ids"]], attack = attack, deffense = deffense)
+add_attack <- function(id) {
+  return(strength %>% filter(ids == id) %>% .$attack)
+}
+add_deffense <- function(id) {
+  return(strength %>% filter(ids == id) %>% .$deffense)
+}
+
+data <- league %>%
+  mutate(won = mapply(function(x, y) how_won(x, y), home, away)) %>%
+  mutate(home_attack = mapply(function(x) add_attack(x), home_id)) %>%
+  mutate(away_attack = mapply(function(x) add_attack(x), away_id)) %>%
+  mutate(home_deffense = mapply(function(x) add_deffense(x), home_id)) %>%
+  mutate(away_deffense = mapply(function(x) add_deffense(x), away_id)) %>%
+  select(home, away, won, home_attack, home_deffense, away_attack, away_deffense)
+
+model <- multinom(
+  won ~ home_attack + home_deffense + away_attack +  away_deffense,
+  data=data
+)
+
+threshold <- 0.50
+predictions <- cbind(predict(model, data, type="probs"), data) %>%
+  select(c(3, 2, 1, won)) %>%
+  mutate(pred_won = ifelse(home > threshold, "home", ifelse(away > threshold, "away", ifelse(draw > threshold, "draw", 0)))) %>%
+  mutate(pred = won == pred_won)
+mean(predictions %>% filter(pred_won != 0) %>% .$pred)
+
+predictions %>%
+  filter(pred_won != 0) %>%
+  group_by(won) %>%
+  summarize(
+    predict = mean(pred),
+    N = n()
+  )
