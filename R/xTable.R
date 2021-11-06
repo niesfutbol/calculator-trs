@@ -25,11 +25,14 @@ calculate_diff_goals <- function(home_xGol, away_xGol) {
 
 xGoal_all_league <- list(
   "262_2021" = list(inside = 0.096171, outside = 0.045958, penalty = 0.785234),
+  "140_2020" = list(inside = 0.117440, outside = 0.043654, penalty = 0.744681),
   "140_2021" = list(inside = 0.117440, outside = 0.043654, penalty = 0.744681),
+  "78_2020"  = list(inside = 0.110081, outside = 0.037332, penalty = 0.774774),
   "78_2021"  = list(inside = 0.110081, outside = 0.037332, penalty = 0.774774),
   "39_2021"  = list(inside = 0.107191, outside = 0.052831, penalty = 0.809524),
   "61_2020"  = list(inside = 0.108780, outside = 0.065102),
   "88_2021"  = list(inside = 0.097606, outside = 0.059503, penalty = 0.815126),
+  "88_2020"  = list(inside = 0.097606, outside = 0.059503, penalty = 0.815126),
   "94_2021"  = list(inside = 0.102894, outside = 0.056361, penalty = 0.718182),
   "135_2021" = list(inside = 0.104484, outside = 0.054466, penalty = 0.846666)
 )
