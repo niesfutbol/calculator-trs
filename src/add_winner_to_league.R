@@ -1,6 +1,6 @@
 library("tidyverse")
 
-league_season <- "135_2021"
+league_season <- "140_2020"
 path_names <- glue::glue("tests/data/names_{league_season}.csv")
 names <- read_csv(path_names)
 path_league <- glue::glue("results/league_{league_season}.csv")
@@ -46,22 +46,6 @@ data <- league %>%
   mutate(away_deffense = mapply(function(x) add_deffense(x), away_id)) %>%
   select(home, away, won, home_attack, home_deffense, away_attack, away_deffense)
 
-model <- multinom(
-  won ~ home_attack + home_deffense + away_attack +  away_deffense,
-  data=data
-)
+path_output <- glue::glue("results/strength_league_{league_season}.csv")
+write_csv(data, path_output)
 
-threshold <- 0.50
-predictions <- cbind(predict(model, data, type="probs"), data) %>%
-  select(c(3, 2, 1, won)) %>%
-  mutate(pred_won = ifelse(home > threshold, "home", ifelse(away > threshold, "away", ifelse(draw > threshold, "draw", 0)))) %>%
-  mutate(pred = won == pred_won)
-mean(predictions %>% filter(pred_won != 0) %>% .$pred)
-
-predictions %>%
-  filter(pred_won != 0) %>%
-  group_by(won) %>%
-  summarize(
-    predict = mean(pred),
-    N = n()
-  )
