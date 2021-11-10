@@ -1,5 +1,5 @@
 library("tidyverse")
-library("nnet")
+library("class")
 
 league_season <- "140_2020"
 path_strength_league <- glue::glue("results/strength_league_{league_season}.csv")
