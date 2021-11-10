@@ -71,6 +71,30 @@ cli_calculate_xpoints <- function() {
   return(opciones)
 }
 
+cli_prediction_from_multinom <- function() {
+  listaOpciones <- list(
+    make_option(
+      c("-l", "--league-season"),
+      default = "262_2021",
+      help = "League and season like 78_2020: \n
+        Bundesliga id is 78 \n
+        Premier id is 39 \n",
+      metavar = "character",
+      type = "character"
+    ),
+    make_option(
+      c("-r", "--round"),
+      default = "1",
+      help = "Round",
+      metavar = "character",
+      type = "character"
+    )
+  )
+  opt_parser <- OptionParser(option_list = listaOpciones)
+  opciones <- parse_args(opt_parser)
+  return(opciones)
+}
+
 #' @export
 xgoal_team_place <- function(league) {
   league %>%

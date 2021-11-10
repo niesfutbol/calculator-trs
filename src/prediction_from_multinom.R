@@ -1,8 +1,11 @@
 library("tidyverse")
 library("nnet")
+source("R/xTable.R")
 
-league_season <- "61_2020"
-path_strength_league <- glue::glue("results/strength_league_{league_season}.csv")
+opciones <- cli_prediction_from_multinom();
+league_season <- opciones[["league-season"]]
+previous_league_season <- previous_season(league_season)
+path_strength_league <- glue::glue("results/strength_league_{previous_league_season}.csv")
 strength_league <- read_csv(path_strength_league)
 
 model <- multinom(
@@ -19,7 +22,6 @@ get_names <- function(id) {
 }
 
 
-league_season <- "61_2021"
 path_names <- glue::glue("tests/data/names_{league_season}.csv")
 names <- read_csv(path_names)
 path_strength_league <- glue::glue("results/strength_league_{league_season}.csv")
@@ -28,6 +30,8 @@ path_league <- glue::glue("results/league_{league_season}.csv")
 league <- read_csv(path_league)
 path_season <- glue::glue("tests/data/season_{league_season}.csv")
 season <- read_csv(path_season)
+round <- opciones[["round"]]
+n_round <- glue::glue("Regular Season - {round}")
 round <- season %>%
   filter(round == "Regular Season - 14")
 
