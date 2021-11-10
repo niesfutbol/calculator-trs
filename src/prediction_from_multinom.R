@@ -43,8 +43,8 @@ away_attack <- comprehenr::to_vec(for (id in away_id) get_strength_atack(league,
 away_deffense <- comprehenr::to_vec(for (id in away_id) get_strength_deffense(league, id))
 to_predict <- tibble(away_attack, away_deffense, home_deffense, home_attack)
 pred <- predict(model, to_predict, type="prob")
-predictions <- tibble("home" = pred[,3], "draw" = pred[,2], "away" = pred[,1]) %>%
+(predictions <- tibble("home" = pred[,3], "draw" = pred[,2], "away" = pred[,1]) %>%
   cbind(home_id, away_id) %>%
   mutate(home_team = mapply(function(x) get_names(x), home_id)) %>%
   mutate(away_team = mapply(function(x) get_names(x), away_id)) %>%
-  select(c(6,1,2,3,7))
+  select(c(6,1,2,3,7)))
