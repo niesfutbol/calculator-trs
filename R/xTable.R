@@ -192,6 +192,16 @@ add_xpoints_and_points <- function(league) {
 previous_season <- function(id_season) {
   id <- str_split(id_season, "_")[[1]][1]
   previous_season <- as.character(as.numeric(str_split(id_season, "_")[[1]][2]) - 1)
-  id_previous_season <- paste(id, previous_season, sep= "_")
+  id_previous_season <- paste(id, previous_season, sep = "_")
   return(id_previous_season)
+}
+
+get_strength_atack <- function(league, id) {
+  attack <- c(league %>% filter(home_id == id) %>% .$home_xGol, league %>% filter(away_id == id) %>% .$away_xGol)
+  return(mean(attack))
+}
+
+get_strength_deffense <- function(league, id) {
+  attack <- c(league %>% filter(home_id == id) %>% .$away_xGol, league %>% filter(away_id == id) %>% .$home_xGol)
+  return(mean(attack))
 }

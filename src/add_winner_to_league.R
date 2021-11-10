@@ -20,16 +20,6 @@ how_won <- function(home, away) {
 
 
 
-get_strength_atack <- function(league, id) {
-  attack <- c(league %>% filter(home_id == id) %>% .$home_xGol, league %>% filter(away_id == id) %>% .$away_xGol)
-  return(mean(attack))
-}
-
-get_strength_deffense <- function(league, id) {
-  attack <- c(league %>% filter(home_id == id) %>% .$away_xGol, league %>% filter(away_id == id) %>% .$home_xGol)
-  return(mean(attack))
-}
-
 attack <- comprehenr::to_vec(for (id in names[["ids"]]) get_strength_atack(league, id))
 deffense <- comprehenr::to_vec(for (id in names[["ids"]]) get_strength_deffense(league, id))
 strength <- tibble(ids = names[["ids"]], attack = attack, deffense = deffense)
