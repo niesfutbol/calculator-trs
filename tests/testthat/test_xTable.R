@@ -216,3 +216,13 @@ describe("The function summarize_points_played_match", {
     expect_equal(expected_summary, obtained_summary)
   })
 })
+
+
+
+describe("The funtion previous_season", {
+  it("First example", {
+    expected_season <- "68_2020"
+    obtained_season <- previous_season("68_2021")
+    expect_equal(expected_season, obtained_season)
+  })
+})
