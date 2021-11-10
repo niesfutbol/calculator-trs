@@ -39,7 +39,7 @@
 ### Ligue 1 2020
 - `xGoal_inside` = 0.108780 ***
 - `xGoal_outside` = 0.065102 ***
-- `xPenalty` = 0.826086
+- `xPenalty` = 0.826087
 
 ### Eredivisie 2020
 - `xGoal_inside` = 0.097606 ***
