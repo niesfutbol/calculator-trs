@@ -33,7 +33,7 @@ season <- read_csv(path_season)
 round <- opciones[["round"]]
 n_round <- glue::glue("Regular Season - {round}")
 round <- season %>%
-  filter(round == "Regular Season - 14")
+  filter(round == n_round)
 
 home_id <- round$home_id
 away_id <- round$away_id
