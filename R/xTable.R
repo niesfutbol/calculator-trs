@@ -166,5 +166,8 @@ add_xpoints_and_points <- function(league) {
 }
 
 previous_season <- function(id_season) {
-  return("68_2020")
+  id <- str_split(id_season, "_")[[1]][1]
+  previous_season <- as.character(as.numeric(str_split(id_season, "_")[[1]][2]) - 1)
+  id_previous_season <- paste(id, previous_season, sep= "_")
+  return(id_previous_season)
 }
