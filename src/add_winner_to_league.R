@@ -1,6 +1,8 @@
 library("tidyverse")
+source("R/xTable.R")
 
-league_season <- "140_2020"
+opciones <- cli_calculate_xpoints();
+league_season <- opciones[["league-season"]]
 path_names <- glue::glue("tests/data/names_{league_season}.csv")
 names <- read_csv(path_names)
 path_league <- glue::glue("results/league_{league_season}.csv")

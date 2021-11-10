@@ -5,8 +5,7 @@ source("R/xTable.R")
 opciones <- cli_calculate_xpoints();
 league_season <- opciones[["league-season"]]
 previous_league_season <- previous_season(league_season)
-league_season <- "61_2020"
-path_strength_league <- glue::glue("results/strength_league_{league_season}.csv")
+path_strength_league <- glue::glue("results/strength_league_{previous_league_season}.csv")
 strength_league <- read_csv(path_strength_league)
 
 model <- multinom(
@@ -14,7 +13,6 @@ model <- multinom(
   data=strength_league
 )
 
-league_season <- "61_2021"
 path_strength_league <- glue::glue("results/strength_league_{league_season}.csv")
 tests_strength_league <- read_csv(path_strength_league)
 upth <- 0.99
@@ -27,15 +25,10 @@ predictions <- cbind(predict(model, tests_strength_league, type="prob"), tests_s
 mean(predictions %>% filter(pred_won != 0) %>% .$pred)
 
 
-predictions %>%
+(predictions %>%
   filter(pred_won != 0) %>%
   group_by(won) %>%
   summarize(
     correct = mean(pred),
     N = n()
-  )
-
-model <- multinom(
-  won ~ home + draw + away,
-  data=predictions
-)
+  ))
