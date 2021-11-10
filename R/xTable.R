@@ -164,3 +164,7 @@ add_xpoints_and_points <- function(league) {
   away_Points <- away_Points_all_matches(league)
   league <- cbind(league, tibble(home_xPoints, away_xPoints, home_Points, away_Points))
 }
+
+previous_season <- function(id_season) {
+  return("68_2020")
+}
