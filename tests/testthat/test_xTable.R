@@ -230,4 +230,9 @@ describe("The funtion previous_season", {
     obtained_season <- previous_season("135_2021")
     expect_equal(expected_season, obtained_season)
   })
+  it("Other example", {
+    expected_season <- "78_2025"
+    obtained_season <- previous_season("78_2026")
+    expect_equal(expected_season, obtained_season)
+  })
 })
