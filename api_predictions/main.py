@@ -12,9 +12,8 @@ def read_json(file_name):
 
 app = FastAPI()  # pragma: no mutate
 
-PATH_DATABASE = "data/predictions_78_2021_15.json"
 
-@app.get("/")
-def read_root():
-    predictions = read_json(PATH_DATABASE)
+@app.get("/{league_season_round}")
+def read_root(league_season_round):
+    predictions = read_json(f"data/predictions_{league_season_round}.json")
     return predictions
