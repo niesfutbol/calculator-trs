@@ -60,8 +60,8 @@ presition_premier_league:
 	Rscript src/presition_of_multinom.R --league-season=39_2021
 
 update_serie_a:
-	src/calculate_xPoint.R --league-season=135_2021
-	src/add_winner_to_league.R --league-season=135_2021
+	Rscript src/calculate_xPoint.R --league-season=135_2021
+	Rscript src/add_winner_to_league.R --league-season=135_2021
 
 update_ligue_1:
 	Rscript src/calculate_xPoint.R --league-season=61_2021
@@ -94,4 +94,4 @@ update: \
 	update_la_liga \
 	update_eredivisie \
 	update_ligue_1 \
-	pdate_serie_a
+	update_serie_a
