@@ -30,17 +30,17 @@ path_league <- glue::glue("results/league_{league_season}.csv")
 league <- read_csv(path_league)
 path_season <- glue::glue("tests/data/season_{league_season}.csv")
 season <- read_csv(path_season)
-round <- opciones[["round"]]
-n_round <- glue::glue("Regular Season - {round}")
+round_str <- opciones[["round"]]
+n_round <- glue::glue("Regular Season - {round_str}")
 round <- season %>%
   filter(round == n_round)
 
 home_id <- round$home_id
 away_id <- round$away_id
-home_attack <- comprehenr::to_vec(for (id in home_id) get_strength_atack(league, id))
-home_deffense <- comprehenr::to_vec(for (id in home_id) get_strength_deffense(league, id))
-away_attack <- comprehenr::to_vec(for (id in away_id) get_strength_atack(league, id))
-away_deffense <- comprehenr::to_vec(for (id in away_id) get_strength_deffense(league, id))
+home_attack <- comprehenr::to_vec(for (id in home_id) get_strength_atack_streak(league, id))
+home_deffense <- comprehenr::to_vec(for (id in home_id) get_strength_deffense_streak(league, id))
+away_attack <- comprehenr::to_vec(for (id in away_id) get_strength_atack_streak(league, id))
+away_deffense <- comprehenr::to_vec(for (id in away_id) get_strength_deffense_streak(league, id))
 to_predict <- tibble(away_attack, away_deffense, home_deffense, home_attack)
 pred <- predict(model, to_predict, type="prob")
 (predictions <- tibble("home" = pred[,3], "draw" = pred[,2], "away" = pred[,1]) %>%
