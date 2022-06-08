@@ -76,6 +76,7 @@ update_la_liga:
 	Rscript src/add_winner_to_league.R --league-season=140_2021
 
 update_premier_league:
+	mkdir --parents results/
 	Rscript src/calculate_xPoint.R --league-season=39_2021
 	Rscript src/add_winner_to_league.R --league-season=39_2021
 
