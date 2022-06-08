@@ -62,15 +62,15 @@ describe("The function calculate_diff_goals", {
 
 describe("The function calculate_xgoal", {
   it("The function calculate_xgoal is in R", {
-    x_goal <- list(inside = 1, outside = 1)
-    expected_goal <- calculate_xgoal(xGol = x_goal, shots_outsidebox = 1, shots_insidebox = 1)
+    x_goal <- list(inside = 1, outside = 1, penalty = 0)
+    expected_goal <- calculate_xgoal(xGol = x_goal, shots_outsidebox = 1, shots_insidebox = 1, total_penalties = 3)
     obtained_goal <- 2
     expect_equal(expected_goal, obtained_goal)
   })
   it("The function calculate_xgoal is in R", {
-    x_goal <- list(inside = 2, outside = 3)
-    expected_goal <- calculate_xgoal(xGol = x_goal, shots_outsidebox = 0, shots_insidebox = 2)
-    obtained_goal <- 4
+    x_goal <- list(inside = 2, outside = 3, penalty = 2)
+    expected_goal <- calculate_xgoal(xGol = x_goal, shots_outsidebox = 0, shots_insidebox = 2, total_penalties = 3)
+    obtained_goal <- 10
     expect_equal(expected_goal, obtained_goal)
   })
 })
