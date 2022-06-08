@@ -11,6 +11,7 @@ Description: Set of tools inpired in the book xGoal
 Imports:
     comprehenr,
     data.table,
+    ggpubr,
     MASS,
     R6,
     tidyverse
