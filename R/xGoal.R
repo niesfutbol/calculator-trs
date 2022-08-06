@@ -8,7 +8,7 @@ Teams <- R6::R6Class("Teams",
     team = NULL,
     names = NULL,
     read = function(path_league) {
-      raw_league <- readr::read_csv(path_league)
+      raw_league <- readr::read_csv(path_league, show_col_types = FALSE)
       private$league <- xgoal_team_place(raw_league)
     },
     get_id_teams = function() {
@@ -25,7 +25,7 @@ Teams <- R6::R6Class("Teams",
       return(bootstrapped_xgoal)
     },
     set_names = function(path_names) {
-      self$names <- read_csv(path_names)
+      self$names <- read_csv(path_names, show_col_types = FALSE)
     },
     get_name_from_id = function(id) {
       name <- self$names %>%
