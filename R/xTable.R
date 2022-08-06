@@ -64,6 +64,15 @@ cli_calculate_xpoints <- function() {
         Premier id is 39 \n",
       metavar = "character",
       type = "character"
+    ),
+    make_option(
+      c("-d", "--directory"),
+      default = "tests/data",
+      help = "League and season like 78_2020: \n
+        Bundesliga id is 78 \n
+        Premier id is 39 \n",
+      metavar = "character",
+      type = "character"
     )
   )
   opt_parser <- OptionParser(option_list = listaOpciones)

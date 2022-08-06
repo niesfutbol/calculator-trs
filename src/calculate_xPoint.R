@@ -8,9 +8,10 @@ source("R/xTable.R")
 
 opciones <- cli_calculate_xpoints();
 league_season <- opciones[["league-season"]]
-statistics_path <- glue::glue("tests/data/statistics_{league_season}.csv")
+directory <- opciones[["directory"]]
+statistics_path <- glue::glue("{directory}/statistics_{league_season}.csv")
 xGol <- xgoal_from_league_season(league_season)
-league <- read_csv(statistics_path)
+league <- read_csv(statistics_path, show_col_types = FALSE)
 league[is.na(league)] <- 0
 league <- league %>%
   add_home_shots_outsidebox() %>%
