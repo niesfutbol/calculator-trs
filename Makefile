@@ -68,7 +68,7 @@ update_ligue_1:
 	Rscript src/add_winner_to_league.R --league-season=61_2021
 
 update_eredivisie:
-	Rscript src/calculate_xPoint.R --league-season=88_2021
+	Rscript src/calculate_xPoint.R --league-season=88_2021 --directory=results
 	Rscript src/add_winner_to_league.R --league-season=88_2021
 
 update_la_liga:
