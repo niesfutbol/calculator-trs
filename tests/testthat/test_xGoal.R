@@ -6,7 +6,7 @@ source("R/xTable.R")
 describe("The class Teams", {
   teams <- Teams$new()
   path_league <- "tests/data/league_262_2021.csv"
-  raw_league <- read_csv(path_league)
+  raw_league <- read_csv(path_league, show_col_types = FALSE)
   expected_league <- xgoal_team_place(raw_league)
   it("Read a league file", {
     teams$read(path_league)
@@ -38,7 +38,7 @@ describe("The class Teams", {
   it("The method set_names works correctly", {
     path_names <- "tests/data/names_ids_262_2021.csv"
     teams$set_names(path_names)
-    expected_names <- read_csv(path_names)
+    expected_names <- read_csv(path_names, show_col_types = FALSE)
     expect_equal(expected_names, teams$names)
   })
   it("The method get_name_from_id works correctly", {
