@@ -1,4 +1,4 @@
-setwd("/workspaces/calculator-trs")
+setwd("/workdir")
 source("R/xTable.R")
 source("R/xGoal.R")
 source("R/calculate_trs.R")
