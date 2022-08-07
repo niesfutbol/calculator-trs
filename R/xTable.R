@@ -104,6 +104,20 @@ cli_prediction_from_multinom <- function() {
   return(opciones)
 }
 
+cli_calculate_xgoals <- function() {
+  listaOpciones <- list(
+    make_option(
+      c("-i", "--input-file"),
+      default = "results/statistics_88_2021.csv",
+      help = "Datos de la estadística de la liga",
+      metavar = "character",
+      type = "character"
+    )
+  )
+  opt_parser <- OptionParser(option_list = listaOpciones)
+  opciones <- parse_args(opt_parser)
+  return(opciones)
+}
 #' @export
 xgoal_team_place <- function(league) {
   league %>%

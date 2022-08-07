@@ -1,7 +1,8 @@
 library(tidyverse)
 source("R/xTable.R")
 
-league <- read_csv("tests/data/statistics_78_2021.csv")
+opciones <- cli_calculate_xgoals()
+league <- read_csv(opciones[["input-file"]], show_col_types = FALSE)
 league <- league %>%
   add_home_shots_outsidebox() %>%
   add_away_shots_outsidebox()
@@ -25,3 +26,5 @@ modelo <- fit_xGoal(cleaned_league)
 resumen_modelo <- summary(modelo)
 xGol_inside <- resumen_modelo$coefficients[2,1]
 xGol_outside <- resumen_modelo$coefficients[1,1]
+print(paste("xg inside: ", xGol_inside))
+print(paste("xg outside: ", xGol_outside))
