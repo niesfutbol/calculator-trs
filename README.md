@@ -46,6 +46,11 @@
 - `xGoal_outside` = 0.059503 ***
 - `xPenalty` = 0.815126
 
+### Eredivisie 2021
+- `xGoal_inside`  = 0.097820 ***
+- `xGoal_outside` = 0.052652 ***
+- `xPenalty`      = 0.785714
+
 ### Primeira Liga 2020
 - `xGoal_inside` = 0.102894 ***
 - `xGoal_outside` = 0.056361 ***
