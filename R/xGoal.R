@@ -1,17 +1,15 @@
 library(comprehenr)
 library(ggplot2)
 library(ggpubr)
-return_one <- function() {
-  return(1)
-}
+source("R/xTable.R")
 
 Teams <- R6::R6Class("Teams",
   public = list(
     team = NULL,
     names = NULL,
     read = function(path_league) {
-      raw_league <- readr::read_csv(path_league)
-      private$league <- xGoal::xgoal_team_place(raw_league)
+      raw_league <- readr::read_csv(path_league, show_col_types = FALSE)
+      private$league <- xgoal_team_place(raw_league)
     },
     get_id_teams = function() {
       ids <- unique(private$league$team_id)
@@ -27,7 +25,7 @@ Teams <- R6::R6Class("Teams",
       return(bootstrapped_xgoal)
     },
     set_names = function(path_names) {
-      self$names <- read_csv(path_names)
+      self$names <- read_csv(path_names, show_col_types = FALSE)
     },
     get_name_from_id = function(id) {
       name <- self$names %>%
