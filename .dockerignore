@@ -1,0 +1,5 @@
+results/
+api_*
+**/__pycache__
+*.csv
+.git*
