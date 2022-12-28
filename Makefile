@@ -88,7 +88,7 @@ update_primeira_liga:
 	Rscript src/calculate_xPoint.R --league-season=94_2021
 	Rscript src/add_winner_to_league.R --league-season=94_2021
 
-update: \
+update_2021: \
 	update_primeira_liga \
 	update_bundesliga \
 	update_premier_league \
@@ -96,3 +96,10 @@ update: \
 	update_eredivisie \
 	update_ligue_1 \
 	update_serie_a
+
+update_premier_league_2022:
+	Rscript src/calculate_xPoint.R --league-season=39_2022
+	Rscript src/add_winner_to_league.R --league-season=39_2022
+
+update: \
+	update_premier_league_2022
