@@ -88,3 +88,10 @@
 - `xGoal_inside` = 0.102119 ***
 - `xGoal_outside` = 0.046297 ***
 - `xPenalty` = 0.718182
+
+---
+# How to use
+
+``` bash
+docker container run -v $PWD/results:/workdir/results -e x_rapidapi_key=$RAPIDAPI_KEY nepolin/calculator-trs make update_2021
+```
