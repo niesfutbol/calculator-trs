@@ -40,9 +40,14 @@ xGoal_all_league <- list(
 
 xgoal_from_league_season <- function(league_season) {
   xGoal <- xGoal_all_league[[league_season]]
+  check_league_season(league_season)
   return(xGoal)
 }
 
+check_league_season <- function(league_season) {
+  leagues <- names(xGoal_all_league)
+  rlang::arg_match0(league_season, leagues)
+}
 calculate_xgoal <- function(xGol, shots_outsidebox, shots_insidebox, total_penalties) {
   xgoal <- shots_outsidebox * xGol$outside + shots_insidebox * xGol$inside + total_penalties * xGol$penalty
   return(xgoal)

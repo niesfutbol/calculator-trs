@@ -125,6 +125,9 @@ describe("The function xgoal_from_league_season", {
     obtained_goal <- list(inside = 0.108780, outside = 0.065102)
     expect_equal(expected_goal, obtained_goal)
   })
+  it("xGoal from unexistent league", {
+    expect_error(xgoal_from_league_season("foo_boo"))
+  })
 })
 
 describe("The function xgoal_team_place", {
