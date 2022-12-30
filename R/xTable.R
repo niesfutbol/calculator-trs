@@ -28,14 +28,21 @@ xGoal_all_league <- list(
   "253_2021" = list(inside = 0.089624, outside = 0.069169, penalty = 0.8),
   "140_2020" = list(inside = 0.117440, outside = 0.043654, penalty = 0.744681),
   "140_2021" = list(inside = 0.117440, outside = 0.043654, penalty = 0.744681),
+  "140_2022" = list(inside = 0.117440, outside = 0.043654, penalty = 0.750000),
   "78_2020"  = list(inside = 0.110081, outside = 0.037332, penalty = 0.774774),
   "78_2021"  = list(inside = 0.110081, outside = 0.037332, penalty = 0.774774),
+  "78_2022"  = list(inside = 0.110081, outside = 0.037332, penalty = 0.833333),
   "39_2021"  = list(inside = 0.107191, outside = 0.052831, penalty = 0.809524),
+  "39_2022"  = list(inside = 0.107191, outside = 0.052831, penalty = 0.815534),
   "61_2020"  = list(inside = 0.108780, outside = 0.065102),
+  "61_2022"  = list(inside = 0.107191, outside = 0.052831, penalty = 0.878049),
   "88_2021"  = list(inside = 0.097606, outside = 0.059503, penalty = 0.815126),
   "88_2020"  = list(inside = 0.097606, outside = 0.059503, penalty = 0.815126),
+  "88_2022"  = list(inside = 0.097606, outside = 0.059503, penalty = 0.785714),
   "94_2021"  = list(inside = 0.102894, outside = 0.056361, penalty = 0.718182),
-  "135_2021" = list(inside = 0.104484, outside = 0.054466, penalty = 0.846666)
+  "94_2022"  = list(inside = 0.102894, outside = 0.056361, penalty = 0.794393),
+  "135_2021" = list(inside = 0.104484, outside = 0.054466, penalty = 0.846666),
+  "135_2022" = list(inside = 0.104484, outside = 0.054466, penalty = 0.774647)
 )
 
 xgoal_from_league_season <- function(league_season) {
