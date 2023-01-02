@@ -4,8 +4,6 @@
 
 ## Total Shots Rate
 
-## Xpected Goal
-
 ### Liga MX 2020
 - `xGoal_inside` = 0.096171 ***
 - `xGoal_outside` = 0.045958 ***
@@ -91,7 +89,15 @@
 
 ---
 # How to use
+## Xpected Goal
 
 ``` bash
-docker container run -v $PWD/results:/workdir/results -e x_rapidapi_key=$RAPIDAPI_KEY nepolin/calculator-trs make update_2021
+docker container run -itv $PWD/nies_data:/workdir/results nepolin/calculator-trs bash
+Rscript src/calculate_xGoal.R --input-file=results/statistics_39_2022.csv
+```
+
+## To update
+
+``` bash
+docker container run -v $PWD/nies_data:/workdir/results nepolin/calculator-trs make update
 ```
