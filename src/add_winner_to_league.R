@@ -3,7 +3,7 @@ source("R/xTable.R")
 
 opciones <- cli_calculate_xpoints();
 league_season <- opciones[["league-season"]]
-path_names <- glue::glue("tests/data/names_{league_season}.csv")
+path_names <- glue::glue("results/names_{league_season}.csv")
 names <- read_csv(path_names, show_col_types = FALSE)
 path_league <- glue::glue("results/league_{league_season}.csv")
 league <- read_csv(path_league, show_col_types = FALSE)
