@@ -7,7 +7,7 @@ opciones <- cli_prediction_from_multinom();
 league_season <- opciones[["league-season"]]
 previous_league_season <- previous_season(league_season)
 path_strength_league <- glue::glue("results/strength_league_{previous_league_season}.csv")
-strength_league <- read_csv(path_strength_league)
+strength_league <- read_csv(path_strength_league, show_col_types = FALSE)
 
 model <- multinom(
   won ~ home_attack + home_deffense + away_attack + away_deffense,
@@ -23,14 +23,14 @@ get_names <- function(id) {
 }
 
 
-path_names <- glue::glue("tests/data/names_{league_season}.csv")
-names <- read_csv(path_names)
+path_names <- glue::glue("results/names_{league_season}.csv")
+names <- read_csv(path_names, show_col_types = FALSE)
 path_strength_league <- glue::glue("results/strength_league_{league_season}.csv")
-strength_league <- read_csv(path_strength_league)
+strength_league <- read_csv(path_strength_league, show_col_types = FALSE)
 path_league <- glue::glue("results/league_{league_season}.csv")
-league <- read_csv(path_league)
-path_season <- glue::glue("tests/data/season_{league_season}.csv")
-season <- read_csv(path_season)
+league <- read_csv(path_league, show_col_types = FALSE)
+path_season <- glue::glue("results/season_{league_season}.csv")
+season <- read_csv(path_season, show_col_types = FALSE)
 round_str <- opciones[["round"]]
 n_round <- glue::glue("Regular Season - {round_str}")
 round <- season %>%
@@ -50,5 +50,5 @@ pred <- predict(model, to_predict, type="prob")
   mutate(away_team = mapply(function(x) get_names(x), away_id)) %>%
   select(c(6,1,2,3,7)))
 predictions_round <- cbind(predictions, id_match = round$id_match, home_id = round$home_id, away_id = round$away_id)
-output_file <- glue::glue("api_predictions/data/predictions_{league_season}_{round_str}.json")
+output_file <- glue::glue("results/predictions_{league_season}_{round_str}.json")
 write(toJSON(predictions_round), output_file)
