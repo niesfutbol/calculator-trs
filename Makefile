@@ -101,5 +101,10 @@ update_premier_league_2022:
 	Rscript src/calculate_xPoint.R --league-season=39_2022
 	Rscript src/add_winner_to_league.R --league-season=39_2022
 
+update_serie_a_2022:
+	Rscript src/calculate_xPoint.R --league-season=135_2022
+	Rscript src/add_winner_to_league.R --league-season=135_2022
+
 update: \
-	update_premier_league_2022
+	update_premier_league_2022 \
+	update_serie_a_2022
