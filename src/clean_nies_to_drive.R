@@ -1,10 +1,13 @@
 library(tidyverse)
+source("/workdir/R/clean_nies_to_drive.R")
 
-jornada <- read_csv("/workdir/results/nies_13-01-2022.csv", show_col_types = FALSE)
+opciones <- cli_clean_nies_to_drive()
+
+jornada <- read_csv(opciones[["nies-prediction"]], show_col_types = FALSE)
 
 jornada_limpia <- jornada %>%
   mutate(won = ifelse(home > 0.5, "Home", ifelse(away > 0.5, "Away", "Draw"))) %>%
   mutate(name = ifelse(home > 0.5, home_team, ifelse(away > 0.5, away_team, "Draw"))) %>%
   mutate(nies_cuota = ifelse(home > 0.5, 1/home, ifelse(away > 0.5, 1/away, 1/draw))) %>%
   select(date, league, home_team, away_team, won, name, nies_cuota) %>%
-  write_csv("/workdir/results/cleaned_nies.csv")
+  write_csv(opciones[["cleaned-nies"]])
