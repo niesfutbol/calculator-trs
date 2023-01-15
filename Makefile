@@ -97,14 +97,39 @@ update_2021: \
 	update_ligue_1 \
 	update_serie_a
 
+update_bundesliga_2022:
+	Rscript src/calculate_xPoint.R --league-season=78_2022
+	Rscript src/add_winner_to_league.R --league-season=78_2022
+
+update_eredivisie_2022:
+	Rscript src/calculate_xPoint.R --league-season=88_2022
+	Rscript src/add_winner_to_league.R --league-season=88_2022
+
+update_la_liga_2022:
+	Rscript src/calculate_xPoint.R --league-season=140_2022
+	Rscript src/add_winner_to_league.R --league-season=140_2022
+
+update_ligue_1_2022:
+	Rscript src/calculate_xPoint.R --league-season=61_2022
+	Rscript src/add_winner_to_league.R --league-season=61_2022
+
 update_premier_league_2022:
 	Rscript src/calculate_xPoint.R --league-season=39_2022
 	Rscript src/add_winner_to_league.R --league-season=39_2022
+
+update_primeira_liga_2022:
+	Rscript src/calculate_xPoint.R --league-season=94_2022
+	Rscript src/add_winner_to_league.R --league-season=94_2022
 
 update_serie_a_2022:
 	Rscript src/calculate_xPoint.R --league-season=135_2022
 	Rscript src/add_winner_to_league.R --league-season=135_2022
 
 update: \
+	update_bundesliga_2022 \
+	update_eredivisie_2022 \
+	update_la_liga_2022 \
+	update_ligue_1_2022 \
 	update_premier_league_2022 \
+	update_primeira_liga_2022 \
 	update_serie_a_2022
