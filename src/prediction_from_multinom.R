@@ -49,6 +49,6 @@ pred <- predict(model, to_predict, type="prob")
   mutate(home_team = mapply(function(x) get_names(x), home_id)) %>%
   mutate(away_team = mapply(function(x) get_names(x), away_id)) %>%
   select(c(6,1,2,3,7)))
-predictions_round <- cbind(predictions, id_match = round$id_match, home_id = round$home_id, away_id = round$away_id)
-output_file <- glue::glue("results/predictions_{league_season}_{round_str}.json")
-write(toJSON(predictions_round), output_file)
+predictions_round <- cbind(predictions, round)
+output_file <- glue::glue("results/predictions_{league_season}_{round_str}.csv")
+write_csv(predictions_round, output_file)
