@@ -35,6 +35,7 @@ xGoal_all_league <- list(
   "39_2021"  = list(inside = 0.107191, outside = 0.052831, penalty = 0.809524),
   "39_2022"  = list(inside = 0.104380, outside = 0.044810, penalty = 0.815534),
   "61_2020"  = list(inside = 0.108780, outside = 0.065102),
+  "61_2021"  = list(inside = 0.107191, outside = 0.052831, penalty = 0.878049),
   "61_2022"  = list(inside = 0.107191, outside = 0.052831, penalty = 0.878049),
   "88_2021"  = list(inside = 0.097606, outside = 0.059503, penalty = 0.815126),
   "88_2020"  = list(inside = 0.097606, outside = 0.059503, penalty = 0.815126),
