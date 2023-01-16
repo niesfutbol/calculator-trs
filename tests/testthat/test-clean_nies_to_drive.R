@@ -14,3 +14,23 @@ test_that("We can run the original file", {
   obtained_hash <- as.vector(tools::md5sum(output_file))
   expect_equal(obtained_hash, expected_hash)
 })
+
+data_to_test <- tibble(
+  home_team = "home_team",
+  away_team = "away_team",
+  home = c(0.6, 0.3, 0.1),
+  draw = c(0.3, 0.1, 0.6),
+  away = c(0.1, 0.6, 0.3)
+)
+test_that("Mutate who did win", {
+  expected <- tibble(
+    home_team = "home_team",
+    away_team = "away_team",
+    home = c(0.6, 0.3, 0.1),
+    draw = c(0.3, 0.1, 0.6),
+    away = c(0.1, 0.6, 0.3),
+    won = c("Home", "Away", "Draw")
+  )
+  obtained <- who_did_win(data_to_test)
+  expect_equal(obtained, expected)
+})
