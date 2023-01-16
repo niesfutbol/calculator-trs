@@ -6,7 +6,7 @@ library(tidyverse)
 library(comprehenr)
 source("R/xTable.R")
 
-opciones <- cli_calculate_xpoints();
+opciones <- cli_calculate_xpoints()
 league_season <- opciones[["league-season"]]
 directory <- opciones[["directory"]]
 statistics_path <- glue::glue("{directory}/statistics_{league_season}.csv")
