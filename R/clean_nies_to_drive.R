@@ -5,7 +5,7 @@ select_columns_to_drive <- function(filtered_predictions) {
     select(date, league, home_team, away_team, won, name, nies_cuota)
 }
 
-who_did_win <- function(filtered_predictions) {
+did_who_win <- function(filtered_predictions) {
   filtered_predictions %>%
     mutate(won = ifelse(home > 0.5, "Home", ifelse(away > 0.5, "Away", "Draw")))
 }

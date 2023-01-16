@@ -32,7 +32,7 @@ test_that("Mutate who did win", {
     away = c(0.1, 0.6, 0.3),
     won = c("Home", "Away", "Draw")
   )
-  obtained <- who_did_win(data_to_test)
+  obtained <- did_who_win(data_to_test)
   expect_equal(obtained, expected)
 })
 
