@@ -36,8 +36,9 @@ coverage:
 
 format:
 	R -e "library(styler)" \
+	  -e "style_dir('R')" \
 	  -e "style_dir('tests')" \
-	  -e "style_dir('R')"
+	  -e "style_dir('src')"
 
 linter:
 	$(lint)
