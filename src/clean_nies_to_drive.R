@@ -3,7 +3,7 @@ source("/workdir/R/clean_nies_to_drive.R")
 
 opciones <- cli_clean_nies_to_drive()
 
-jornada <- read_csv(opciones[["nies-prediction"]], show_col_types = FALSE)
+jornada <- read_predictions_of_week(opciones)
 
 jornada_limpia <- jornada %>%
   did_who_win() %>%
