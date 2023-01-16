@@ -1,3 +1,4 @@
+source("/workdir/R/clean_nies_to_drive.R")
 run_clean_nies_to_drive <- function() {
   input_file <- "/workdir/tests/data/nies_13-01-2022.csv"
   output_file <- "/workdir/tests/data/cleaned_nies.csv"
@@ -32,5 +33,16 @@ test_that("Mutate who did win", {
     won = c("Home", "Away", "Draw")
   )
   obtained <- who_did_win(data_to_test)
+  expect_equal(obtained, expected)
+})
+
+test_that("What's the name of the one who won?", {
+  expected <- tibble(
+    home = c(0.6, 0.3, 0.1),
+    draw = c(0.3, 0.1, 0.6),
+    away = c(0.1, 0.6, 0.3),
+    name = c("Home", "Away", "Draw")
+  )
+  obtained <- what_name_of_who_won(data_to_test)
   expect_equal(obtained, expected)
 })
