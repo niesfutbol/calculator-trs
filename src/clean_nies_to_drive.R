@@ -7,7 +7,7 @@ jornada <- read_csv(opciones[["nies-prediction"]], show_col_types = FALSE)
 
 jornada_limpia <- jornada %>%
   did_who_win() %>%
-  mutate(name = ifelse(home > 0.5, home_team, ifelse(away > 0.5, away_team, "Draw"))) %>%
+  what_name_of_who_won() %>%
   mutate(nies_cuota = ifelse(home > 0.5, 1 / home, ifelse(away > 0.5, 1 / away, 1 / draw))) %>%
   select_columns_to_drive() %>%
   write_csv(opciones[["cleaned-nies"]])
