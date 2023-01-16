@@ -12,9 +12,14 @@ did_who_win <- function(filtered_predictions) {
 
 what_name_of_who_won <- function(filtered_predictions) {
   filtered_predictions %>%
-  mutate(name = ifelse(home > 0.5, home_team, ifelse(away > 0.5, away_team, "Draw")))
+    mutate(name = ifelse(home > 0.5, home_team, ifelse(away > 0.5, away_team, "Draw")))
 }
 
+
+calculate_nies_fee <- function(filtered_predictions) {
+  filtered_predictions %>%
+    mutate(nies_cuota = ifelse(home > 0.5, 1 / home, ifelse(away > 0.5, 1 / away, 1 / draw)))
+}
 
 cli_clean_nies_to_drive <- function() {
   listaOpciones <- list(

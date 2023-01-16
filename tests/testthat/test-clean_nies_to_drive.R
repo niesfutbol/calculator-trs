@@ -57,7 +57,7 @@ test_that("Calculate the nies fee", {
     home = c(0.6, 0.3, 0.1),
     draw = c(0.3, 0.1, 0.6),
     away = c(0.1, 0.6, 0.3),
-    nies_cuota = 1/0.6
+    nies_cuota = 1 / 0.6
   )
   obtained <- calculate_nies_fee(data_to_test)
   expect_equal(obtained, expected)
