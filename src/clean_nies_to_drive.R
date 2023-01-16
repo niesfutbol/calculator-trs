@@ -10,4 +10,4 @@ jornada_limpia <- jornada %>%
   what_name_of_who_won() %>%
   calculate_nies_fee() %>%
   select_columns_to_drive() %>%
-  write_csv(opciones[["cleaned-nies"]])
+  write_cleaned_predictions_of_week_for_drive(opciones)

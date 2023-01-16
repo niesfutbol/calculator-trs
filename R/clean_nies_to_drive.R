@@ -44,5 +44,10 @@ cli_clean_nies_to_drive <- function() {
 }
 
 read_predictions_of_week <- function(options) {
- return(read_csv(options[["nies-prediction"]], show_col_types = FALSE))
+  return(read_csv(options[["nies-prediction"]], show_col_types = FALSE))
+}
+
+write_cleaned_predictions_of_week_for_drive <- function(filtered_predictions, options) {
+  filtered_predictions %>%
+    write_csv(options[["cleaned-nies"]])
 }
