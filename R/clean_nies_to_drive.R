@@ -10,6 +10,12 @@ did_who_win <- function(filtered_predictions) {
     mutate(won = ifelse(home > 0.5, "Home", ifelse(away > 0.5, "Away", "Draw")))
 }
 
+what_name_of_who_won <- function(filtered_predictions) {
+  filtered_predictions %>%
+  mutate(name = ifelse(home > 0.5, home_team, ifelse(away > 0.5, away_team, "Draw")))
+}
+
+
 cli_clean_nies_to_drive <- function() {
   listaOpciones <- list(
     make_option(
