@@ -246,6 +246,7 @@ league_attack_deffense <- tibble(
   away_id = c(2, 1, 1),
   away_xGol = c(0.3, 0.2, 0.2)
 )
+
 describe("get_strength_atack()", {
   expected_strength_atack <- 0.2
   obtained_strength_atack <- get_strength_atack(league_attack_deffense, id = 1)
@@ -253,4 +254,13 @@ describe("get_strength_atack()", {
   obtained_strength_atack <- get_strength_atack(league_attack_deffense, id = 2)
   expected_strength_atack <- 0.3
   expect_equal(obtained_strength_atack, expected_strength_atack, tolerance = 1e-3)
+})
+
+describe("get_strength_deffense()", {
+  expected_strength_deffense <- 1 / 3
+  obtained_strength_deffense <- get_strength_deffense(league_attack_deffense, id = 1)
+  expect_equal(obtained_strength_deffense, expected_strength_deffense, tolerance = 1e-3)
+  obtained_strength_deffense <- get_strength_deffense(league_attack_deffense, id = 2)
+  expected_strength_deffense <- 0.2
+  expect_equal(obtained_strength_deffense, expected_strength_deffense, tolerance = 1e-3)
 })
