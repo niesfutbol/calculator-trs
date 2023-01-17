@@ -240,6 +240,7 @@ describe("The funtion previous_season", {
     expect_equal(expected_season, obtained_season)
   })
 })
+
 league_attack_deffense <- tibble(
   home_id = c(1, 2, 3),
   home_xGol = c(0.2, 0.3, 0.4),
@@ -263,4 +264,17 @@ describe("get_strength_deffense()", {
   obtained_strength_deffense <- get_strength_deffense(league_attack_deffense, id = 2)
   expected_strength_deffense <- 0.2
   expect_equal(obtained_strength_deffense, expected_strength_deffense, tolerance = 1e-3)
+})
+
+league_attack_deffense_streak <- tibble(
+  home_id = c(1, 1, 1, 1, 5, 2, 3, 4),
+  away_id = c(5, 2, 3, 4, 1, 1, 1, 1),
+  home_xGol = c(0.1, 0.3, 0.3, 0.3, 0.5, 0.2, 0.3, 0.4),
+  away_xGol = c(0.5, 0.2, 0.3, 0.4, 0.1, 0.2, 0.2, 0.2)
+)
+
+describe("get_strength_streak_attack()", {
+  obtained_attack <- get_strength_streak_attack(league_attack_deffense_streak, 1)
+  expected_attack <- c(0.3, 0.3, 0.3, 0.2, 0.2, 0.2)
+  expect_equal(obtained_attack, expected_attack)
 })
