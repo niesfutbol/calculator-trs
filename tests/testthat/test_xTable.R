@@ -1,4 +1,5 @@
 library(comprehenr)
+library(tidyverse)
 setwd("/workdir")
 source("R/xTable.R")
 
@@ -238,4 +239,18 @@ describe("The funtion previous_season", {
     obtained_season <- previous_season("78_2026")
     expect_equal(expected_season, obtained_season)
   })
+})
+league_attack_deffense <- tibble(
+  home_id = c(1, 2, 3),
+  home_xGol = c(0.2, 0.3, 0.4),
+  away_id = c(2, 1, 1),
+  away_xGol = c(0.3, 0.2, 0.2)
+)
+describe("get_strength_atack()", {
+  expected_strength_atack <- 0.2
+  obtained_strength_atack <- get_strength_atack(league_attack_deffense, id = 1)
+  expect_equal(obtained_strength_atack, expected_strength_atack, tolerance = 1e-3)
+  obtained_strength_atack <- get_strength_atack(league_attack_deffense, id = 2)
+  expected_strength_atack <- 0.3
+  expect_equal(obtained_strength_atack, expected_strength_atack, tolerance = 1e-3)
 })
