@@ -242,7 +242,13 @@ get_strength_deffense <- function(league, id) {
 }
 
 get_strength_streak_attack <- function(league, id) {
-  home_xGol <- league %>% filter(home_id == id) %>% .$home_xGol %>% tail(3)
-  away_xGol <- league %>% filter(away_id == id) %>% .$away_xGol %>% tail(3)
+  home_xGol <- league %>%
+    filter(home_id == id) %>%
+    .$home_xGol %>%
+    tail(3)
+  away_xGol <- league %>%
+    filter(away_id == id) %>%
+    .$away_xGol %>%
+    tail(3)
   expected_attack <- c(home_xGol, away_xGol)
 }
