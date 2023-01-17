@@ -2,10 +2,12 @@ library(covr)
 library(testthat)
 cobertura <- file_coverage(
     c(
+        "R/clean_nies_to_drive.R",
         "R/xGoal.R",
         "R/xTable.R"
     ),
     c(
+        "tests/testthat/test-clean_nies_to_drive.R",
         "tests/testthat/test_xGoal.R",
         "tests/testthat/test_xTable.R"
     )
