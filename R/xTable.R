@@ -240,3 +240,7 @@ get_strength_deffense <- function(league, id) {
   attack <- c(league %>% filter(home_id == id) %>% .$away_xGol, league %>% filter(away_id == id) %>% .$home_xGol)
   return(mean(attack))
 }
+
+get_strength_streak_attack <- function(league, id) {
+  expected_attack <- c(0.3, 0.3, 0.3, 0.2, 0.2, 0.2)
+}
