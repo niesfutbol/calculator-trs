@@ -278,3 +278,8 @@ GET_STRENGTH_DEFFENSE <- list(
   "streak" = get_strength_streak_deffense,
   "mean" = get_strength_deffense
 )
+
+GET_STRENGTH_ATTACK <- list(
+  "streak" = get_strength_streak_attack,
+  "mean" = get_strength_atack
+)
