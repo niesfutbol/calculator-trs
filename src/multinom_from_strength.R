@@ -13,7 +13,7 @@ tests_strength_league <- strength_league[-train_ind, ]
 train_labels <- strength_league[train_ind, "won"]
 tests_labels <- strength_league[-train_ind, "won"]
 model <- multinom(
-  won ~ home_attack + home_deffense + away_attack + away_deffense,
+  won ~ home_attack + home_defense + away_attack + away_defense,
   data = train_strength_league
 )
 

@@ -9,7 +9,7 @@ path_strength_league <- glue::glue("results/strength_league_{previous_league_sea
 strength_league <- read_csv(path_strength_league, show_col_types = FALSE)
 
 model <- multinom(
-  won ~ home_attack + home_deffense + away_attack + away_deffense,
+  won ~ home_attack + home_defense + away_attack + away_defense,
   data = strength_league
 )
 

@@ -241,7 +241,7 @@ describe("The funtion previous_season", {
   })
 })
 
-league_attack_deffense <- tibble(
+league_attack_defense <- tibble(
   home_id = c(1, 2, 3),
   home_xGol = c(0.2, 0.3, 0.4),
   away_id = c(2, 1, 1),
@@ -250,23 +250,23 @@ league_attack_deffense <- tibble(
 
 describe("get_strength_atack()", {
   expected_strength_atack <- 0.2
-  obtained_strength_atack <- get_strength_atack(league_attack_deffense, id = 1)
+  obtained_strength_atack <- get_strength_atack(league_attack_defense, id = 1)
   expect_equal(obtained_strength_atack, expected_strength_atack, tolerance = 1e-3)
-  obtained_strength_atack <- get_strength_atack(league_attack_deffense, id = 2)
+  obtained_strength_atack <- get_strength_atack(league_attack_defense, id = 2)
   expected_strength_atack <- 0.3
   expect_equal(obtained_strength_atack, expected_strength_atack, tolerance = 1e-3)
 })
 
-describe("get_strength_deffense()", {
-  expected_strength_deffense <- 1 / 3
-  obtained_strength_deffense <- get_strength_deffense(league_attack_deffense, id = 1)
-  expect_equal(obtained_strength_deffense, expected_strength_deffense, tolerance = 1e-3)
-  obtained_strength_deffense <- get_strength_deffense(league_attack_deffense, id = 2)
-  expected_strength_deffense <- 0.2
-  expect_equal(obtained_strength_deffense, expected_strength_deffense, tolerance = 1e-3)
+describe("get_strength_defense()", {
+  expected_strength_defense <- 1 / 3
+  obtained_strength_defense <- get_strength_defense(league_attack_defense, id = 1)
+  expect_equal(obtained_strength_defense, expected_strength_defense, tolerance = 1e-3)
+  obtained_strength_defense <- get_strength_defense(league_attack_defense, id = 2)
+  expected_strength_defense <- 0.2
+  expect_equal(obtained_strength_defense, expected_strength_defense, tolerance = 1e-3)
 })
 
-league_attack_deffense_streak <- tibble(
+league_attack_defense_streak <- tibble(
   home_id = c(1, 1, 1, 1, 5, 2, 3, 4),
   away_id = c(5, 2, 3, 4, 1, 1, 1, 1),
   home_xGol = c(0.1, 0.3, 0.3, 0.3, 0.5, 0.2, 0.3, 0.4),
@@ -274,29 +274,29 @@ league_attack_deffense_streak <- tibble(
 )
 
 describe("get_strength_streak_attack()", {
-  obtained_attack <- get_strength_atack(league_attack_deffense_streak, id = 1)
-  obtained_streak_attack <- get_strength_streak_attack(league_attack_deffense_streak, 1)
+  obtained_attack <- get_strength_atack(league_attack_defense_streak, id = 1)
+  obtained_streak_attack <- get_strength_streak_attack(league_attack_defense_streak, 1)
   expect_true(obtained_attack < obtained_streak_attack)
   expect_equal(obtained_streak_attack, 0.2313, tolerance = 1e-3)
 })
 
-describe("get_strength_streak_deffense()", {
-  obtained_deffense <- get_strength_deffense(league_attack_deffense_streak, id = 1)
-  obtained_streak_deffense <- get_strength_streak_deffense(league_attack_deffense_streak, 1)
-  expect_true(obtained_deffense > obtained_streak_deffense)
-  expect_equal(obtained_streak_deffense, 0.3253, tolerance = 1e-3)
+describe("get_strength_streak_defense()", {
+  obtained_defense <- get_strength_defense(league_attack_defense_streak, id = 1)
+  obtained_streak_defense <- get_strength_streak_defense(league_attack_defense_streak, 1)
+  expect_true(obtained_defense > obtained_streak_defense)
+  expect_equal(obtained_streak_defense, 0.3253, tolerance = 1e-3)
 })
 
-describe("GET_STRENGTH_DEFFENSE()", {
-  obtained_deffense <- GET_STRENGTH_DEFFENSE[["mean"]](league_attack_deffense_streak, id = 1)
-  expect_equal(obtained_deffense, 0.350, tolerance = 1e-3)
-  obtained_streak_deffense <- GET_STRENGTH_DEFFENSE[["streak"]](league_attack_deffense_streak, 1)
-  expect_equal(obtained_streak_deffense, 0.3253, tolerance = 1e-3)
+describe("GET_STRENGTH_DEFENSE()", {
+  obtained_defense <- GET_STRENGTH_DEFENSE[["mean"]](league_attack_defense_streak, id = 1)
+  expect_equal(obtained_defense, 0.350, tolerance = 1e-3)
+  obtained_streak_defense <- GET_STRENGTH_DEFENSE[["streak"]](league_attack_defense_streak, 1)
+  expect_equal(obtained_streak_defense, 0.3253, tolerance = 1e-3)
 })
 
 describe("GET_STRENGTH_ATTACK()", {
-  obtained_attack <- GET_STRENGTH_ATTACK[["mean"]](league_attack_deffense_streak, id = 1)
+  obtained_attack <- GET_STRENGTH_ATTACK[["mean"]](league_attack_defense_streak, id = 1)
   expect_equal(obtained_attack, 0.2123, tolerance = 1e-3)
-  obtained_streak_attack <- GET_STRENGTH_ATTACK[["streak"]](league_attack_deffense_streak, 1)
+  obtained_streak_attack <- GET_STRENGTH_ATTACK[["streak"]](league_attack_defense_streak, 1)
   expect_equal(obtained_streak_attack, 0.2313, tolerance = 1e-3)
 })

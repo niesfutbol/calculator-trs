@@ -21,16 +21,16 @@ how_won <- function(home, away) {
 
 
 attack <- comprehenr::to_vec(for (id in names[["ids"]]) get_strength_atack(league, id))
-deffense <- comprehenr::to_vec(for (id in names[["ids"]]) get_strength_deffense(league, id))
+deffense <- comprehenr::to_vec(for (id in names[["ids"]]) get_strength_defense(league, id))
 strength <- tibble(ids = names[["ids"]], attack = attack, deffense = deffense)
 
 data <- league %>%
   mutate(won = mapply(function(x, y) how_won(x, y), home, away)) %>%
   left_join(strength, by = c("home_id" = "ids")) %>%
-  rename(home_attack = attack, home_deffense = deffense) %>%
+  rename(home_attack = attack, home_defense = deffense) %>%
   left_join(strength, by = c("away_id" = "ids")) %>%
-  rename(away_attack = attack, away_deffense = deffense) %>%
-  select(home, away, won, home_attack, home_deffense, away_attack, away_deffense)
+  rename(away_attack = attack, away_defense = deffense) %>%
+  select(home, away, won, home_attack, home_defense, away_attack, away_defense)
 
 path_output <- glue::glue("results/strength_league_{league_season}.csv")
 write_csv(data, path_output)
