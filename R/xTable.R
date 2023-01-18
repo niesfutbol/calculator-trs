@@ -249,8 +249,8 @@ get_strength_streak_attack <- function(league, id) {
     filter(away_id == id) %>%
     .$away_xGol
   expected_attack <- c(home_xGol, away_xGol)
-  expected_streak_attack <- c(home_xGol %>% tail(3), away_xGol %>% tail(3))
-  return(mean(expected_attack) / 2 + mean(expected_streak_attack) / 2)
+  expected_streak_attack <- .last_xGol(home_xGol, away_xGol)
+  .half_mean(expected_attack, expected_streak_attack)
 }
 
 get_strength_streak_deffense <- function(league, id) {
@@ -261,6 +261,15 @@ get_strength_streak_deffense <- function(league, id) {
     filter(away_id == id) %>%
     .$home_xGol
   expected_deffense <- c(home_xGol, away_xGol)
-  expected_streak_deffense <- c(home_xGol %>% tail(3), away_xGol %>% tail(3))
-  return(mean(expected_deffense) / 2 + mean(expected_streak_deffense) / 2)
+  expected_streak_deffense <- .last_xGol(home_xGol, away_xGol)
+  .half_mean(expected_deffense, expected_streak_deffense)
+}
+
+.half_mean <- function(expected_deffense, streak_deffense) {
+  half_mean <- mean(expected_deffense) / 2 + mean(streak_deffense) / 2
+  return(half_mean)
+}
+
+.last_xGol <- function(home_xGol, away_xGol) {
+  c(home_xGol %>% tail(3), away_xGol %>% tail(3))
 }
