@@ -250,5 +250,17 @@ get_strength_streak_attack <- function(league, id) {
     .$away_xGol
   expected_attack <- c(home_xGol, away_xGol)
   expected_streak_attack <- c(home_xGol %>% tail(3), away_xGol %>% tail(3))
-  return(mean(expected_attack)/2 + mean(expected_streak_attack)/2)
+  return(mean(expected_attack) / 2 + mean(expected_streak_attack) / 2)
+}
+
+get_strength_streak_deffense <- function(league, id) {
+  away_xGol <- league %>%
+    filter(home_id == id) %>%
+    .$away_xGol
+  home_xGol <- league %>%
+    filter(away_id == id) %>%
+    .$home_xGol
+  expected_deffense <- c(home_xGol, away_xGol)
+  expected_streak_deffense <- c(home_xGol %>% tail(3), away_xGol %>% tail(3))
+  return(mean(expected_deffense) / 2 + mean(expected_streak_deffense) / 2)
 }
