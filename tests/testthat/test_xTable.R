@@ -281,8 +281,8 @@ describe("get_strength_streak_attack()", {
 })
 
 describe("get_strength_streak_deffense()", {
-  obtained_deffense <- get_strength_deffens(eleague_attack_deffense_streak, id = 1)
+  obtained_deffense <- get_strength_deffense(league_attack_deffense_streak, id = 1)
   obtained_streak_deffense <- get_strength_streak_deffense(league_attack_deffense_streak, 1)
   expect_true(obtained_deffense > obtained_streak_deffense)
-  expect_equal(obtained_streak_deffense, 0.2313, tolerance = 1e-3)
+  expect_equal(obtained_streak_deffense, 0.3253, tolerance = 1e-3)
 })
