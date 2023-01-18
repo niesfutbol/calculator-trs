@@ -274,7 +274,8 @@ league_attack_deffense_streak <- tibble(
 )
 
 describe("get_strength_streak_attack()", {
-  obtained_attack <- get_strength_streak_attack(league_attack_deffense_streak, 1)
-  expected_attack <- c(0.3, 0.3, 0.3, 0.2, 0.2, 0.2)
-  expect_equal(obtained_attack, expected_attack)
+  obtained_attack <- get_strength_atack(league_attack_deffense_streak, id = 1)
+  obtained_streak_attack <- get_strength_streak_attack(league_attack_deffense_streak, 1)
+  expect_true(obtained_attack < obtained_streak_attack)
+  expect_equal(obtained_streak_attack, 0.2313, tolerance = 1e-3)
 })
