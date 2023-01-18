@@ -273,3 +273,8 @@ get_strength_streak_deffense <- function(league, id) {
 .last_xGol <- function(home_xGol, away_xGol) {
   c(home_xGol %>% tail(3), away_xGol %>% tail(3))
 }
+
+GET_STRENGTH_DEFFENSE <- list(
+  "streak" = get_strength_streak_deffense,
+  "mean" = get_strength_deffense
+)
