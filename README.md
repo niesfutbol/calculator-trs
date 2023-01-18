@@ -4,8 +4,6 @@
 
 ## Total Shots Rate
 
-## Xpected Goal
-
 ### Liga MX 2020
 - `xGoal_inside` = 0.096171 ***
 - `xGoal_outside` = 0.045958 ***
@@ -22,10 +20,21 @@
 ### La Liga 2020
 - `xGoal_inside` = 0.125454 ***
 - `xGoal_outside` = 0.044485 ***
+- `xPenalty` = 0.816
+
+### La Liga 2020
+- `xGoal_inside` = 0.109849 ***
+- `xGoal_outside` = 0.036571 ***
+- `xPenalty` = 0.816
 
 ### Premier League 2020
 - `xGoal_inside` = 0.101172 ***
 - `xGoal_outside` = 0.051113 ***
+- `xPenalty` = 0.816
+
+### Premier League 2021
+- `xGoal_inside` = 0.096065 ***
+- `xGoal_outside` = 0.053973 ***
 - `xPenalty` = 0.816
 
 ### Bundesliga 2020
@@ -33,9 +42,19 @@
 - `xGoal_outside` = 0.037332 **
 - `xPenalty` = 0.774774
 
+### Bundesliga 2021
+- `xGoal_inside` = 0.104047 ***
+- `xGoal_outside` = 0.049906 **
+- `xPenalty` = 0.774774
+
 ### Serie A 2020
 - `xGoal_inside` = 0.106269 ***
 - `xGoal_outside` = 0.048015 ***
+- `xPenalty` = 0.846666
+
+### Serie A 2021
+- `xGoal_inside` = 0.095796 ***
+- `xGoal_outside` = 0.050902 ***
 - `xPenalty` = 0.846666
 
 ### Ligue 1 2020
@@ -43,12 +62,42 @@
 - `xGoal_outside` = 0.065102 ***
 - `xPenalty` = 0.826087
 
+### Ligue 1 2021
+- `xGoal_inside` = 0.106016 ***
+- `xGoal_outside` = 0.053995 ***
+- `xPenalty` = 0.826087
+
 ### Eredivisie 2020
 - `xGoal_inside` = 0.097606 ***
 - `xGoal_outside` = 0.059503 ***
 - `xPenalty` = 0.815126
 
+### Eredivisie 2021
+- `xGoal_inside`  = 0.097820 ***
+- `xGoal_outside` = 0.052652 ***
+- `xPenalty`      = 0.785714
+
 ### Primeira Liga 2020
 - `xGoal_inside` = 0.102894 ***
 - `xGoal_outside` = 0.056361 ***
 - `xPenalty` = 0.718182
+
+### Primeira Liga 2021
+- `xGoal_inside` = 0.102119 ***
+- `xGoal_outside` = 0.046297 ***
+- `xPenalty` = 0.718182
+
+---
+# How to use
+## Xpected Goal
+
+``` bash
+docker container run -itv $PWD/nies_data:/workdir/results nepolin/calculator-trs bash
+Rscript src/calculate_xGoal.R --input-file=results/statistics_39_2022.csv
+```
+
+## To update
+
+``` bash
+docker container run -v $PWD/nies_data:/workdir/results nepolin/calculator-trs make update
+```

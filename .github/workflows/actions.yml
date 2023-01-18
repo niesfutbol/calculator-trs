@@ -19,4 +19,4 @@ jobs:
     - name: Verifica el formato
       run: docker run trs make check
     - name: Corre pruebas y evalua cobertura
-      run: docker run trs make coverage
+      run: docker run trs make tests
