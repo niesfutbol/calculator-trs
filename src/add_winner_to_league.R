@@ -1,7 +1,7 @@
 library("tidyverse")
 source("/workdir/R/xTable.R")
 
-opciones <- cli_calculate_xpoints()
+opciones <- cli_add_winner_to_league()
 league_season <- opciones[["league-season"]]
 directory <- opciones[["directory"]]
 path_names <- glue::glue("{directory}/names_{league_season}.csv")
@@ -21,7 +21,8 @@ how_won <- function(home, away) {
 
 
 
-strength <- concatenate_strength_attack_defense(names, league)
+mode <- opciones[["mode"]]
+strength <- concatenate_strength_attack_defense(names, league, mode)
 
 data <- league %>%
   mutate(won = mapply(function(x, y) how_won(x, y), home, away)) %>%
