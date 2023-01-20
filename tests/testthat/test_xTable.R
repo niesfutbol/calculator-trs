@@ -318,8 +318,8 @@ describe("concatenate_strength_attack_defense", {
     expect_equal(sum(obtained_strength$deffense), 23.17, tolerance = 1e-3)
   })
   it(" mode = streak", {
-    obtained_streak_attack_strength <- calcualte_attack_strength_for_each_team(names, league, mode = "streak")
-    expect_false(sum(obtained_streak_attack_strength) == 23.2651)
-    expect_equal(sum(obtained_streak_attack_strength), 23.0252, tolerance = 1e-3)
+    obtained_strength <- concatenate_strength_attack_defense(names, league, mode = "streak")
+    expect_equal(sum(obtained_strength$attack), 23.0252, tolerance = 1e-3)
+    expect_equal(sum(obtained_strength$deffense), 23.017, tolerance = 1e-3)
   })
 })
