@@ -21,9 +21,7 @@ how_won <- function(home, away) {
 
 
 
-attack <- comprehenr::to_vec(for (id in names[["ids"]]) get_strength_atack(league, id))
-deffense <- comprehenr::to_vec(for (id in names[["ids"]]) get_strength_defense(league, id))
-strength <- tibble(ids = names[["ids"]], attack = attack, deffense = deffense)
+strength <- concatenate_strength_attack_defense(names, league)
 
 data <- league %>%
   mutate(won = mapply(function(x, y) how_won(x, y), home, away)) %>%
