@@ -283,3 +283,7 @@ GET_STRENGTH_ATTACK <- list(
   "streak" = get_strength_streak_attack,
   "mean" = get_strength_atack
 )
+
+calcualte_attack_strength_for_each_team <- function(names, league) {
+  comprehenr::to_vec(for (id in names[["ids"]]) get_strength_atack(league, id))
+}

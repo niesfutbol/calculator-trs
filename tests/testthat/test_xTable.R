@@ -306,4 +306,7 @@ describe("concatenate_strength_attack_defense", {
   league <- read_csv(path_league, show_col_types = FALSE)
   path_names <- "tests/data/names_39_2022.csv"
   names <- read_csv(path_names, show_col_types = FALSE)
+  obtained_attack_strength <- calcualte_attack_strength_for_each_team(names, league)
+  expect_equal(nrow(names), length(obtained_attack_strength))
+  expect_equal(sum(obtained_attack_strength), 23.2651, tolerance = 1e-3)
 })
