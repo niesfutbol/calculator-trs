@@ -284,10 +284,10 @@ GET_STRENGTH_ATTACK <- list(
   "mean" = get_strength_atack
 )
 
-calcualte_attack_strength_for_each_team <- function(names, league) {
-  comprehenr::to_vec(for (id in names[["ids"]]) GET_STRENGTH_ATTACK[["mean"]](league, id))
+calcualte_attack_strength_for_each_team <- function(names, league, mode = "mean") {
+  comprehenr::to_vec(for (id in names[["ids"]]) GET_STRENGTH_ATTACK[[mode]](league, id))
 }
 
-calcualte_defense_strength_for_each_team <- function(names, league) {
-  comprehenr::to_vec(for (id in names[["ids"]]) GET_STRENGTH_DEFENSE[["mean"]](league, id))
+calcualte_defense_strength_for_each_team <- function(names, league, mode = "mean") {
+  comprehenr::to_vec(for (id in names[["ids"]]) GET_STRENGTH_DEFENSE[[mode]](league, id))
 }
