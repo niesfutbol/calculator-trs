@@ -300,3 +300,10 @@ describe("GET_STRENGTH_ATTACK()", {
   obtained_streak_attack <- GET_STRENGTH_ATTACK[["streak"]](league_attack_defense_streak, 1)
   expect_equal(obtained_streak_attack, 0.2313, tolerance = 1e-3)
 })
+
+describe("concatenate_strength_attack_defense", {
+  path_league <- "tests/data/league_39_2022.csv"
+  league <- read_csv(path_league, show_col_types = FALSE)
+  path_names <- "tests/data/results/names_39_2022.csv"
+  names <- read_csv(path_names, show_col_types = FALSE)
+})
