@@ -10,7 +10,6 @@ test_that("We can run the original file", {
   output_file <- "/workdir/tests/data/strength_league_39_2022.csv"
   run_add_winner_to_league(output_file)
   expected_hash <- "0c90348e765b5980d603926cd6b72f34"
-  print(expected_hash)
   obtained_hash <- as.vector(tools::md5sum(output_file))
   expect_equal(obtained_hash, expected_hash)
 })
