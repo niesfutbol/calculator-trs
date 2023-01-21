@@ -37,7 +37,7 @@ round <- season %>%
 
 home_id <- round$home_id
 away_id <- round$away_id
-home_attack <- comprehenr::to_vec(for (id in home_id) get_strength_atack(league, id))
+home_attack <- calcualte_attack_strength_for_each_team(home_id, league)
 home_defense <- comprehenr::to_vec(for (id in home_id) get_strength_defense(league, id))
 away_attack <- comprehenr::to_vec(for (id in away_id) get_strength_atack(league, id))
 away_defense <- comprehenr::to_vec(for (id in away_id) get_strength_defense(league, id))
