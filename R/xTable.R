@@ -322,16 +322,17 @@ GET_STRENGTH_ATTACK <- list(
   "mean" = get_strength_atack
 )
 
-calcualte_attack_strength_for_each_team <- function(names, league, mode = "mean") {
-  comprehenr::to_vec(for (id in names[["ids"]]) GET_STRENGTH_ATTACK[[mode]](league, id))
+calcualte_attack_strength_for_each_team <- function(ids, league, mode = "mean") {
+  comprehenr::to_vec(for (id in ids) GET_STRENGTH_ATTACK[[mode]](league, id))
 }
 
-calcualte_defense_strength_for_each_team <- function(names, league, mode = "mean") {
-  comprehenr::to_vec(for (id in names[["ids"]]) GET_STRENGTH_DEFENSE[[mode]](league, id))
+calcualte_defense_strength_for_each_team <- function(ids, league, mode = "mean") {
+  comprehenr::to_vec(for (id in ids) GET_STRENGTH_DEFENSE[[mode]](league, id))
 }
 
 concatenate_strength_attack_defense <- function(names, league, mode = "mean") {
-  attack <- calcualte_attack_strength_for_each_team(names, league, mode)
-  defense <- calcualte_defense_strength_for_each_team(names, league, mode)
-  strength <- tibble(ids = names[["ids"]], attack = attack, deffense = defense)
+  ids <- names[["ids"]]
+  attack <- calcualte_attack_strength_for_each_team(ids, league, mode)
+  defense <- calcualte_defense_strength_for_each_team(ids, league, mode)
+  strength <- tibble(ids = ids, attack = attack, deffense = defense)
 }
