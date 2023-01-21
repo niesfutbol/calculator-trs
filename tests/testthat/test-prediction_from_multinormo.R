@@ -14,4 +14,10 @@ describe("We can run the original file", {
     obtained_hash <- as.vector(tools::md5sum(output_file))
     expect_equal(obtained_hash, expected_hash)
   })
+  it("mode value = streak in the clie", {
+    run_add_winner_to_league(output_file, "streak")
+    expected_hash <- "c1c759f78d285c7ceb2e7385626903e6"
+    obtained_hash <- as.vector(tools::md5sum(output_file))
+    expect_false(obtained_hash == expected_hash)
+  })
 })
