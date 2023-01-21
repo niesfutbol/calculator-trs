@@ -1,12 +1,13 @@
 library("tidyverse")
 library("jsonlite")
 library("nnet")
-source("R/xTable.R")
+source("/workdir/R/xTable.R")
 
 opciones <- cli_prediction_from_multinom()
 league_season <- opciones[["league-season"]]
 previous_league_season <- previous_season(league_season)
-path_strength_league <- glue::glue("results/strength_league_{previous_league_season}.csv")
+directory <- opciones[["directory"]]
+path_strength_league <- glue::glue("{directory}/strength_league_{previous_league_season}.csv")
 strength_league <- read_csv(path_strength_league, show_col_types = FALSE)
 
 model <- multinom(
@@ -23,13 +24,13 @@ get_names <- function(id) {
 }
 
 
-path_names <- glue::glue("results/names_{league_season}.csv")
+path_names <- glue::glue("{directory}/names_{league_season}.csv")
 names <- read_csv(path_names, show_col_types = FALSE)
-path_strength_league <- glue::glue("results/strength_league_{league_season}.csv")
+path_strength_league <- glue::glue("{directory}/strength_league_{league_season}.csv")
 strength_league <- read_csv(path_strength_league, show_col_types = FALSE)
-path_league <- glue::glue("results/league_{league_season}.csv")
+path_league <- glue::glue("{directory}/league_{league_season}.csv")
 league <- read_csv(path_league, show_col_types = FALSE)
-path_season <- glue::glue("results/season_{league_season}.csv")
+path_season <- glue::glue("{directory}/season_{league_season}.csv")
 season <- read_csv(path_season, show_col_types = FALSE)
 round_str <- opciones[["round"]]
 n_round <- glue::glue("Regular Season - {round_str}")
@@ -50,5 +51,5 @@ pred <- predict(model, to_predict, type = "prob")
   mutate(away_team = mapply(function(x) get_names(x), away_id)) %>%
   select(c(6, 1, 2, 3, 7)))
 predictions_round <- cbind(predictions, round)
-output_file <- glue::glue("results/predictions_{league_season}_{round_str}.csv")
+output_file <- glue::glue("{directory}/predictions_{league_season}_{round_str}.csv")
 write_csv(predictions_round, output_file)
