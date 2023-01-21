@@ -140,6 +140,13 @@ cli_prediction_from_multinom <- function() {
       help = "Round",
       metavar = "character",
       type = "character"
+    ),
+    make_option(
+      c("-d", "--directory"),
+      default = "results",
+      help = "Directory where are the files `statistics_{league}_{season}.csv`",
+      metavar = "character",
+      type = "character"
     )
   )
   opt_parser <- OptionParser(option_list = listaOpciones)
