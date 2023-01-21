@@ -2,7 +2,7 @@ run_add_winner_to_league <- function(output_file, mode) {
   directory <- "/workdir/tests/data"
   src_file <- "/workdir/src/prediction_from_multinom.R"
   testtools::delete_output_file(output_file)
-  command <- glue::glue("Rscript {src_file} -l 78_2022 -r 16 -d {directory}")
+  command <- glue::glue("Rscript {src_file} -l 78_2022 -r 16 -d {directory} -m {mode}")
   system(command)
 }
 
