@@ -37,10 +37,11 @@ round <- season %>%
 
 home_id <- round$home_id
 away_id <- round$away_id
-home_attack <- calculate_attack_strength_for_each_team(home_id, league)
-home_defense <- calculate_defense_strength_for_each_team(home_id, league)
-away_attack <- calculate_attack_strength_for_each_team(away_id, league)
-away_defense <- calculate_defense_strength_for_each_team(away_id, league)
+mode <- opciones[["mode"]]
+home_attack <- calculate_attack_strength_for_each_team(home_id, league, mode)
+home_defense <- calculate_defense_strength_for_each_team(home_id, league, mode)
+away_attack <- calculate_attack_strength_for_each_team(away_id, league, mode)
+away_defense <- calculate_defense_strength_for_each_team(away_id, league, mode)
 to_predict <- tibble(away_attack, away_defense, home_defense, home_attack)
 pred <- predict(model, to_predict, type = "prob")
 (predictions <- tibble("home" = pred[, 3], "draw" = pred[, 2], "away" = pred[, 1]) %>%
