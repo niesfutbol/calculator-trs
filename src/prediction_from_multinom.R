@@ -26,8 +26,6 @@ get_names <- function(id) {
 
 path_names <- glue::glue("{directory}/names_{league_season}.csv")
 names <- read_csv(path_names, show_col_types = FALSE)
-path_strength_league <- glue::glue("{directory}/strength_league_{league_season}.csv")
-strength_league <- read_csv(path_strength_league, show_col_types = FALSE)
 path_league <- glue::glue("{directory}/league_{league_season}.csv")
 league <- read_csv(path_league, show_col_types = FALSE)
 path_season <- glue::glue("{directory}/season_{league_season}.csv")
