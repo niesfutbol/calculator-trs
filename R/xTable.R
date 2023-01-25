@@ -290,6 +290,18 @@ extract_xgoal_attack_from_league <- function(league, id) {
   attack <- c(league %>% filter(home_id == id) %>% .$home_xGol, league %>% filter(away_id == id) %>% .$away_xGol)
 }
 
+extract_point_from_league <- function(league, id) {
+  attack <- c(league %>% filter(home_id == id) %>% .$home_Points, league %>% filter(away_id == id) %>% .$away_Points)
+}
+
+extract_xpoint_from_league <- function(league, id) {
+  attack <- c(league %>% filter(home_id == id) %>% .$home_xPoints, league %>% filter(away_id == id) %>% .$away_xPoints)
+}
+
+extract_date_from_league <- function(league, id) {
+  attack <- c(league %>% filter(home_id == id) %>% .$date, league %>% filter(away_id == id) %>% .$date)
+}
+
 extract_xgoal_defense_from_league <- function(league, id) {
   attack <- c(league %>% filter(home_id == id) %>% .$away_xGol, league %>% filter(away_id == id) %>% .$home_xGol)
 }
