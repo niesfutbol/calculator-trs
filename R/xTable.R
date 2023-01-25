@@ -277,13 +277,21 @@ previous_season <- function(id_season) {
 }
 
 get_strength_atack <- function(league, id) {
-  attack <- c(league %>% filter(home_id == id) %>% .$home_xGol, league %>% filter(away_id == id) %>% .$away_xGol)
+  attack <- extract_xgoal_attack_from_league(league, id)
   return(mean(attack))
 }
 
 get_strength_defense <- function(league, id) {
-  attack <- c(league %>% filter(home_id == id) %>% .$away_xGol, league %>% filter(away_id == id) %>% .$home_xGol)
+  attack <- extract_xgoal_defense_from_league(league, id)
   return(mean(attack))
+}
+
+extract_xgoal_attack_from_league <- function(league, id) {
+  attack <- c(league %>% filter(home_id == id) %>% .$home_xGol, league %>% filter(away_id == id) %>% .$away_xGol)
+}
+
+extract_xgoal_defense_from_league <- function(league, id) {
+  attack <- c(league %>% filter(home_id == id) %>% .$away_xGol, league %>% filter(away_id == id) %>% .$home_xGol)
 }
 
 get_strength_streak_attack <- function(league, id) {
