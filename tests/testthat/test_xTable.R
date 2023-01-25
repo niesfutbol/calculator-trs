@@ -317,3 +317,30 @@ describe("concatenate_strength_attack_defense", {
     expect_equal(sum(obtained_strength$deffense), 23.017, tolerance = 1e-3)
   })
 })
+
+league_points <- tibble(
+  home_id = c(1, 1, 1, 1, 5, 2, 3, 4),
+  away_id = c(5, 2, 3, 4, 1, 1, 1, 1),
+  home_xPoints = c(0.1, 0.3, 0.3, 0.3, 0.5, 0.2, 0.3, 0.4),
+  away_xPoints = c(0.5, 0.2, 0.3, 0.4, 0.1, 0.2, 0.2, 0.2),
+  home_Points = c(1, 1, 0.3, 0.3, 0.5, 0, 0.3, 0.4),
+  away_Points = c(1, 1, 0.3, 0.4, 0.1, 3, 0.2, 0.2),
+  date = c("a", "b", "c", "d", "f", "g", "h", "i")
+)
+describe("extract_{xpoint/point}_from_league", {
+  it("data league_points and `extract_xpoint_from_league()`", {
+    obtained <- extract_xpoint_from_league(league_points, 2)
+    expected <- c(0.2, 0.2)
+    expect_equal(obtained, expected)
+  })
+  it("data league_points and `extract_point_from_league()`", {
+    obtained <- extract_point_from_league(league_points, 2)
+    expected <- c(0, 1)
+    expect_equal(obtained, expected)
+  })
+  it("data league_points and `extract_date_from_league()`", {
+    obtained <- extract_date_from_league(league_points, 2)
+    expected <- c("g", "b")
+    expect_equal(obtained, expected)
+  })
+})
