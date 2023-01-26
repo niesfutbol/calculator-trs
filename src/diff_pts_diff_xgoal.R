@@ -8,10 +8,9 @@ opciones <- cli_calculate_xpoints()
 league_season <- opciones[["league-season"]]
 directory <- opciones[["directory"]]
 league <- read_league_from_options_cli(opciones)
-path_names <- glue::glue("{directory}/names_{league_season}.csv")
-names <- read_csv(path_names, show_col_types = FALSE)
+names <- read_names_from_options_cli(opciones)
 path_season <- glue::glue("{directory}/season_{league_season}.csv")
-season <- read_csv(path_season, show_col_types = FALSE, col_types = "cc") %>%
+season <- read_season_from_options_cli(opciones) %>%
   select(c(id_match, date))
 
 league <- league %>% left_join(season, by = c("match_id" = "id_match"))
