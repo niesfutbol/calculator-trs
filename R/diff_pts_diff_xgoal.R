@@ -16,3 +16,7 @@ read_file_from_options_cli <- function(opciones, file) {
   path <- glue::glue("{directory}/{file}_{league_season}.csv")
   return(read_csv(path, show_col_types = FALSE))
 }
+
+get_league_name_from_season <- function(season) {
+  return("Italy - Serie A")
+}

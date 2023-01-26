@@ -11,7 +11,7 @@ league <- read_league_from_options_cli(opciones)
 names <- read_names_from_options_cli(opciones)
 path_season <- glue::glue("{directory}/season_{league_season}.csv")
 season <- read_season_from_options_cli(opciones) %>%
-  select(c(id_match, date))
+  select(c(id_match, date, league))
 
 league <- league %>% left_join(season, by = c("match_id" = "id_match"))
 
@@ -19,6 +19,8 @@ id_team <- 505
 nombre <- names %>%
   filter(ids == id_team) %>%
   .$names
+
+liga <- get_league_name_from_season(season)
 print(nombre)
 point <- extract_point_from_league(league, id_team)
 xpoint <- extract_xpoint_from_league(league, id_team)
@@ -42,6 +44,6 @@ p <- ggplot(puntos, aes(x = date, y = diff_points)) +
   geom_hline(yintercept = media, linetype = "dashed", color = "black") +
   geom_hline(yintercept = media + sd, linetype = "dashed", color = "green") +
   geom_hline(yintercept = media - sd, linetype = "dashed", color = "red") +
-  labs(title = nombre, subtitle = league_season)
+  labs(title = nombre, subtitle = liga)
 output <- glue::glue("{directory}/{nombre}_{league_season}.jpg")
 ggsave(output)
