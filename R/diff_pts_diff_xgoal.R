@@ -18,5 +18,5 @@ read_file_from_options_cli <- function(opciones, file) {
 }
 
 get_league_name_from_season <- function(season) {
-  return("Italy - Serie A")
+  return(season$league[1])
 }
