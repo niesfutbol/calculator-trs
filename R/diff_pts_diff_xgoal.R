@@ -1,20 +1,18 @@
 read_league_from_options_cli <- function(opciones) {
-  league_season <- opciones[["league-season"]]
-  directory <- opciones[["directory"]]
-  league_path <- glue::glue("{directory}/league_{league_season}.csv")
-  return(read_csv(league_path, show_col_types = FALSE))
+  read_file_from_options_cli(opciones, "league")
 }
 
 read_names_from_options_cli <- function(opciones) {
-  league_season <- opciones[["league-season"]]
-  directory <- opciones[["directory"]]
-  path <- glue::glue("{directory}/names_{league_season}.csv")
-  return(read_csv(path, show_col_types = FALSE))
+  read_file_from_options_cli(opciones, "names")
 }
 
 read_season_from_options_cli <- function(opciones) {
+  read_file_from_options_cli(opciones, "season")
+}
+
+read_file_from_options_cli <- function(opciones, file) {
   league_season <- opciones[["league-season"]]
   directory <- opciones[["directory"]]
-  path <- glue::glue("{directory}/season_{league_season}.csv")
+  path <- glue::glue("{directory}/{file}_{league_season}.csv")
   return(read_csv(path, show_col_types = FALSE))
 }
