@@ -13,7 +13,7 @@ describe("Run diff_pts_diff_xgoal", {
     output_file <- "/workdir/tests/data/Inter_135_2022.jpg"
     testtools::delete_output_file(output_file)
     run_diff_pts_diff_xgoal()
-    expected_hash <- "24e949c715b53b871462b2343ccbe6ff"
+    expected_hash <- "d3135232327f5c696865e9479a382df3"
     obtained_hash <- as.vector(tools::md5sum(output_file))
     expect_equal(obtained_hash, expected_hash)
   })
