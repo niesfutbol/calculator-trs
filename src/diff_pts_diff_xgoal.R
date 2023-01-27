@@ -37,8 +37,6 @@ media <- mean(puntos$diff_points, na.rm = TRUE)
 sd <- sd(puntos$diff_points, na.rm = TRUE)
 print(media)
 
-library(ggpubr)
-library(jpeg)
 library("patchwork")
 
 # Download and read sample image (readJPEG doesn't work with urls)
