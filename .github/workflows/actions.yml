@@ -15,8 +15,17 @@ jobs:
     - name: Copia repositorio
       uses: actions/checkout@v2
     - name: Construye imagen
-      run: docker build --tag trs .
+      run: docker build --tag nepolin/calculator-trs:${GITHUB_SHA:0:4} .
     - name: Verifica el formato
-      run: docker run trs make check
+      run: docker run calculator-trs make check
     - name: Corre pruebas y evalua cobertura
-      run: docker run trs make tests
+      run: docker run calculator-trs make tests
+    - name: Docker log-in
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
+    - name: Sube latest a Docker Hub
+      run: docker push islasgeci/calculator-trs:latest
+    - name: Sube sha a Docker Hub
+      run: docker push islasgeci/calculator-trs:${GITHUB_SHA:0:4}
