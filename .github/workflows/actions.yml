@@ -15,11 +15,11 @@ jobs:
     - name: Copia repositorio
       uses: actions/checkout@v2
     - name: Construye imagen
-      run: docker build --tag nepolin/calculator-trs:${GITHUB_SHA:0:4} .
+      run: docker build --tag nepolin/calculator-trs:latest --tag nepolin/calculator-trs:${GITHUB_SHA:0:4} .
     - name: Verifica el formato
-      run: docker run nepolin/calculator-trs make check
+      run: docker run nepolin/calculator-trs:latest make check
     - name: Corre pruebas y evalua cobertura
-      run: docker run nepolin/calculator-trs make tests
+      run: docker run nepolin/calculator-trs:latest make tests
     - name: Docker log-in
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
