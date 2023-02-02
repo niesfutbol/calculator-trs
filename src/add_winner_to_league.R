@@ -1,5 +1,6 @@
 library("tidyverse")
 source("/workdir/R/xTable.R")
+source("/workdir/R/cli_options.R")
 
 opciones <- cli_add_winner_to_league()
 league_season <- opciones[["league-season"]]
