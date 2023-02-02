@@ -54,7 +54,7 @@ p <- ggplot(puntos, aes(x = date, y = diff_points)) +
   geom_hline(yintercept = media + sd, linetype = "dashed", color = "green") +
   geom_hline(yintercept = media - sd, linetype = "dashed", color = "red") +
   inset_element(p = img, left = 0.005, bottom = 0.8, right = 0.205, top = 1) +
-  inset_element(p = nies, left = 0.95, bottom = 0.015, right = 1, top = 0.065)
+  inset_element(p = nies, left = 0.80, bottom = 0.005, right = 1, top = 0.105)
 
 output <- glue::glue("{directory}/{nombre}_{league_season}.jpg")
 ggsave(output)
