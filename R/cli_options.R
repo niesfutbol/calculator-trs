@@ -1,9 +1,6 @@
 cli_add_winner_to_league <- function() {
-  listaOpciones <- list(
-    opcion_league,
-    opcion_directory,
-    opcion_mode
-  )
+  names <- c("league", "directory", "mode")
+  listaOpciones <- make_lista_opciones(names)
   opt_parser <- OptionParser(option_list = listaOpciones)
   opciones <- parse_args(opt_parser)
   return(opciones)
@@ -34,3 +31,10 @@ opcion_mode <- optparse::make_option(
   metavar = "character",
   type = "character"
 )
+
+OPTIONS <- list("mode" = opcion_mode, "directory" = opcion_directory, "league" = opcion_league)
+
+make_lista_opciones <- function(names) {
+  lista_opciones <- comprehenr::to_list(for (i in 1:3) OPTIONS[[names[i]]])
+  return(lista_opciones)
+}
