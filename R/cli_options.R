@@ -1,21 +1,7 @@
 cli_add_winner_to_league <- function() {
   listaOpciones <- list(
-    make_option(
-      c("-l", "--league-season"),
-      default = "262_2021",
-      help = "League and season like 78_2020: \n
-        Bundesliga id is 78 \n
-        Premier id is 39 \n",
-      metavar = "character",
-      type = "character"
-    ),
-    make_option(
-      c("-d", "--directory"),
-      default = "results",
-      help = "Directory where are the files `statistics_{league}_{season}.csv`",
-      metavar = "character",
-      type = "character"
-    ),
+    opcion_league,
+    opcion_directory,
     make_option(
       c("-m", "--mode"),
       default = "mean",
@@ -28,3 +14,21 @@ cli_add_winner_to_league <- function() {
   opciones <- parse_args(opt_parser)
   return(opciones)
 }
+
+opcion_league <- optparse::make_option(
+  c("-l", "--league-season"),
+  default = "262_2021",
+  help = "League and season like 78_2020: \n
+        Bundesliga id is 78 \n
+        Premier id is 39 \n",
+  metavar = "character",
+  type = "character"
+)
+
+opcion_directory <- optparse::make_option(
+  c("-d", "--directory"),
+  default = "results",
+  help = "Directory where are the files `statistics_{league}_{season}.csv`",
+  metavar = "character",
+  type = "character"
+)
