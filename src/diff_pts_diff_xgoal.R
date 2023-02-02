@@ -43,7 +43,7 @@ library("patchwork")
 url <- glue::glue("https://media.api-sports.io/football/teams/{id_team}.png")
 download.file(url, destfile = "logo.png")
 img <- png::readPNG("logo.png", native = TRUE)
-nies <- png::readPNG("/workdir/tests/data/nies.png", native = TRUE)
+nies <- png::readPNG("/workdir/tests/data/logo_nies.png", native = TRUE)
 p <- ggplot(puntos, aes(x = date, y = diff_points)) +
   theme_classic() +
   geom_line(color = "steelblue") +
