@@ -1,7 +1,7 @@
 library("tidyverse")
 library("jsonlite")
 library("nnet")
-source("/workdir/R/xTable.R")
+library("xGoal")
 source("/workdir/R/cli_options.R")
 
 names_options_cli <- c("league", "round", "mode", "directory")
