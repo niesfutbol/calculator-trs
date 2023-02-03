@@ -12,21 +12,17 @@ names <- read_names_from_options_cli(opciones)
 season <- read_season_from_options_cli(opciones) %>%
   select(c(id_match, date, league))
 
-league <- league %>% left_join(season, by = c("match_id" = "id_match"))
+the_league <- League$new(league, season, names)
 
 id_team <- 505
-nombre <- names %>%
-  filter(ids == id_team) %>%
-  .$names
+the_league$set_id_team(id_team)
 
-liga <- get_league_name_from_season(season)
+liga <- the_league$league_name
+nombre <- the_league$team_name
 print(nombre)
-point <- extract_point_from_league(league, id_team)
-xpoint <- extract_xpoint_from_league(league, id_team)
-date <- extract_date_from_league(league, id_team)
 
 output <- glue::glue("borrame_{id_team}.csv")
-puntos <- tibble(date, xpoint, point) %>% arrange(date)
+puntos <- the_league$team
 puntos$point_6 <- RcppRoll::roll_mean(puntos$point, n = 4, align = "right", fill = NA)
 puntos$xpoint_6 <- RcppRoll::roll_mean(puntos$xpoint, n = 4, align = "right", fill = NA)
 puntos <- puntos %>% mutate(diff_points = point_6 - xpoint_6)
