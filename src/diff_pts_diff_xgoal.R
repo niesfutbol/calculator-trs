@@ -1,5 +1,4 @@
 library("ggplot2")
-library("RcppRoll")
 library("tidyverse")
 source("/workdir/R/xTable.R")
 source("/workdir/R/diff_pts_diff_xgoal.R")
@@ -28,8 +27,8 @@ date <- extract_date_from_league(league, id_team)
 
 output <- glue::glue("borrame_{id_team}.csv")
 puntos <- tibble(date, xpoint, point) %>% arrange(date)
-puntos$point_6 <- roll_mean(puntos$point, n = 4, align = "right", fill = NA)
-puntos$xpoint_6 <- roll_mean(puntos$xpoint, n = 4, align = "right", fill = NA)
+puntos$point_6 <- RcppRoll::roll_mean(puntos$point, n = 4, align = "right", fill = NA)
+puntos$xpoint_6 <- RcppRoll::roll_mean(puntos$xpoint, n = 4, align = "right", fill = NA)
 puntos <- puntos %>% mutate(diff_points = point_6 - xpoint_6)
 puntos %>% write_csv(output)
 
