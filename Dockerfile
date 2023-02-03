@@ -5,4 +5,3 @@ RUN Rscript -e "install.packages(c('comprehenr', 'ggpubr', 'jsonify', 'optparse'
 RUN Rscript -e "install.packages(c('patchwork', 'png', 'RcppRoll'), repos='http://cran.rstudio.com')"
 RUN Rscript -e "devtools::install_github('IslasGECI/testtools')"
 RUN Rscript -e "devtools::install_github('nepito/football_tools')"
-RUN make setup
