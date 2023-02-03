@@ -9,7 +9,6 @@ league_season <- opciones[["league-season"]]
 directory <- opciones[["directory"]]
 league <- read_league_from_options_cli(opciones)
 names <- read_names_from_options_cli(opciones)
-path_season <- glue::glue("{directory}/season_{league_season}.csv")
 season <- read_season_from_options_cli(opciones) %>%
   select(c(id_match, date, league))
 
