@@ -31,6 +31,14 @@ opcion_mode <- optparse::make_option(
   type = "character"
 )
 
+opcion_round <- optparse::make_option(
+  c("-r", "--round"),
+  default = "1",
+  help = "Round",
+  metavar = "character",
+  type = "character"
+)
+
 OPTIONS <- list("mode" = opcion_mode, "directory" = opcion_directory, "league" = opcion_league)
 
 make_lista_opciones <- function(names) {
@@ -41,13 +49,7 @@ make_lista_opciones <- function(names) {
 cli_prediction_from_multinom <- function() {
   listaOpciones <- list(
     opcion_league,
-    make_option(
-      c("-r", "--round"),
-      default = "1",
-      help = "Round",
-      metavar = "character",
-      type = "character"
-    ),
+    opcion_round,
     opcion_mode,
     opcion_directory
   )
@@ -55,4 +57,3 @@ cli_prediction_from_multinom <- function() {
   opciones <- parse_args(opt_parser)
   return(opciones)
 }
-
