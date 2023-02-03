@@ -39,10 +39,16 @@ opcion_round <- optparse::make_option(
   type = "character"
 )
 
-OPTIONS <- list("mode" = opcion_mode, "directory" = opcion_directory, "league" = opcion_league)
+OPTIONS <- list(
+  "round" = opcion_round,
+  "mode" = opcion_mode,
+  "directory" = opcion_directory,
+  "league" = opcion_league
+)
 
 make_lista_opciones <- function(names) {
-  lista_opciones <- comprehenr::to_list(for (i in 1:3) OPTIONS[[names[i]]])
+  n_names <- length(names_options_cli)
+  lista_opciones <- comprehenr::to_list(for (i in 1:n_names) OPTIONS[[names[i]]])
   return(lista_opciones)
 }
 

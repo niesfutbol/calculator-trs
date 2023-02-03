@@ -4,7 +4,8 @@ library("nnet")
 source("/workdir/R/xTable.R")
 source("/workdir/R/cli_options.R")
 
-opciones <- cli_prediction_from_multinom()
+names_options_cli <- c("league", "round", "mode", "directory")
+opciones <- cli_add_winner_to_league(names_options_cli)
 league_season <- opciones[["league-season"]]
 previous_league_season <- previous_season(league_season)
 directory <- opciones[["directory"]]
