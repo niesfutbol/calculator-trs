@@ -36,7 +36,6 @@ media <- mean(puntos$diff_points, na.rm = TRUE)
 sd <- sd(puntos$diff_points, na.rm = TRUE)
 print(media)
 
-library("patchwork")
 
 # Download and read sample image (readJPEG doesn't work with urls)
 url <- glue::glue("https://media.api-sports.io/football/teams/{id_team}.png")
@@ -52,8 +51,8 @@ p <- ggplot(puntos, aes(x = date, y = diff_points)) +
   geom_hline(yintercept = media, linetype = "dashed", color = "black") +
   geom_hline(yintercept = media + sd, linetype = "dashed", color = "green") +
   geom_hline(yintercept = media - sd, linetype = "dashed", color = "red") +
-  inset_element(p = img, left = 0.005, bottom = 0.8, right = 0.205, top = 1) +
-  inset_element(p = nies, left = 0.80, bottom = 0.005, right = 1, top = 0.105)
+  patchwork::inset_element(p = img, left = 0.005, bottom = 0.8, right = 0.205, top = 1) +
+  patchwork::inset_element(p = nies, left = 0.80, bottom = 0.005, right = 1, top = 0.105)
 
 output <- glue::glue("{directory}/{nombre}_{league_season}.jpg")
 ggsave(output)
