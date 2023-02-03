@@ -2,6 +2,7 @@ library("tidyverse")
 library("jsonlite")
 library("nnet")
 source("/workdir/R/xTable.R")
+source("/workdir/R/cli_options.R")
 
 opciones <- cli_prediction_from_multinom()
 league_season <- opciones[["league-season"]]
