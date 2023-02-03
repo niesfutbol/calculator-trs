@@ -5,7 +5,7 @@ library("xGoal")
 source("/workdir/R/cli_options.R")
 
 names_options_cli <- c("league", "round", "mode", "directory")
-opciones <- cli_add_winner_to_league(names_options_cli)
+opciones <- get_options_from_names(names_options_cli)
 league_season <- opciones[["league-season"]]
 previous_league_season <- previous_season(league_season)
 directory <- opciones[["directory"]]

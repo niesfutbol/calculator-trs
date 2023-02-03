@@ -3,7 +3,7 @@ source("/workdir/R/xTable.R")
 source("/workdir/R/cli_options.R")
 
 names_options_cli <- c("league", "directory", "mode")
-opciones <- cli_add_winner_to_league(names_options_cli)
+opciones <- get_options_from_names(names_options_cli)
 league_season <- opciones[["league-season"]]
 directory <- opciones[["directory"]]
 path_names <- glue::glue("{directory}/names_{league_season}.csv")

@@ -1,4 +1,4 @@
-cli_add_winner_to_league <- function(names) {
+get_options_from_names <- function(names) {
   listaOpciones <- make_lista_opciones(names)
   opt_parser <- optparse::OptionParser(option_list = listaOpciones)
   opciones <- optparse::parse_args(opt_parser)
