@@ -40,15 +40,7 @@ make_lista_opciones <- function(names) {
 
 cli_prediction_from_multinom <- function() {
   listaOpciones <- list(
-    make_option(
-      c("-l", "--league-season"),
-      default = "262_2021",
-      help = "League and season like 78_2020: \n
-        Bundesliga id is 78 \n
-        Premier id is 39 \n",
-      metavar = "character",
-      type = "character"
-    ),
+    opcion_league,
     make_option(
       c("-r", "--round"),
       default = "1",
@@ -56,20 +48,8 @@ cli_prediction_from_multinom <- function() {
       metavar = "character",
       type = "character"
     ),
-    make_option(
-      c("-m", "--mode"),
-      default = "mean",
-      help = "Mode to calculate stregth",
-      metavar = "character",
-      type = "character"
-    ),
-    make_option(
-      c("-d", "--directory"),
-      default = "results",
-      help = "Directory where are the files `statistics_{league}_{season}.csv`",
-      metavar = "character",
-      type = "character"
-    )
+    opcion_mode,
+    opcion_directory
   )
   opt_parser <- OptionParser(option_list = listaOpciones)
   opciones <- parse_args(opt_parser)
