@@ -1,9 +1,10 @@
 library("ggplot2")
 library("tidyverse")
-source("/workdir/R/xTable.R")
-source("/workdir/R/diff_pts_diff_xgoal.R")
+library("xGoal")
+source("/workdir/R/cli_options.R")
 
-opciones <- cli_calculate_xpoints()
+names_options_cli <- c("league", "directory")
+opciones <- get_options_from_names(names_options_cli)
 league_season <- opciones[["league-season"]]
 directory <- opciones[["directory"]]
 league <- read_league_from_options_cli(opciones)
