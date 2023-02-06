@@ -23,7 +23,6 @@ print(nombre)
 
 output <- glue::glue("borrame_{id_team}.csv")
 puntos <- the_league$team
-#puntos$point_6 <- RcppRoll::roll_mean(puntos$point, n = 4, align = "right", fill = NA)
 puntos$xpoint_6 <- RcppRoll::roll_mean(puntos$xpoint, n = 4, align = "right", fill = NA)
 puntos <- puntos %>% mutate(diff_points = point_agg - xpoint_6)
 puntos %>% write_csv(output)
