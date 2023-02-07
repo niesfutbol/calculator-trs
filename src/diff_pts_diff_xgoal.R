@@ -69,8 +69,12 @@ doble_o_nada <- function(league, id_home, id_away) {
     patchwork::plot_layout(heights = c(15, 0.5))
 }
 match_id <- 881997
-home_id <- matches %>% filter(id_match == match_id) %>% .$home_id
-away_id <- matches %>% filter(id_match == match_id) %>% .$away_id
+home_id <- matches %>%
+  filter(id_match == match_id) %>%
+  .$home_id
+away_id <- matches %>%
+  filter(id_match == match_id) %>%
+  .$away_id
 p <- doble_o_nada(the_league, home_id, away_id)
 the_league$set_id_team(home_id)
 home_name <- the_league$team_name
