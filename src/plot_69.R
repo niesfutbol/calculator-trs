@@ -29,7 +29,7 @@ intercept <- coeff[1]
 slope <- coeff[2]
 nies <- png::readPNG("/workdir/tests/data/logo_nies.png", native = TRUE)
 p <- all_matches %>%
-  left_join(leagues,by = join_by(match_id, home_id, away_id)) %>%
+  left_join(leagues, by = join_by(match_id, home_id, away_id)) %>%
   ggplot(aes(x = diff_xgoal, y = diff_point)) +
   theme_classic() +
   geom_point(aes(colour = factor(home_Points))) +
@@ -57,13 +57,14 @@ p <- all_matches %>%
     size = 0.5
   ) +
   labs(color = "Puntos del equipo local") +
-  theme(legend.position="top")
-p1 <- p + geom_text(x=4, y=6.5, label="Zona 2", angle = 30) +
-  geom_text(x=4, y=11, label="Zona 1") +
-  geom_text(x=4, y=2.5, label="Zona 3", angle = 30) +
-  geom_text(x=4, y=-3, label="Zona 4") +
-  geom_segment(aes(x = -2.144, y = 5, xend = -2.144, yend = 2.5),
-                  arrow = arrow(length = unit(0.5, "cm"))) +
+  theme(legend.position = "top")
+p1 <- p + geom_text(x = 4, y = 5.5, label = "Zona 2", angle = 30) +
+  geom_text(x = 4, y = 11, label = "Zona 1") +
+  geom_text(x = 4, y = 1.5, label = "Zona 3", angle = 30) +
+  geom_text(x = 4, y = -4, label = "Zona 4") +
+  geom_segment(aes(x = -2.8504, y = -1.5, xend = -2.8504, yend = -3.5),
+    arrow = arrow(length = unit(0.5, "cm"))
+  ) +
   patchwork::inset_element(p = nies, left = 0.005, bottom = 0.9, right = 0.205, top = 1)
 
 ggsave("afortunado_en_el_amor.jpg", dpi = 320)
