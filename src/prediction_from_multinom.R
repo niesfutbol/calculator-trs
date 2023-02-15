@@ -34,8 +34,7 @@ path_season <- glue::glue("{directory}/season_{league_season}.csv")
 season <- read_csv(path_season, show_col_types = FALSE)
 round_str <- opciones[["round"]]
 n_round <- glue::glue("Regular Season - {round_str}")
-round <- season %>%
-  filter(round == n_round)
+round <- select_match_to_predict(season, opciones)
 
 home_id <- round$home_id
 away_id <- round$away_id
