@@ -1,11 +1,14 @@
 library("tidyverse")
 library("nnet")
-source("R/xTable.R")
+source("/workdir/R/xTable.R")
+source("/workdir/R/cli_options.R")
 
-opciones <- cli_calculate_xpoints()
+names_options_cli <- c("league", "directory")
+opciones <- get_options_from_names(names_options_cli)
 league_season <- opciones[["league-season"]]
 previous_league_season <- previous_season(league_season)
-path_strength_league <- glue::glue("results/strength_league_{previous_league_season}.csv")
+directory <- opciones[["directory"]]
+path_strength_league <- glue::glue("{directory}/strength_league_{previous_league_season}.csv")
 strength_league <- read_csv(path_strength_league, show_col_types = FALSE)
 
 model <- multinom(
@@ -13,7 +16,7 @@ model <- multinom(
   data = strength_league
 )
 
-path_strength_league <- glue::glue("results/strength_league_{league_season}.csv")
+path_strength_league <- glue::glue("{directory}/strength_league_{league_season}.csv")
 tests_strength_league <- read_csv(path_strength_league, show_col_types = FALSE)
 upth <- 0.99
 threshold <- 0.50
@@ -32,4 +35,4 @@ mean(predictions %>% filter(pred_won != 0) %>% .$pred)
     correct = mean(pred),
     N = n()
   ) %>%
-  write_csv(glue::glue("/workdir/tests/data/precition_{league_season}.csv")))
+  write_csv(glue::glue("{directory}/precition_{league_season}.csv")))
