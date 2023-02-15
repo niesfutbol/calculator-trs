@@ -33,7 +33,7 @@ opcion_mode <- optparse::make_option(
 
 opcion_round <- optparse::make_option(
   c("-r", "--round"),
-  default = "1",
+  default = "0",
   help = "Round",
   metavar = "character",
   type = "character"
