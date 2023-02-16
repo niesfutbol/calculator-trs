@@ -27,12 +27,5 @@ predictions <- cbind(predict(model, tests_strength_league, type = "prob"), tests
   mutate(pred = won == pred_won)
 mean(predictions %>% filter(pred_won != 0) %>% .$pred)
 
-
-(predictions %>%
-  filter(pred_won != 0) %>%
-  group_by(won) %>%
-  summarize(
-    correct = mean(pred),
-    N = n()
-  ) %>%
-  write_csv(glue::glue("{directory}/precition_{league_season}.csv")))
+(summary_from_prediction(predictions)) %>%
+  write_csv(glue::glue("{directory}/precition_{league_season}.csv"))
