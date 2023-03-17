@@ -1,13 +1,14 @@
 library("tidyverse")
+source("/workdir/R/concatenate_prediction.R")
 
 prediction_paths <- c(
-  "predictions_39_2022_21.csv",
-  "predictions_61_2022_20.csv",
-  "predictions_78_2022_16.csv",
-  "predictions_88_2022_17.csv",
-  "predictions_94_2022_17.csv",
-  "predictions_135_2022_19.csv",
-  "predictions_140_2022_18.csv"
+  obtain_prediction_of_each_leaguea("39"),
+  obtain_prediction_of_each_league("61"),
+  obtain_prediction_of_each_league("78"),
+  obtain_prediction_of_each_league("88"),
+  obtain_prediction_of_each_league("94"),
+  obtain_prediction_of_each_league("135"),
+  obtain_prediction_of_each_league("140")
 )
 
 predictions <- read_csv(prediction_paths, show_col_types = FALSE)
