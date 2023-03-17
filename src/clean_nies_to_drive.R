@@ -1,7 +1,10 @@
 library(tidyverse)
 source("/workdir/R/clean_nies_to_drive.R")
+source("/workdir/R/cli_options.R")
 
-opciones <- cli_clean_nies_to_drive()
+names_options_cli <- c("predictions", "cleaned-nies")
+opciones <- get_options_from_names(names_options_cli)
+# opciones <- cli_clean_nies_to_drive()
 
 jornada <- read_predictions_of_week(opciones)
 

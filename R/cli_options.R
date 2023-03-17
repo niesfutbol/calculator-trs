@@ -39,11 +39,29 @@ opcion_round <- optparse::make_option(
   type = "character"
 )
 
+opcion_predictions <- optparse::make_option(
+  c("-i", "--nies-predictions"),
+  default = "/workdir/results/nies_13-01-2022.csv",
+  help = "Input file path of csv with predictions of the week",
+  metavar = "character",
+  type = "character"
+)
+
+opcion_cleaned_nies <- optparse::make_option(
+  c("-o", "--cleaned-nies"),
+  default = "/workdir/results/cleaned_nies.csv",
+  help = "Output file path of csv with cleaned predictions of the week",
+  metavar = "character",
+  type = "character"
+)
+
 OPTIONS <- list(
   "round" = opcion_round,
   "mode" = opcion_mode,
   "directory" = opcion_directory,
-  "league" = opcion_league
+  "league" = opcion_league,
+  "predictions" = opcion_predictions,
+  "cleaned-nies" = opcion_cleaned_nies
 )
 
 make_lista_opciones <- function(names) {

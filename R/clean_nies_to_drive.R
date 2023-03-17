@@ -44,10 +44,14 @@ cli_clean_nies_to_drive <- function() {
 }
 
 read_predictions_of_week <- function(options) {
-  return(read_csv(options[["nies-prediction"]], show_col_types = FALSE))
+  expected_option <- "nies-predictions"
+  rlang::arg_match0(expected_option, names(opciones))
+  return(read_csv(options[[expected_option]], show_col_types = FALSE))
 }
 
 write_cleaned_predictions_of_week_for_drive <- function(filtered_predictions, options) {
+  expected_option <- "cleaned-nies"
+  rlang::arg_match0(expected_option, names(opciones))
   filtered_predictions %>%
-    write_csv(options[["cleaned-nies"]])
+    write_csv(options[[expected_option]])
 }
