@@ -12,8 +12,8 @@ prediction_paths <- c(
 )
 
 predictions <- read_csv(prediction_paths, show_col_types = FALSE)
-
+threshold <- 0.55
 cleaned_predictions <- predictions %>%
-  filter(home > 0.5 | away > 0.5 | draw > 0.5) %>%
+  filter(home > threshold | away > threshold | draw > threshold) %>%
   arrange(date, league) %>%
   write_csv("/workdir/results/nies_20-01-2022.csv")
