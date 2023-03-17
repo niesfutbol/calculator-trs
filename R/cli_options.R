@@ -55,13 +55,22 @@ opcion_cleaned_nies <- optparse::make_option(
   type = "character"
 )
 
+opcion_threshold <- optparse::make_option(
+  c("-t", "--threshold"),
+  default = 0.55,
+  help = "The cut off for the probability in predictions",
+  metavar = "double",
+  type = "double"
+)
+
 OPTIONS <- list(
   "round" = opcion_round,
   "mode" = opcion_mode,
   "directory" = opcion_directory,
   "league" = opcion_league,
   "predictions" = opcion_predictions,
-  "cleaned-nies" = opcion_cleaned_nies
+  "cleaned-nies" = opcion_cleaned_nies,
+  "threshold" = opcion_threshold
 )
 
 make_lista_opciones <- function(names) {
