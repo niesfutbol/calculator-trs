@@ -21,4 +21,9 @@ describe("obtain_the_last_round_file", {
     expected <- "/workdir/tests/data/predictions_88_2022_22.csv"
     expect_equal(obtained, expected)
   })
+  it("obtains theleagues with predictions", {
+    expected <- c("78", "88", "94")
+    obtained <- obtains_the_leagues_with_predictions(root_path = "/workdir/tests/data")
+    expect_equal(obtained, expected)
+  })
 })
