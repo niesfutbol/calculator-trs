@@ -3,12 +3,16 @@ library(tidyverse)
 
 
 obtains_the_last_predictions_of_the_all_leagues <- function(root_path = "/workdir/results") {
-  prediction_paths <- c(
-    obtain_prediction_of_each_league("78", root_path),
-    obtain_prediction_of_each_league("88", root_path),
-    obtain_prediction_of_each_league("94", root_path)
-  )
+  leagues <- obtains_the_leagues_with_predictions(root_path)
+  prediction_paths <- to_vec(for (league in leagues) obtain_prediction_of_each_league(league, root_path))
   return(prediction_paths)
+}
+
+obtains_the_leagues_with_predictions <- function(root_path = "/workdir/results") {
+  predictions_files <- list.files(root_path, pattern = glue::glue("^predictions_"))
+  files <- str_split(predictions_files, "_")
+  leagues <- to_vec(for (file in files) file[2]) |> unique()
+  return(leagues)
 }
 
 obtain_the_last_round_file <- function(predictions_files) {
