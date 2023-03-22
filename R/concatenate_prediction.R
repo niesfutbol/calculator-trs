@@ -17,7 +17,7 @@ obtains_the_leagues_with_predictions <- function(root_path = "/workdir/results")
 
 obtain_the_last_round_file <- function(predictions_files) {
   files <- str_split(predictions_files, "_")
-  rounds <- to_vec(for (file in files) file[4])
+  rounds <- to_vec(for (file in files) .obtain_round_from_last_part_of_split(file[4]))
   id_of_last_round <- which(rounds == max(rounds))
   return(predictions_files[id_of_last_round])
 }
