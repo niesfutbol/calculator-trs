@@ -22,6 +22,11 @@ obtain_the_last_round_file <- function(predictions_files) {
   return(predictions_files[id_of_last_round])
 }
 
+.obtain_round_from_last_part_of_split <- function(last_part_of_split) {
+  round <- str_split(last_part_of_split, "\\.")[[1]][1]
+  return(as.numeric(round))
+}
+
 obtain_prediction_of_each_league <- function(league, path = "/workdir/results") {
   predictions_files <- list.files(path, pattern = glue::glue("^predictions_{league}"))
   full_path <- paste(path, obtain_the_last_round_file(predictions_files), sep = "/")
