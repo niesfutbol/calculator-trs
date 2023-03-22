@@ -10,12 +10,12 @@ run_diff_pts_diff_xgoal <- function() {
 
 describe("Run diff_pts_diff_xgoal", {
   it("run", {
-    output_file <- "/workdir/tests/data/Inter_135_2022.jpg"
+    output_file <- "/workdir/tests/data/Napoli_vs_Cremonese.jpg"
     testtools::delete_output_file(output_file)
     run_diff_pts_diff_xgoal()
-    expected_hash <- "bbc6ad2ab6b36385becacb704323805d"
+    expected_hash <- "bb77cbe683a93846e28b54d2937b1596"
     obtained_hash <- as.vector(tools::md5sum(output_file))
-    # expect_equal(obtained_hash, expected_hash)
+    expect_equal(obtained_hash, expected_hash)
   })
 })
 
