@@ -16,6 +16,12 @@ describe("obtain_the_last_round_file", {
     obtained <- obtain_the_last_round_file(files)
     expect_equal(obtained, expected)
   })
+  it("obtain round from last part of split", {
+    last_part_of_split <- "34.csv"
+    expected <- 34
+    obtained <- .obtain_round_from_last_part_of_split(last_part_of_split)
+    expect_equal(obtained, expected)
+  })
   it("obtain_prediction_of_each_league", {
     obtained <- obtain_prediction_of_each_league(league = "88", path = "/workdir/tests/data")
     expected <- "/workdir/tests/data/predictions_88_2022_22.csv"
