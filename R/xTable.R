@@ -118,6 +118,16 @@ xgoal_team_place <- function(league) {
     mutate(xGol = as.numeric(xGol))
 }
 
+goal_team_place <- function(league) {
+  league %>%
+    dplyr::select(home, away, home_id, away_id, match_id) %>%
+    unite(col = "home", c(home, home_id), sep = "--") %>%
+    unite(col = "away", c(away, away_id), sep = "--") %>%
+    gather(key = "local", value = "Gol-d", -match_id) %>%
+    separate(col = "Gol-d", into = c("Gol", "team_id"), sep = "--") %>%
+    mutate(Gol = as.numeric(Gol))
+}
+
 xpoint_team_place <- function(league) {
   league %>%
     select(home_xPoints, away_xPoints, home_id, away_id) %>%

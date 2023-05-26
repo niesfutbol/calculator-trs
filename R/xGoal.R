@@ -9,7 +9,9 @@ Teams <- R6::R6Class("Teams",
     names = NULL,
     read = function(path_league) {
       raw_league <- readr::read_csv(path_league, show_col_types = FALSE)
-      private$league <- xgoal_team_place(raw_league)
+      xgoal_league <- xgoal_team_place(raw_league)
+      goal_league <- goal_team_place(raw_league)
+      private$league <- xgoal_league |> left_join(goal_league, by = c("match_id", "local", "team_id"))
     },
     get_id_teams = function() {
       ids <- unique(private$league$team_id)
