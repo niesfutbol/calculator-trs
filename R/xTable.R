@@ -248,6 +248,14 @@ extract_xgoal_defense_from_league <- function(league, id) {
   attack <- c(league %>% filter(home_id == id) %>% .$away_xGol, league %>% filter(away_id == id) %>% .$home_xGol)
 }
 
+extract_goal_defense_from_league <- function(league, id) {
+  received_goal <- c(league %>% filter(home_id == id) %>% .$away, league %>% filter(away_id == id) %>% .$home)
+}
+
+extract_goal_attack_from_league <- function(league, id) {
+  noted_goal <- c(league %>% filter(home_id == id) %>% .$home, league %>% filter(away_id == id) %>% .$away)
+}
+
 get_strength_streak_attack <- function(league, id) {
   home_xGol <- league %>%
     filter(home_id == id) %>%

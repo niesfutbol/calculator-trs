@@ -7,8 +7,10 @@ Teams <- R6::R6Class("Teams",
   public = list(
     team = NULL,
     names = NULL,
+    team_g_xg = NULL,
     read = function(path_league) {
       raw_league <- readr::read_csv(path_league, show_col_types = FALSE)
+      private$full_league <- raw_league
       xgoal_league <- xgoal_team_place(raw_league)
       goal_league <- goal_team_place(raw_league)
       private$league <- xgoal_league |> left_join(goal_league, by = c("match_id", "local", "team_id"))
@@ -19,6 +21,7 @@ Teams <- R6::R6Class("Teams",
     },
     set_team_from_id = function(id) {
       self$team <- private$league %>% filter(team_id == id)
+      private$calculate_g_and_xg(id)
     },
     bootstrapping_xgoal = function() {
       B <- 2000
@@ -37,7 +40,20 @@ Teams <- R6::R6Class("Teams",
     }
   ),
   private = list(
-    league = NULL
+    league = NULL,
+    full_league = NULL,
+    calculate_g_and_xg = function(id) {
+      self$team_g_xg <- tibble::tibble(
+        "attack" = extract_xgoal_attack_from_league(private$full_league, id),
+        "deffense" = extract_xgoal_defense_from_league(private$full_league, id),
+        "gol_f" = extract_goal_attack_from_league(private$full_league, id),
+        "gol_a" = extract_goal_defense_from_league(private$full_league, id),
+      ) |>
+        mutate(
+          wgol_f = 0.7 * attack + 0.3 * gol_f,
+          wgol_a = 0.7 * deffense + 0.3 * gol_a
+        )
+    }
   )
 )
 
