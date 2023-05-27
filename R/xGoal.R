@@ -37,6 +37,9 @@ Teams <- R6::R6Class("Teams",
         filter(ids == id) %>%
         .$names
       return(name)
+    },
+    get_weighted_g_and_xg = function() {
+      return(c(mean(self$team_g_xg$wgol_f), mean(self$team_g_xg$wgol_a)))
     }
   ),
   private = list(

@@ -42,34 +42,29 @@ add_logo_team <- function(row) {
   path_logo <- glue::glue("logo_{row$team_id}.png")
   patchwork::inset_element(p = png::readPNG(path_logo, native = TRUE), left = l, bottom = b, right = r, top = t)
 }
+calculate_breaks <- function(weighted) {
+  pretty(c(min(weighted), max(weighted)))
+}
+brk <- calculate_breaks(weighted_g_and_xg$weighted_deffense)
+brk_x <- calculate_breaks(weighted_g_and_xg$weighted_attack)
 p <- ggplot(weighted_g_and_xg, aes(x = weighted_attack, y = weighted_deffense)) +
     theme_classic() +
     xlab("Goles y xGoles a favor") +
     ylab("Goles y xGoles en contra") +
-    scale_y_reverse() +
-    xlim(0.7, 2) +
-    ylim(2, 0.7) +
-    add_logo_team(weighted_g_and_xg[1,]) +
-    add_logo_team(weighted_g_and_xg[2,]) +
-    add_logo_team(weighted_g_and_xg[3,]) +
-    add_logo_team(weighted_g_and_xg[4,]) +
-    add_logo_team(weighted_g_and_xg[5,]) +
-    add_logo_team(weighted_g_and_xg[6,]) +
-    add_logo_team(weighted_g_and_xg[7,]) +
-    add_logo_team(weighted_g_and_xg[8,]) +
-    add_logo_team(weighted_g_and_xg[9,]) +
-    add_logo_team(weighted_g_and_xg[10,]) +
-    add_logo_team(weighted_g_and_xg[11,]) +
-    add_logo_team(weighted_g_and_xg[12,]) +
-    add_logo_team(weighted_g_and_xg[13,]) +
-    add_logo_team(weighted_g_and_xg[14,]) +
-    add_logo_team(weighted_g_and_xg[15,]) +
-    add_logo_team(weighted_g_and_xg[16,]) +
-    add_logo_team(weighted_g_and_xg[17,]) +
-    add_logo_team(weighted_g_and_xg[18,]) +
-    add_logo_team(weighted_g_and_xg[19,]) +
-    add_logo_team(weighted_g_and_xg[20,]) +
+    scale_y_reverse(
+      expand = c(0,0),
+      limits = range(brk),
+      breaks = brk
+    ) +
+    scale_x_continuous(
+      expand = c(0,0),
+      limits = range(brk_x),
+      breaks = brk_x
+    ) +
     patchwork::inset_element(p = nies, left = 0.705, bottom = 0.01, right = 0.995, top = 0.2)
+for (i in 1:20) {
+  p <- p + add_logo_team(weighted_g_and_xg[i,])
+}
 
 output <- glue::glue("g_xg_cannon.jpg")
 ggsave(output)
