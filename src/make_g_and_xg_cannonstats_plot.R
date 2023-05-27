@@ -70,7 +70,7 @@ p <- ggplot(weighted_g_and_xg, aes(x = weighted_attack, y = weighted_deffense)) 
     breaks = brk_x
   ) +
   patchwork::inset_element(p = nies, left = 0.705, bottom = 0.01, right = 0.995, top = 0.2)
-for (i in 1:20) {
+for (i in 1:nrow(weighted_g_and_xg)) {
   p <- p + add_logo_team(weighted_g_and_xg[i, ], brk_x, brk_y)
 }
 
