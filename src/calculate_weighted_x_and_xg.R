@@ -1,5 +1,6 @@
 library(tidyverse)
 library(comprehenr)
+library(soccerbars)
 library(xGoal)
 source("R/xGoal.R")
 id_league <- "262"
@@ -18,6 +19,11 @@ for (team_id in teams$get_id_teams()) {
   teams$set_team_from_id(team_id)
   weighted_attack <- append(weighted_attack, teams$get_weighted_g_and_xg()[1])
   weighted_deffense <- append(weighted_deffense, teams$get_weighted_g_and_xg()[2])
+  soccerbars_path <- glue::glue("results/matches/matches_{team_id}.png")
+  teams$league_for_soccerbars |>
+    arrange(match_id) |>
+    select(c(home,away, away_game)) |>
+    soccerbar(outlined= TRUE, zerodot= TRUE, output_path = soccerbars_path)
 }
 weighted_g_and_xg <- tibble::tibble(
   "team_id" = as.integer(teams$get_id_teams()),

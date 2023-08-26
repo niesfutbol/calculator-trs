@@ -8,6 +8,7 @@ Teams <- R6::R6Class("Teams",
     team = NULL,
     names = NULL,
     team_g_xg = NULL,
+    league_for_soccerbars = NULL,
     read = function(path_league) {
       raw_league <- readr::read_csv(path_league, show_col_types = FALSE)
       private$full_league <- raw_league
@@ -22,6 +23,7 @@ Teams <- R6::R6Class("Teams",
     set_team_from_id = function(id) {
       self$team <- private$league %>% filter(team_id == id)
       private$calculate_g_and_xg(id)
+      private$calculate_league_for_soccerbars(id)
     },
     bootstrapping_xgoal = function() {
       B <- 2000
@@ -56,6 +58,12 @@ Teams <- R6::R6Class("Teams",
           wgol_f = 0.7 * attack + 0.3 * gol_f,
           wgol_a = 0.7 * deffense + 0.3 * gol_a
         )
+    },
+    calculate_league_for_soccerbars = function(id) {
+      self$league_for_soccerbars <- private$full_league |>
+        filter(match_id %in% self$team$match_id) |>
+        select(c(1,2,3,4)) |>
+        mutate(away_game = ifelse(home_id == id, FALSE, TRUE))
     }
   )
 )
