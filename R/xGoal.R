@@ -62,7 +62,7 @@ Teams <- R6::R6Class("Teams",
     calculate_league_for_soccerbars = function(id) {
       self$league_for_soccerbars <- private$full_league |>
         filter(match_id %in% self$team$match_id) |>
-        select(c(1,2,3,4)) |>
+        select(c(1, 2, 3, 4)) |>
         mutate(away_game = ifelse(home_id == id, FALSE, TRUE))
     }
   )

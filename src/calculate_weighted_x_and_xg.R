@@ -22,13 +22,13 @@ for (team_id in teams$get_id_teams()) {
   soccerbars_path <- glue::glue("results/matches/matches_{team_id}.png")
   teams$league_for_soccerbars |>
     arrange(match_id) |>
-    select(c(home,away, away_game)) |>
-    soccerbar(outlined= TRUE, zerodot= TRUE, output_path = soccerbars_path)
+    select(c(home, away, away_game)) |>
+    soccerbar(outlined = TRUE, zerodot = TRUE, output_path = soccerbars_path)
 }
 weighted_g_and_xg <- tibble::tibble(
   "team_id" = as.integer(teams$get_id_teams()),
   "weighted_attack" = weighted_attack,
   "weighted_deffense" = weighted_deffense
 ) |>
-left_join(teams$names, by = c("team_id" = "ids")) |>
+  left_join(teams$names, by = c("team_id" = "ids")) |>
   write_csv(glue::glue("results/weighted_g_and_xg_{id_league}.csv"))
