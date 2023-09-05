@@ -34,6 +34,7 @@ xGoal_all_league <- list(
   "78_2021"  = list(inside = 0.110081, outside = 0.037332, penalty = 0.774774),
   "78_2022"  = list(inside = 0.110081, outside = 0.037332, penalty = 0.833333),
   "39_2021"  = list(inside = 0.107191, outside = 0.052831, penalty = 0.809524),
+  "39_2021_kp"  = list(inside_kp = 0.2520, outside_nkp = 0.20548, penalty = 0.809524),
   "39_2022"  = list(inside = 0.104380, outside = 0.044810, penalty = 0.815534),
   "61_2020"  = list(inside = 0.108780, outside = 0.065102),
   "61_2021"  = list(inside = 0.107191, outside = 0.052831, penalty = 0.878049),
@@ -60,6 +61,12 @@ check_league_season <- function(league_season) {
 
 calculate_xgoal <- function(xGol, shots_outsidebox, shots_insidebox, total_penalties) {
   xgoal <- shots_outsidebox * xGol$outside + shots_insidebox * xGol$inside + total_penalties * xGol$penalty
+  return(xgoal)
+}
+
+calculate_xgoal_kp <- function(xGol, shots_insidebox_kpnb, shots_outsidebox_nkpnb, total_penalties) {
+  xgoal <- shots_outsidebox_nkpnb * xGol$outside_nkp + shots_insidebox_kpnb * xGol$inside_kp +
+    total_penalties * xGol$penalty
   return(xgoal)
 }
 
