@@ -57,6 +57,16 @@
 - `xGoal_outside` = 0.050902 ***
 - `xPenalty` = 0.846666
 
+### Serie A 2022
+- `xGoal_inside` = 0.096118 ***
+- `xGoal_outside` = 0.059871 ***
+- `xPenalty` = 0.777778
+
+### Serie A 2023
+- `xGoal_inside` = 0.096118 ***
+- `xGoal_outside` = 0.059871 ***
+- `xPenalty` = 0.777778
+
 ### Ligue 1 2020
 - `xGoal_inside` = 0.108780 ***
 - `xGoal_outside` = 0.065102 ***
@@ -76,6 +86,11 @@
 - `xGoal_inside`  = 0.097820 ***
 - `xGoal_outside` = 0.052652 ***
 - `xPenalty`      = 0.785714
+
+### Eredivisie 2022
+- `xGoal_inside`  = 0.091485 ***
+- `xGoal_outside` = 0.063886 ***
+- `xPenalty`      = 0.815384
 
 ### Primeira Liga 2020
 - `xGoal_inside` = 0.102894 ***
@@ -101,3 +116,8 @@ Rscript src/calculate_xGoal.R --input-file=results/statistics_39_2022.csv
 ``` bash
 docker container run -v $PWD/nies_data:/workdir/results nepolin/calculator-trs make update
 ```
+
+## To add new season
+1. Add phony `update` and `upadate_{league}_{season}`
+1. Update xGoal parameters in `R/xTable.R` using `src/calculate_xGoal.R`
+1. Obtain the file `results/names_{league}_{season}.csv` using `football/src/get_name_teams_from_league.py`
