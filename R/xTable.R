@@ -29,23 +29,33 @@ xGoal_all_league <- list(
   "253_2021" = list(inside = 0.089624, outside = 0.069169, penalty = 0.8),
   "140_2020" = list(inside = 0.117440, outside = 0.043654, penalty = 0.744681),
   "140_2021" = list(inside = 0.117440, outside = 0.043654, penalty = 0.744681),
-  "140_2022" = list(inside = 0.117440, outside = 0.043654, penalty = 0.750000),
-  "78_2020"  = list(inside = 0.110081, outside = 0.037332, penalty = 0.774774),
-  "78_2021"  = list(inside = 0.110081, outside = 0.037332, penalty = 0.774774),
-  "78_2022"  = list(inside = 0.110081, outside = 0.037332, penalty = 0.833333),
-  "39_2021"  = list(inside = 0.107191, outside = 0.052831, penalty = 0.809524),
-  "39_2021_kp"  = list(inside_kp = 0.2520, outside_nkp = 0.20548, penalty = 0.809524),
-  "39_2022"  = list(inside = 0.104380, outside = 0.044810, penalty = 0.815534),
-  "61_2020"  = list(inside = 0.108780, outside = 0.065102),
-  "61_2021"  = list(inside = 0.107191, outside = 0.052831, penalty = 0.878049),
-  "61_2022"  = list(inside = 0.107191, outside = 0.052831, penalty = 0.878049),
-  "88_2021"  = list(inside = 0.097606, outside = 0.059503, penalty = 0.815126),
-  "88_2020"  = list(inside = 0.097606, outside = 0.059503, penalty = 0.815126),
-  "88_2022"  = list(inside = 0.097606, outside = 0.059503, penalty = 0.785714),
-  "94_2021"  = list(inside = 0.102894, outside = 0.056361, penalty = 0.718182),
-  "94_2022"  = list(inside = 0.086937, outside = 0.057643, penalty = 0.794393),
+  "140_2021_kp" = list(inside_kp = 0.25451, inside_nkp = 0, outside_kp = -0.0595, outside_nkp = 0.17376, penalty = 0.75),
+  "140_2022" = list(inside = 0.097066, outside = 0.050715, penalty = 0.750000),
+  "140_2023" = list(inside = 0.097066, outside = 0.050715, penalty = 0.750000),
+  "78_2020" = list(inside = 0.110081, outside = 0.037332, penalty = 0.774774),
+  "78_2021" = list(inside = 0.110081, outside = 0.037332, penalty = 0.774774),
+  "78_2022" = list(inside = 0.097709, outside = 0.066039, penalty = 0.833333),
+  "78_2023" = list(inside = 0.097709, outside = 0.066039, penalty = 0.833333),
+  "39_2021" = list(inside = 0.107191, outside = 0.052831, penalty = 0.809524),
+  "39_2021_kp" = list(inside_kp = 0.2520, outside_nkp = 0.20548, penalty = 0.809524),
+  "39_2022" = list(inside = 0.105409, outside = 0.039653, penalty = 0.815534),
+  "39_2023" = list(inside = 0.105409, outside = 0.039653, penalty = 0.815534),
+  "61_2020" = list(inside = 0.108780, outside = 0.065102),
+  "61_2021" = list(inside = 0.107191, outside = 0.052831, penalty = 0.878049),
+  "61_2022" = list(inside = 0.106380, outside = 0.045184, penalty = 0.878049),
+  "61_2023" = list(inside = 0.106380, outside = 0.045184, penalty = 0.878049),
+  "88_2021" = list(inside = 0.097606, outside = 0.059503, penalty = 0.785714),
+  "88_2021_kp" = list(inside_kp = 0.28746, inside_nkp = -0.09923, outside_kp = 0, outside_nkp = 0.16179, penalty = 0.846666),
+  "88_2020" = list(inside = 0.097606, outside = 0.059503, penalty = 0.815126),
+  "88_2022" = list(inside = 0.088594, outside = 0.062969, penalty = 0.815384),
+  "88_2023" = list(inside = 0.088594, outside = 0.062970, penalty = 0.815384),
+  "94_2021" = list(inside = 0.102894, outside = 0.056361, penalty = 0.718182),
+  "94_2022" = list(inside = 0.086937, outside = 0.058329, penalty = 0.794393),
+  "94_2023" = list(inside = 0.086937, outside = 0.058329, penalty = 0.794393),
   "135_2021" = list(inside = 0.104484, outside = 0.054466, penalty = 0.846666),
-  "135_2022" = list(inside = 0.091034, outside = 0.058765, penalty = 0.774647)
+  "135_2021_kp" = list(inside_kp = 0.17922, inside_nkp = 0.18334, outside_kp = 0.04407, outside_nkp = 0, penalty = 0.846666),
+  "135_2022" = list(inside = 0.091700, outside = 0.057820, penalty = 0.777778),
+  "135_2023" = list(inside = 0.091700, outside = 0.057820, penalty = 0.777778)
 )
 
 xgoal_from_league_season <- function(league_season) {
@@ -64,8 +74,9 @@ calculate_xgoal <- function(xGol, shots_outsidebox, shots_insidebox, total_penal
   return(xgoal)
 }
 
-calculate_xgoal_kp <- function(xGol, shots_insidebox_kpnb, shots_outsidebox_nkpnb, total_penalties) {
+calculate_xgoal_kp <- function(xGol, shots_insidebox_kpnb, shots_outsidebox_nkpnb, shots_insidebox_nkpnb, shots_outsidebox_kpnb, total_penalties) {
   xgoal <- shots_outsidebox_nkpnb * xGol$outside_nkp + shots_insidebox_kpnb * xGol$inside_kp +
+    shots_outsidebox_kpnb * xGol$outside_kp + shots_insidebox_nkpnb * xGol$inside_nkp +
     total_penalties * xGol$penalty
   return(xgoal)
 }
