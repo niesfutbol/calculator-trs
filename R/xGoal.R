@@ -21,7 +21,7 @@ Teams <- R6::R6Class("Teams",
       return(ids)
     },
     set_team_from_id = function(id) {
-      self$team <- private$league %>% filter(team_id == id)
+      self$team <- private$league %>% dplyr::filter(team_id == id)
       private$calculate_g_and_xg(id)
       private$calculate_league_for_soccerbars(id)
     },
