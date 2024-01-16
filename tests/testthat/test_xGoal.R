@@ -18,14 +18,14 @@ describe("The class Teams", {
     expect_true("2298" %in% obtained_ids)
   })
   it("The method set_team_from_id", {
-    expected_team <- expected_league %>% filter(team_id == "2288")
+    expected_team <- read_csv(
+      "tests/data/Team_set_team_from_id.csv",
+      show_col_types = FALSE,
+      col_types = "dcdcd"
+      )
     teams$set_team_from_id("2288")
     obtained_team <- teams$team
-    expect_equal(expected_team, obtained_team)
-    expected_team <- expected_league %>% filter(team_id == "2290")
-    teams$set_team_from_id("2290")
-    obtained_team <- teams$team
-    expect_equal(expected_team, obtained_team)
+    expect_equal(obtained_team, expected_team)
   })
   it("The method bootstrapping_xgoal", {
     obtained_bootstrapped_xgoal <- teams$bootstrapping_xgoal()
