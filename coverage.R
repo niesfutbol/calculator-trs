@@ -12,4 +12,4 @@ cobertura <- file_coverage(
         "tests/testthat/test_xTable.R"
     )
 )
-covr::codecov(covertura=cobertura, token='1618c982-0462-40d3-b33c-7b7f1c654e96')
+covr::codecov(covertura=cobertura, token='ef6a60a1-4873-4590-9475-ba68538791c0')
