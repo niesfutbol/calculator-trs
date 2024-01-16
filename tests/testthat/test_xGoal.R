@@ -22,7 +22,7 @@ describe("The class Teams", {
       "tests/data/Team_set_team_from_id.csv",
       show_col_types = FALSE,
       col_types = "dcdcd"
-      )
+    )
     teams$set_team_from_id("2288")
     obtained_team <- teams$team
     expect_equal(obtained_team, expected_team)
