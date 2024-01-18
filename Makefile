@@ -139,10 +139,12 @@ update: \
 update_premier_league_2023:
 	Rscript src/calculate_xPoint.R --league-season=39_2023
 	Rscript src/add_winner_to_league.R --league-season=39_2023
+	Rscript src/prediction_from_multinom.R --league-season=39_2023
 
 update_serie_a_2023:
 	Rscript src/calculate_xPoint.R --league-season=135_2023
 	Rscript src/add_winner_to_league.R --league-season=135_2023
+	Rscript src/prediction_from_multinom.R --league-season=39_2023
 
 update_2023: \
 	update_premier_league_2023 \
