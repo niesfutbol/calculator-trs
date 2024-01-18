@@ -6,6 +6,8 @@ source("/workdir/R/cli_options.R")
 
 names_options_cli <- c("league", "round", "mode", "directory")
 opciones <- get_options_from_names(names_options_cli)
+# opciones$"league-season" <- "135_2023"
+# opciones$round <- 0
 league_season <- opciones[["league-season"]]
 previous_league_season <- previous_season(league_season)
 directory <- opciones[["directory"]]
@@ -17,15 +19,6 @@ model <- multinom(
   data = strength_league
 )
 
-
-get_names <- function(id) {
-  name <- names %>%
-    filter(ids == id) %>%
-    .$names
-  return(name)
-}
-
-
 path_names <- glue::glue("{directory}/names_{league_season}.csv")
 names <- read_csv(path_names, show_col_types = FALSE)
 path_league <- glue::glue("{directory}/league_{league_season}.csv")
@@ -33,7 +26,10 @@ league <- read_csv(path_league, show_col_types = FALSE)
 path_season <- glue::glue("{directory}/season_{league_season}.csv")
 season <- read_csv(path_season, show_col_types = FALSE)
 round_str <- opciones[["round"]]
-n_round <- glue::glue("Regular Season - {round_str}")
+if (opciones[["round"]] == 0) {
+  opciones$initial_date <- lubridate::today()
+  opciones$final_date <- lubridate::today() + 14
+}
 round <- select_match_to_predict(season, opciones)
 
 home_id <- round$home_id
@@ -47,8 +43,9 @@ to_predict <- tibble(away_attack, away_defense, home_defense, home_attack)
 pred <- predict(model, to_predict, type = "prob")
 (predictions <- tibble("home" = pred[, 3], "draw" = pred[, 2], "away" = pred[, 1]) %>%
   cbind(home_id, away_id) %>%
-  mutate(home_team = mapply(function(x) get_names(x), home_id)) %>%
-  mutate(away_team = mapply(function(x) get_names(x), away_id)) %>%
+  left_join(names, by = c("home_id" = "ids")) |>
+  left_join(names, by = c("away_id" = "ids"), suffix = c("_home", "_away")) |>
+  rename(home_team = name_home, away_team = name_away) %>%
   select(c(6, 1, 2, 3, 7)))
 predictions_round <- cbind(predictions, round)
 output_file <- glue::glue("{directory}/predictions_{league_season}_{round_str}.csv")
