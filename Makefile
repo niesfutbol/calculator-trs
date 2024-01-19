@@ -136,16 +136,46 @@ update: \
 	update_serie_a_2022
 
 #=== 2023
+update_bundesliga_2023:
+	Rscript src/calculate_xPoint.R --league-season=78_2023
+	Rscript src/add_winner_to_league.R --league-season=78_2023
+	Rscript src/prediction_from_multinom.R --league-season=78_2023
+
+update_eredivisie_2023:
+	Rscript src/calculate_xPoint.R --league-season=88_2023
+	Rscript src/add_winner_to_league.R --league-season=88_2023
+	Rscript src/prediction_from_multinom.R --league-season=88_2023
+
+update_la_liga_2023:
+	Rscript src/calculate_xPoint.R --league-season=140_2023
+	Rscript src/add_winner_to_league.R --league-season=140_2023
+	Rscript src/prediction_from_multinom.R --league-season=140_2023
+
+update_ligue_1_2023:
+	Rscript src/calculate_xPoint.R --league-season=61_2023
+	Rscript src/add_winner_to_league.R --league-season=61_2023
+	Rscript src/prediction_from_multinom.R --league-season=61_2023
+
 update_premier_league_2023:
 	Rscript src/calculate_xPoint.R --league-season=39_2023
 	Rscript src/add_winner_to_league.R --league-season=39_2023
 	Rscript src/prediction_from_multinom.R --league-season=39_2023
 
+update_primeira_liga_2023:
+	Rscript src/calculate_xPoint.R --league-season=94_2023
+	Rscript src/add_winner_to_league.R --league-season=94_2023
+	Rscript src/prediction_from_multinom.R --league-season=94_2023
+
 update_serie_a_2023:
 	Rscript src/calculate_xPoint.R --league-season=135_2023
 	Rscript src/add_winner_to_league.R --league-season=135_2023
-	Rscript src/prediction_from_multinom.R --league-season=39_2023
+	Rscript src/prediction_from_multinom.R --league-season=135_2023
 
 update_2023: \
+	update_bundesliga_2023 \
+	update_eredivisie_2023 \
+	update_la_liga_2023 \
+	update_ligue_1_2023 \
+	update_primeira_liga_2023 \
 	update_premier_league_2023 \
-	update_serie_a_2022
+	update_serie_a_2023
