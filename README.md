@@ -123,6 +123,6 @@ docker container run -v $PWD/nies_data:/workdir/results nepolin/calculator-trs m
 
 ## To add new season
 1. Add phony `update` and `upadate_{league}_{season}`
-1. Update xGoal parameters in `R/xTable.R` using `src/calculate_xGoal.R`
+1. Update xGoal parameters in `R/xTable.R` using `src/calculate_xGoal.R --input-file=results/league_{league}_{season}.csv`
 1. Obtain the file `results/names_{league}_{season}.csv` using `football/src/get_name_teams_from_league.py`
 1. Obtain the file `results/season_{league}_{season}.csv` using `football/src/matches_of_seasons.py`
